@@ -1,0 +1,46 @@
+PODS:
+  - Alamofire (5.0.0-rc.2)
+  - AlamofireObjectMapper (6.2.0):
+    - Alamofire (= 5.0.0-rc.2)
+    - ObjectMapper (~> 3.5.1)
+  - Cloudpayments (1.0.0):
+    - Alamofire (= 5.0.0-rc.2)
+    - AlamofireObjectMapper
+  - ObjectMapper (3.5.3)
+  - SDWebImage (5.9.2):
+    - SDWebImage/Core (= 5.9.2)
+  - SDWebImage/Core (5.9.2)
+
+DEPENDENCIES:
+  - Alamofire (= 5.0.0-rc.2)
+  - AlamofireObjectMapper
+  - Cloudpayments (from `https://github.com/cloudpayments/CloudPayments-SDK-iOS-V2`, branch `master`)
+  - SDWebImage (~> 5.0)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AlamofireObjectMapper
+    - ObjectMapper
+    - SDWebImage
+
+EXTERNAL SOURCES:
+  Cloudpayments:
+    :branch: master
+    :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS-V2
+
+CHECKOUT OPTIONS:
+  Cloudpayments:
+    :commit: 58403eea2b8ae026075c721e556455160d135b9e
+    :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS-V2
+
+SPEC CHECKSUMS:
+  Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
+  AlamofireObjectMapper: 74d1440c92c42bbcc2b5f4dc81654ac095ec669f
+  Cloudpayments: e50c1ae8ff42c9716ac3d1063ebbdad87ed1bdc5
+  ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
+  SDWebImage: 0b42b8719ab0c5257177d5894306e8a336b21cbb
+
+PODFILE CHECKSUM: 963bd8034b090daf69956423449abbed91ed671f
+
+COCOAPODS: 1.9.3

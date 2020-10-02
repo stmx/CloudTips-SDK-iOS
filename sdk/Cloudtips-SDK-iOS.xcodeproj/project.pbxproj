@@ -1,0 +1,570 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5B6EA82C6D94845AA648482C /* Pods_Cloudtips_SDK_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2370AB84AE28B294A21BFBD6 /* Pods_Cloudtips_SDK_iOS.framework */; };
+		8309851425236460009A3C32 /* Cloudtips_SDK_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309851225236460009A3C32 /* Cloudtips_SDK_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8309854D2523678C009A3C32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 830985472523678C009A3C32 /* Assets.xcassets */; };
+		83098552252367AA009A3C32 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83098551252367AA009A3C32 /* UIView+Extensions.swift */; };
+		83098558252367C0009A3C32 /* TipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83098555252367C0009A3C32 /* TipsViewController.swift */; };
+		83098559252367C0009A3C32 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83098556252367C0009A3C32 /* CardViewController.swift */; };
+		8309855A252367C0009A3C32 /* CompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83098557252367C0009A3C32 /* CompletionViewController.swift */; };
+		8309858325236C89009A3C32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8309854C2523678C009A3C32 /* Main.storyboard */; };
+		830985A125236FC2009A3C32 /* CloudtipsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8309859625236FC2009A3C32 /* CloudtipsApi.swift */; };
+		830985A225236FC2009A3C32 /* CloudtipsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8309859725236FC2009A3C32 /* CloudtipsError.swift */; };
+		830985A325236FC2009A3C32 /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8309859825236FC2009A3C32 /* HTTP.swift */; };
+		830985A425236FC2009A3C32 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8309859A25236FC2009A3C32 /* Layout.swift */; };
+		830985B52523731E009A3C32 /* PublicIdResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830985B42523731E009A3C32 /* PublicIdResponse.swift */; };
+		830985BB252377B4009A3C32 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830985BA252377B4009A3C32 /* Bundle+Extensions.swift */; };
+		830985E425247E58009A3C32 /* UIImage+Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830985DF25247E57009A3C32 /* UIImage+Assets.swift */; };
+		830985E525247E58009A3C32 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830985E025247E57009A3C32 /* UIViewController+Extensions.swift */; };
+		830985E625247E58009A3C32 /* UIColor+Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830985E125247E57009A3C32 /* UIColor+Assets.swift */; };
+		830985E725247E58009A3C32 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830985E225247E57009A3C32 /* String+Extensions.swift */; };
+		830985E825247E58009A3C32 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830985E325247E57009A3C32 /* UIView+Constraints.swift */; };
+		830985EC25247F23009A3C32 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830985EB25247F23009A3C32 /* ProgressView.swift */; };
+		8319C80A252619AC003B3EED /* DefaultAmountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319C809252619AC003B3EED /* DefaultAmountCell.swift */; };
+		831BBFE525248F5400E6BACB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831BBFE425248F5400E6BACB /* BaseViewController.swift */; };
+		831BC01E2524C09900E6BACB /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831BC01D2524C09900E6BACB /* Profile.swift */; };
+		831BC0252524C32600E6BACB /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831BC0232524C32600E6BACB /* Button.swift */; };
+		831BC0262524C32600E6BACB /* UnderlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831BC0242524C32600E6BACB /* UnderlineTextField.swift */; };
+		83507DB62526109800637BB6 /* NumberFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83507DB52526109800637BB6 /* NumberFormatter+Extensions.swift */; };
+		8364CD0B252E02F400E47F3B /* BasePaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8364CD0A252E02F400E47F3B /* BasePaymentViewController.swift */; };
+		83B4FAF7252B1911008ED235 /* AuthDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B4FAF6252B1911008ED235 /* AuthDelegate.swift */; };
+		83D5A31525276D9C00DF0562 /* PaymentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D5A31425276D9C00DF0562 /* PaymentData.swift */; };
+		83D5A31825276EE800DF0562 /* PaymentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D5A31725276EE800DF0562 /* PaymentResponse.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2370AB84AE28B294A21BFBD6 /* Pods_Cloudtips_SDK_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cloudtips_SDK_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		42C02BC77A6C5D16E1ACD56B /* Pods-Cloudtips-SDK-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloudtips-SDK-iOS.release.xcconfig"; path = "Target Support Files/Pods-Cloudtips-SDK-iOS/Pods-Cloudtips-SDK-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		4A02953573E6E8B06EB7121F /* Pods-Cloudtips-SDK-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloudtips-SDK-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Cloudtips-SDK-iOS/Pods-Cloudtips-SDK-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		8309850F25236460009A3C32 /* Cloudtips_SDK_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cloudtips_SDK_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8309851225236460009A3C32 /* Cloudtips_SDK_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cloudtips_SDK_iOS.h; sourceTree = "<group>"; };
+		830985472523678C009A3C32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8309854C2523678C009A3C32 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		83098551252367AA009A3C32 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		83098555252367C0009A3C32 /* TipsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TipsViewController.swift; sourceTree = "<group>"; };
+		83098556252367C0009A3C32 /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		83098557252367C0009A3C32 /* CompletionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletionViewController.swift; sourceTree = "<group>"; };
+		830985622523687A009A3C32 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8309859625236FC2009A3C32 /* CloudtipsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudtipsApi.swift; sourceTree = "<group>"; };
+		8309859725236FC2009A3C32 /* CloudtipsError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudtipsError.swift; sourceTree = "<group>"; };
+		8309859825236FC2009A3C32 /* HTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
+		8309859A25236FC2009A3C32 /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		830985B42523731E009A3C32 /* PublicIdResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicIdResponse.swift; sourceTree = "<group>"; };
+		830985BA252377B4009A3C32 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
+		830985DF25247E57009A3C32 /* UIImage+Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Assets.swift"; sourceTree = "<group>"; };
+		830985E025247E57009A3C32 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		830985E125247E57009A3C32 /* UIColor+Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Assets.swift"; sourceTree = "<group>"; };
+		830985E225247E57009A3C32 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		830985E325247E57009A3C32 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
+		830985EB25247F23009A3C32 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		8319C809252619AC003B3EED /* DefaultAmountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultAmountCell.swift; sourceTree = "<group>"; };
+		831BBFE425248F5400E6BACB /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		831BC01D2524C09900E6BACB /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		831BC0232524C32600E6BACB /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		831BC0242524C32600E6BACB /* UnderlineTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlineTextField.swift; sourceTree = "<group>"; };
+		83507DB52526109800637BB6 /* NumberFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Extensions.swift"; sourceTree = "<group>"; };
+		8364CD0A252E02F400E47F3B /* BasePaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePaymentViewController.swift; sourceTree = "<group>"; };
+		83B4FAF6252B1911008ED235 /* AuthDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDelegate.swift; sourceTree = "<group>"; };
+		83D5A31425276D9C00DF0562 /* PaymentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentData.swift; sourceTree = "<group>"; };
+		83D5A31725276EE800DF0562 /* PaymentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentResponse.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8309850C25236460009A3C32 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B6EA82C6D94845AA648482C /* Pods_Cloudtips_SDK_iOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		200DDC7361955A205F2F09D0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4A02953573E6E8B06EB7121F /* Pods-Cloudtips-SDK-iOS.debug.xcconfig */,
+				42C02BC77A6C5D16E1ACD56B /* Pods-Cloudtips-SDK-iOS.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		8309850525236460009A3C32 = {
+			isa = PBXGroup;
+			children = (
+				8309851125236460009A3C32 /* Sources */,
+				8309854625236752009A3C32 /* Resources */,
+				8309851025236460009A3C32 /* Products */,
+				200DDC7361955A205F2F09D0 /* Pods */,
+				E07D4B3E6DF9501F5CF69E95 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8309851025236460009A3C32 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8309850F25236460009A3C32 /* Cloudtips_SDK_iOS.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8309851125236460009A3C32 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				8309859225236F81009A3C32 /* api */,
+				83098554252367BA009A3C32 /* form */,
+				8309854525236722009A3C32 /* utils */,
+				8309851225236460009A3C32 /* Cloudtips_SDK_iOS.h */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		8309854525236722009A3C32 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				831BC0222524C31E00E6BACB /* UIKit */,
+				8309859525236F9A009A3C32 /* extensions */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		8309854625236752009A3C32 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				830985472523678C009A3C32 /* Assets.xcassets */,
+				830985622523687A009A3C32 /* Info.plist */,
+				8309854C2523678C009A3C32 /* Main.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		83098554252367BA009A3C32 /* form */ = {
+			isa = PBXGroup;
+			children = (
+				830985EA25247F11009A3C32 /* support */,
+				831BBFE425248F5400E6BACB /* BaseViewController.swift */,
+				8364CD0A252E02F400E47F3B /* BasePaymentViewController.swift */,
+				83098555252367C0009A3C32 /* TipsViewController.swift */,
+				83098556252367C0009A3C32 /* CardViewController.swift */,
+				83098557252367C0009A3C32 /* CompletionViewController.swift */,
+				8319C809252619AC003B3EED /* DefaultAmountCell.swift */,
+			);
+			path = form;
+			sourceTree = "<group>";
+		};
+		8309859225236F81009A3C32 /* api */ = {
+			isa = PBXGroup;
+			children = (
+				8309859625236FC2009A3C32 /* CloudtipsApi.swift */,
+				8309859725236FC2009A3C32 /* CloudtipsError.swift */,
+				8309859825236FC2009A3C32 /* HTTP.swift */,
+				8309859925236FC2009A3C32 /* Models */,
+				83B4FAF6252B1911008ED235 /* AuthDelegate.swift */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
+		8309859525236F9A009A3C32 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				83098551252367AA009A3C32 /* UIView+Extensions.swift */,
+				830985E225247E57009A3C32 /* String+Extensions.swift */,
+				830985E125247E57009A3C32 /* UIColor+Assets.swift */,
+				830985DF25247E57009A3C32 /* UIImage+Assets.swift */,
+				830985E325247E57009A3C32 /* UIView+Constraints.swift */,
+				830985E025247E57009A3C32 /* UIViewController+Extensions.swift */,
+				830985BA252377B4009A3C32 /* Bundle+Extensions.swift */,
+				83507DB52526109800637BB6 /* NumberFormatter+Extensions.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		8309859925236FC2009A3C32 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8309859A25236FC2009A3C32 /* Layout.swift */,
+				831BC01D2524C09900E6BACB /* Profile.swift */,
+				830985B42523731E009A3C32 /* PublicIdResponse.swift */,
+				83D5A31425276D9C00DF0562 /* PaymentData.swift */,
+				83D5A31725276EE800DF0562 /* PaymentResponse.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		830985EA25247F11009A3C32 /* support */ = {
+			isa = PBXGroup;
+			children = (
+				830985EB25247F23009A3C32 /* ProgressView.swift */,
+			);
+			path = support;
+			sourceTree = "<group>";
+		};
+		831BC0222524C31E00E6BACB /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				831BC0232524C32600E6BACB /* Button.swift */,
+				831BC0242524C32600E6BACB /* UnderlineTextField.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		E07D4B3E6DF9501F5CF69E95 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2370AB84AE28B294A21BFBD6 /* Pods_Cloudtips_SDK_iOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8309850A25236460009A3C32 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8309851425236460009A3C32 /* Cloudtips_SDK_iOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		8309850E25236460009A3C32 /* Cloudtips-SDK-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8309851725236460009A3C32 /* Build configuration list for PBXNativeTarget "Cloudtips-SDK-iOS" */;
+			buildPhases = (
+				5363F7AC353856FEBB7E95DA /* [CP] Check Pods Manifest.lock */,
+				8309850A25236460009A3C32 /* Headers */,
+				8309850B25236460009A3C32 /* Sources */,
+				8309850C25236460009A3C32 /* Frameworks */,
+				8309850D25236460009A3C32 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Cloudtips-SDK-iOS";
+			productName = "Cloudtips-SDK-iOS";
+			productReference = 8309850F25236460009A3C32 /* Cloudtips_SDK_iOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8309850625236460009A3C32 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1200;
+				ORGANIZATIONNAME = Cloudtips;
+				TargetAttributes = {
+					8309850E25236460009A3C32 = {
+						CreatedOnToolsVersion = 12.0;
+						LastSwiftMigration = 1200;
+					};
+				};
+			};
+			buildConfigurationList = 8309850925236460009A3C32 /* Build configuration list for PBXProject "Cloudtips-SDK-iOS" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8309850525236460009A3C32;
+			productRefGroup = 8309851025236460009A3C32 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8309850E25236460009A3C32 /* Cloudtips-SDK-iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8309850D25236460009A3C32 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8309858325236C89009A3C32 /* Main.storyboard in Resources */,
+				8309854D2523678C009A3C32 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5363F7AC353856FEBB7E95DA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Cloudtips-SDK-iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8309850B25236460009A3C32 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8364CD0B252E02F400E47F3B /* BasePaymentViewController.swift in Sources */,
+				830985A125236FC2009A3C32 /* CloudtipsApi.swift in Sources */,
+				83D5A31525276D9C00DF0562 /* PaymentData.swift in Sources */,
+				830985BB252377B4009A3C32 /* Bundle+Extensions.swift in Sources */,
+				83507DB62526109800637BB6 /* NumberFormatter+Extensions.swift in Sources */,
+				830985A425236FC2009A3C32 /* Layout.swift in Sources */,
+				830985A225236FC2009A3C32 /* CloudtipsError.swift in Sources */,
+				830985E525247E58009A3C32 /* UIViewController+Extensions.swift in Sources */,
+				831BC0252524C32600E6BACB /* Button.swift in Sources */,
+				831BC0262524C32600E6BACB /* UnderlineTextField.swift in Sources */,
+				830985B52523731E009A3C32 /* PublicIdResponse.swift in Sources */,
+				830985A325236FC2009A3C32 /* HTTP.swift in Sources */,
+				831BC01E2524C09900E6BACB /* Profile.swift in Sources */,
+				831BBFE525248F5400E6BACB /* BaseViewController.swift in Sources */,
+				83D5A31825276EE800DF0562 /* PaymentResponse.swift in Sources */,
+				830985E425247E58009A3C32 /* UIImage+Assets.swift in Sources */,
+				830985E725247E58009A3C32 /* String+Extensions.swift in Sources */,
+				83098558252367C0009A3C32 /* TipsViewController.swift in Sources */,
+				83B4FAF7252B1911008ED235 /* AuthDelegate.swift in Sources */,
+				830985E625247E58009A3C32 /* UIColor+Assets.swift in Sources */,
+				83098552252367AA009A3C32 /* UIView+Extensions.swift in Sources */,
+				830985E825247E58009A3C32 /* UIView+Constraints.swift in Sources */,
+				830985EC25247F23009A3C32 /* ProgressView.swift in Sources */,
+				8309855A252367C0009A3C32 /* CompletionViewController.swift in Sources */,
+				83098559252367C0009A3C32 /* CardViewController.swift in Sources */,
+				8319C80A252619AC003B3EED /* DefaultAmountCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		8309851525236460009A3C32 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8309851625236460009A3C32 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8309851825236460009A3C32 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A02953573E6E8B06EB7121F /* Pods-Cloudtips-SDK-iOS.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = WCLAYYKMWP;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Resources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.cloudtips.Cloudtips-SDK-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8309851925236460009A3C32 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42C02BC77A6C5D16E1ACD56B /* Pods-Cloudtips-SDK-iOS.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = WCLAYYKMWP;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Resources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.cloudtips.Cloudtips-SDK-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8309850925236460009A3C32 /* Build configuration list for PBXProject "Cloudtips-SDK-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8309851525236460009A3C32 /* Debug */,
+				8309851625236460009A3C32 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8309851725236460009A3C32 /* Build configuration list for PBXNativeTarget "Cloudtips-SDK-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8309851825236460009A3C32 /* Debug */,
+				8309851925236460009A3C32 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8309850625236460009A3C32 /* Project object */;
+}
