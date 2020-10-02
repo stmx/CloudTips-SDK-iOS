@@ -1,0 +1,38 @@
+PODS:
+  - Alamofire (5.0.0-rc.2)
+  - AlamofireObjectMapper (6.2.0):
+    - Alamofire (= 5.0.0-rc.2)
+    - ObjectMapper (~> 3.5.1)
+  - Cloudtips-SDK-iOS (1.0.0):
+    - Alamofire (= 5.0.0-rc.2)
+    - AlamofireObjectMapper
+    - SDWebImage (~> 5.0)
+  - ObjectMapper (3.5.3)
+  - SDWebImage (5.9.2):
+    - SDWebImage/Core (= 5.9.2)
+  - SDWebImage/Core (5.9.2)
+
+DEPENDENCIES:
+  - Cloudtips-SDK-iOS (from `../sdk`)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AlamofireObjectMapper
+    - ObjectMapper
+    - SDWebImage
+
+EXTERNAL SOURCES:
+  Cloudtips-SDK-iOS:
+    :path: "../sdk"
+
+SPEC CHECKSUMS:
+  Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
+  AlamofireObjectMapper: 74d1440c92c42bbcc2b5f4dc81654ac095ec669f
+  Cloudtips-SDK-iOS: 91b4afdc458a553aeca477aafaf53357ca8cadb3
+  ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
+  SDWebImage: 0b42b8719ab0c5257177d5894306e8a336b21cbb
+
+PODFILE CHECKSUM: b2f942c981a5f9752a0fa4294509c17692d3dfe1
+
+COCOAPODS: 1.9.3
