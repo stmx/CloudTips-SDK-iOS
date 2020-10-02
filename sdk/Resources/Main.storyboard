@@ -138,7 +138,7 @@
                                                             <constraint firstAttribute="trailing" secondItem="vHQ-Oy-OXJ" secondAttribute="trailing" constant="20" id="gM9-4R-XtM"/>
                                                         </constraints>
                                                     </view>
-                                                    <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Y08-nY-Weh">
+                                                    <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Y08-nY-Weh">
                                                         <rect key="frame" x="0.0" y="134" width="414" height="60"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -674,7 +674,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="K9T-hx-DGK"/>
+        <segue reference="PhF-Kq-76C"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BackImage" width="16" height="16"/>

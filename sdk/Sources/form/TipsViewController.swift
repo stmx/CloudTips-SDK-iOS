@@ -128,10 +128,6 @@ public class TipsViewController: BaseViewController, UICollectionViewDelegate, U
     
     private func checkLayouts(layouts: [Layout]?, error: Error?, createIfEmpty: Bool) {
         if let layout = layouts?.first {
-            self.contentScrollView.isHidden = false
-            self.progressView.isHidden = true
-            self.progressView.stopAnimation()
-            
             self.layout = layout
             
             if let layoutId = layout.layoutId {
@@ -139,6 +135,10 @@ public class TipsViewController: BaseViewController, UICollectionViewDelegate, U
                     guard let `self` = self else {
                         return
                     }
+                    
+                    self.contentScrollView.isHidden = false
+                    self.progressView.isHidden = true
+                    self.progressView.stopAnimation()
                     
                     self.updateUI()
                 }
