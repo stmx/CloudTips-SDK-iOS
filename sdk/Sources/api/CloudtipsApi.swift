@@ -37,6 +37,24 @@ public class CloudtipsApi {
         makeArrayRequest(request, completion: completion)
     }
     
+    func getPublicId(with layoutId: String, completion: HTTPRequestCompletion<PublicIdResponse>?) {
+        let request = HTTPRequest(resource: .getPublicId, method: .post, parameters: ["layoutId": layoutId])
+        makeObjectRequest(request, completion: completion)
+    }
+    
+    func auth(with paymentData: PaymentData, completion: HTTPRequestCompletion<PaymentResponse>?) {
+        let params: [String: Any] =
+            ["cardholderName": "Cloudtips SDK",
+             "cardCryptogramPacket": paymentData.cryptogram,
+             "amount": paymentData.amount,
+             "currency": paymentData.currency.rawValue,
+             "comment": paymentData.comment ?? "",
+             "layoutId": paymentData.layoutId]
+        
+        let request = HTTPRequest(resource: .authPayment, method: .post, parameters: params)
+        makeObjectRequest(request, completion: completion)
+    }
+    
 //    public func charge(cardCryptogramPacket: String, cardHolderName: String?, email: String?, amount: String, currency: Currency = .ruble, completion: @escaping HTTPRequestCompletion<TransactionResponse>) {
 //        self.threeDsCompletion = nil
 //        

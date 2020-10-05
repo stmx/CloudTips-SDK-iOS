@@ -10,7 +10,7 @@ import UIKit
 import SDWebImage
 import PassKit
 
-public class TipsViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+public class TipsViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, AuthDelegate {
     @IBOutlet private weak var progressView: ProgressView!
     @IBOutlet private weak var contentScrollView: UIScrollView!
     @IBOutlet private weak var profileImageView: UIImageView!
@@ -41,6 +41,8 @@ public class TipsViewController: BaseViewController, UICollectionViewDelegate, U
     
     private var layout: Layout?
     private var profile: Profile?
+    
+    private var amount = "0"
     
     public class func present(with phoneNumber: String, name: String?, from: UIViewController) {
         let navController = UIStoryboard.init(name: "Main", bundle: Bundle.mainSdk).instantiateInitialViewController() as! UINavigationController
@@ -92,21 +94,25 @@ public class TipsViewController: BaseViewController, UICollectionViewDelegate, U
     }
     
     @objc private func onApplePay(_ sender: UIButton) {
-//        let amount = Double(self.paymentData.amount) ?? 0.0
-//
-//        let request = PKPaymentRequest()
-//        request.merchantIdentifier = self.paymentData.applePayMerchantId
-//        request.supportedNetworks = self.supportedPaymentNetworks
-//        request.merchantCapabilities = PKMerchantCapability.capability3DS
-//        request.countryCode = "RU"
-//        request.currencyCode = self.paymentData.currency.rawValue
-//        request.paymentSummaryItems = [PKPaymentSummaryItem(label: "К оплате", amount: NSDecimalNumber.init(value: amount))]
-//        if let applePayController = PKPaymentAuthorizationViewController(paymentRequest:
-//                request) {
-//            applePayController.delegate = self
-//            applePayController.modalPresentationStyle = .formSheet
-//            self.present(applePayController, animated: true, completion: nil)
-//        }
+        self.amount = "0"
+        
+        if let amountString = self.amountTextField.text, let amount = Double(amountString) ?? 0.0 {
+            self.amount = amountString
+            
+            let request = PKPaymentRequest()
+            request.merchantIdentifier = "merchant.ru.cloudpayments"
+            request.supportedNetworks = self.supportedPaymentNetworks
+            request.merchantCapabilities = PKMerchantCapability.capability3DS
+            request.countryCode = "RU"
+            request.currencyCode = "RUB"
+            request.paymentSummaryItems = [PKPaymentSummaryItem(label: "К оплате", amount: NSDecimalNumber.init(value: amount))]
+            if let applePayController = PKPaymentAuthorizationViewController(paymentRequest:
+                    request) {
+                applePayController.delegate = self
+                applePayController.modalPresentationStyle = .formSheet
+                self.present(applePayController, animated: true, completion: nil)
+            }
+        }
     }
     
     @objc private func onSetupApplePay(_ sender: UIButton) {
@@ -178,6 +184,10 @@ public class TipsViewController: BaseViewController, UICollectionViewDelegate, U
         self.amountTextField.shouldReturn = {
             self.commentTextField.becomeFirstResponder()
             return false
+        }
+        self.amountTextField.shouldChangeCharactersInRange = { range, text in
+            let should = CharacterSet.decimalDigits.isSuperset(of: CharacterSet.init(charactersIn: text))
+            return should
         }
         self.commentTextField.shouldReturn = {
             self.commentTextField.resignFirstResponder()
@@ -268,10 +278,34 @@ public class TipsViewController: BaseViewController, UICollectionViewDelegate, U
     }
 }
 
-extension TipsViewController: PKPaymentAuthorizationControllerDelegate {
-    public func paymentAuthorizationControllerDidFinish(_ controller: PKPaymentAuthorizationController) {
-        
+extension TipsViewController: PKPaymentAuthorizationViewControllerDelegate {
+    public func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
+        controller.dismiss(animated: true) {
+            
+        }
     }
     
+    public func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
+        if let layoutId = self.layout?.layoutId {
+            self.getPublicId(with: layoutId) { (publicId, error) in
+                if let publicId = publicId, let cryptogram = payment.convertToString() {
+                    let paymentData = PaymentData.init(layoutId: layoutId, cryptogram: cryptogram, comment: self.commentTextField.text, amount: self.amount)
+                    self.auth(with: paymentData) { (response, error) in
+                        if response?.statusCode == "Success" {
+                            completion(PKPaymentAuthorizationResult(status: PKPaymentAuthorizationStatus.success, errors: []))
+                        } else {
+                            let error = CloudtipsError.init(message: response?.message ?? error?.localizedDescription ?? "")
+                            completion(PKPaymentAuthorizationResult(status: PKPaymentAuthorizationStatus.failure, errors: [error]))
+                        }
+                    }
+                } else {
+                    completion(PKPaymentAuthorizationResult(status: PKPaymentAuthorizationStatus.failure, errors: []))
+                }
+            }
+        } else {
+            completion(PKPaymentAuthorizationResult(status: PKPaymentAuthorizationStatus.failure, errors: []))
+        }
+
+    }
     
 }

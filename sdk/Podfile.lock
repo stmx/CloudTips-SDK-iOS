@@ -3,6 +3,9 @@ PODS:
   - AlamofireObjectMapper (6.2.0):
     - Alamofire (= 5.0.0-rc.2)
     - ObjectMapper (~> 3.5.1)
+  - Cloudpayments-SDK-iOS (2.0.0):
+    - Alamofire (= 5.0.0-rc.2)
+    - AlamofireObjectMapper
   - ObjectMapper (3.5.3)
   - SDWebImage (5.9.2):
     - SDWebImage/Core (= 5.9.2)
@@ -11,6 +14,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (= 5.0.0-rc.2)
   - AlamofireObjectMapper
+  - Cloudpayments-SDK-iOS (from `https://github.com/iskhakovsa/cp-test.git`)
   - SDWebImage (~> 5.0)
 
 SPEC REPOS:
@@ -20,12 +24,22 @@ SPEC REPOS:
     - ObjectMapper
     - SDWebImage
 
+EXTERNAL SOURCES:
+  Cloudpayments-SDK-iOS:
+    :git: https://github.com/iskhakovsa/cp-test.git
+
+CHECKOUT OPTIONS:
+  Cloudpayments-SDK-iOS:
+    :commit: a7831075cbd8f74419eeaf7fb2c7d9afc6dd2aee
+    :git: https://github.com/iskhakovsa/cp-test.git
+
 SPEC CHECKSUMS:
   Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
   AlamofireObjectMapper: 74d1440c92c42bbcc2b5f4dc81654ac095ec669f
+  Cloudpayments-SDK-iOS: a9ae5bcc5e53531b39c5a4ebc8ca7517e421ef1a
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
   SDWebImage: 0b42b8719ab0c5257177d5894306e8a336b21cbb
 
-PODFILE CHECKSUM: 824f4dd9c6f228c6bfdbb8aec16a2593a178ef9f
+PODFILE CHECKSUM: 44ae284dab81758b1329d5b9d2e74679d87444d9
 
 COCOAPODS: 1.9.3

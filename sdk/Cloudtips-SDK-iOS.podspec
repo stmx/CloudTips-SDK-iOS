@@ -32,4 +32,5 @@ Pod::Spec.new do |spec|
   spec.dependency 'Alamofire', '5.0.0-rc.2'
   spec.dependency 'AlamofireObjectMapper'
   spec.dependency 'SDWebImage', '~> 5.0'
+  spec.dependency 'Cloudpayments-SDK-iOS'
 end

@@ -31,6 +31,9 @@
     ],
     "SDWebImage": [
       "~> 5.0"
+    ],
+    "Cloudpayments-SDK-iOS": [
+
     ]
   }
 }

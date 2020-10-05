@@ -6,4 +6,6 @@ target 'Cloudtips-SDK-iOS' do
   pod 'Alamofire', '5.0.0-rc.2'
   pod 'AlamofireObjectMapper'
   pod 'SDWebImage', '~> 5.0'
+  pod 'Cloudpayments-SDK-iOS', :git => "https://github.com/iskhakovsa/cp-test.git"
+
 end

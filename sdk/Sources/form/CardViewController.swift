@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Cloudpayments_SDK_iOS
 
 class CardViewController: BaseViewController {
     @IBOutlet private weak var cardNumberTextField: UnderlineTextField!
@@ -20,6 +21,9 @@ class CardViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let cryptogram = Card.makeCardCryptogramPacket(with: "4242 4242 4242 4242", expDate: "12/23", cvv: "122", merchantPublicID: "")
+        print(cryptogram)
         
         self.prepareUI()
     }
@@ -125,5 +129,9 @@ class CardViewController: BaseViewController {
 //            self.cardTypeIcon.isHidden = true
 //            self.scanButton.isHidden = self.paymentData.scanner == nil
 //        }
+    }
+    
+    private func pay() {
+        
     }
 }
