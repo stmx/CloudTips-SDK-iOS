@@ -55,99 +55,12 @@ public class CloudtipsApi {
         makeObjectRequest(request, completion: completion)
     }
     
-//    public func charge(cardCryptogramPacket: String, cardHolderName: String?, email: String?, amount: String, currency: Currency = .ruble, completion: @escaping HTTPRequestCompletion<TransactionResponse>) {
-//        self.threeDsCompletion = nil
-//        
-//        let parameters: Parameters = [
-//            "Amount" : "\(amount)", // Сумма платежа (Обязательный)
-//            "Currency" : currency.rawValue, // Валюта (Обязательный)
-//            "IpAddress" : "", // IP адрес плательщика (Обязательный)
-//            "Name" : cardHolderName ?? defaultCardHolderName, // Имя держателя карты в латинице (Обязательный для всех платежей кроме Apple Pay и Google Pay)
-//            "CardCryptogramPacket" : cardCryptogramPacket, // Криптограмма платежных данных (Обязательный)
-//            "Email" : email ?? "" // E-mail, на который будет отправлена квитанция об оплате
-//        ]
-//
-//        let request = HTTPRequest(resource: .charge, method: .post, parameters: parameters)
-//        makeObjectRequest(request, completion: completion)
-//    }
-//    
-//    public func auth(cardCryptogramPacket: String, cardHolderName: String?, email: String?, amount: String, currency: Currency = .ruble, completion: @escaping HTTPRequestCompletion<TransactionResponse>) {
-//        self.threeDsCompletion = nil
-//        
-//        let parameters: Parameters = [
-//            "Amount" : "\(amount)", // Сумма платежа (Обязательный)
-//            "Currency" : currency.rawValue, // Валюта (Обязательный)
-//            "IpAddress" : "",
-//            "Name" : cardHolderName ?? defaultCardHolderName, // Имя держателя карты в латинице (Обязательный для всех платежей кроме Apple Pay и Google Pay)
-//            "CardCryptogramPacket" : cardCryptogramPacket, // Криптограмма платежных данных (Обязательный)
-//            "Email" : email ?? "" // E-mail, на который будет отправлена квитанция об оплате
-//        ]
-//        
-//        let request = HTTPRequest(resource: .auth, method: .post, parameters: parameters)
-//        makeObjectRequest(request, completion: completion)
-//    }
-//    
-//    public func post3ds(transactionId: String, threeDsCallbackId: String, paRes: String, completion: @escaping (_ result: ThreeDsResponse) -> ()) {
-//        let mdParams = ["TransactionId": transactionId,
-//                        "ThreeDsCallbackId": threeDsCallbackId,
-//                        "SuccessUrl": self.threeDsSuccessURL,
-//                        "FailUrl": self.threeDsFailURL]
-//        if let mdParamsData = try? JSONSerialization.data(withJSONObject: mdParams, options: .sortedKeys), let mdParamsStr = String.init(data: mdParamsData, encoding: .utf8) {
-//            let parameters: Parameters = [
-//                "MD" : mdParamsStr,
-//                "PaRes" : paRes
-//            ]
-//            
-//            self.threeDsCompletion = completion
-//            
-//            let completion: HTTPRequestCompletion<TransactionResponse> = { r, e in }
-//            
-//            let request = HTTPRequest(resource: .post3ds, method: .post, parameters: parameters)
-//            makeObjectRequest(request, completion: completion)
-//        } else {
-//            completion(ThreeDsResponse.init(success: false, cardHolderMessage: ""))
-//        }
-//    }
-//    
-//    private class ThreeDsRedirectHandler: RedirectHandler {
-//        private let threeDsSuccessURL: String
-//        private let threeDsFailURL: String
-//        var api: CloudtipsApi?
-//        
-//        init(threeDsSuccessURL: String, threeDsFailURL: String) {
-//            self.threeDsSuccessURL = threeDsSuccessURL
-//            self.threeDsFailURL = threeDsFailURL
-//        }
-//        
-//        public func task(_ task: URLSessionTask, willBeRedirectedTo request: URLRequest, for response: HTTPURLResponse, completion: @escaping (URLRequest?) -> Void) {
-//            if let url = request.url {
-//                let items = url.absoluteString.split(separator: "&").filter { $0.contains("CardHolderMessage")}
-//                var message: String? = nil
-//                if !items.isEmpty, let params = items.first?.split(separator: "="), params.count == 2 {
-//                    message = String(params[1]).removingPercentEncoding
-//                }
-//                
-//                if url.absoluteString.starts(with: threeDsSuccessURL) {
-//                    self.threeDsFinished(with: true, message: message)
-//                    completion(nil)
-//                } else if url.absoluteString.starts(with: threeDsFailURL) {
-//                    self.threeDsFinished(with: false, message: message)
-//                    completion(nil)
-//                } else {
-//                    completion(request)
-//                }
-//            } else {
-//                completion(request)
-//            }
-//        }
-//        
-//        private func threeDsFinished(with success: Bool, message: String?) {
-//            DispatchQueue.main.async {
-//                let result = ThreeDsResponse.init(success: success, cardHolderMessage: message)
-//                self.api?.threeDsCompletion?(result)
-//            }
-//        }
-//    }
+    public func post3ds(md: String, paRes: String, completion: HTTPRequestCompletion<PaymentResponse>?) {
+        let parameters = ["md": md,
+                          "paRes": paRes]
+        let request = HTTPRequest(resource: .post3ds, method: .post, parameters: parameters)
+        makeObjectRequest(request, completion: completion)
+    }
 }
 
 

@@ -11,7 +11,7 @@ import Foundation
 protocol AuthDelegate {
     func getPublicId(with layoutId: String, completion: @escaping (_ publicId: String?, _ error: Error?) -> ())
     func auth(with paymentData: PaymentData, completion: @escaping (_ response: PaymentResponse?, _ error: Error?) -> ())
-//    func post3ds()
+    func post3ds(md: String, paRes: String, completion: @escaping (_ response: PaymentResponse?, _ error: Error?) -> ())
 }
 
 extension AuthDelegate where Self: UIViewController {
@@ -23,6 +23,12 @@ extension AuthDelegate where Self: UIViewController {
     
     func auth(with paymentData: PaymentData, completion: @escaping (_ response: PaymentResponse?, _ error: Error?) -> ()) {
         CloudtipsApi().auth(with: paymentData) { (response, error) in
+            completion(response, error)
+        }
+    }
+    
+    func post3ds(md: String, paRes: String, completion: @escaping (_ response: PaymentResponse?, _ error: Error?) -> ()) {
+        CloudtipsApi().post3ds(md: md, paRes: paRes) { (response, error) in
             completion(response, error)
         }
     }

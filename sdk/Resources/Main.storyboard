@@ -311,7 +311,7 @@
                                                             <constraint firstItem="BBR-F0-KZe" firstAttribute="leading" secondItem="lWk-Kw-aUC" secondAttribute="leading" constant="20" id="rRt-Jj-5mp"/>
                                                         </constraints>
                                                     </view>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="BottomLogos" translatesAutoresizingMaskIntoConstraints="NO" id="U3u-6w-7xp">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="ic_verified" translatesAutoresizingMaskIntoConstraints="NO" id="U3u-6w-7xp">
                                                         <rect key="frame" x="0.0" y="518" width="414" height="40"/>
                                                     </imageView>
                                                 </subviews>
@@ -468,18 +468,12 @@
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VMM-px-nZy" customClass="Button" customModule="Cloudtips_SDK_iOS" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="266" width="374" height="56"/>
-                                                <color key="backgroundColor" red="0.1803921568627451" green="0.62352941176470589" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="56" id="D7n-9D-sob"/>
-                                                </constraints>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <state key="normal" title="Оплатить">
+                                                <state key="normal" title="Оплатить" backgroundImage="button_blue">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="4"/>
-                                                    </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                                         <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </userDefinedRuntimeAttribute>
@@ -488,7 +482,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="HAz-Ci-jSI">
                                                 <rect key="frame" x="125.5" y="346" width="163" height="15"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Security" translatesAutoresizingMaskIntoConstraints="NO" id="Sjl-ha-ty3">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="ic_security" translatesAutoresizingMaskIntoConstraints="NO" id="Sjl-ha-ty3">
                                                         <rect key="frame" x="0.0" y="0.0" width="11" height="15"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Безопасное соединение" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yGX-iF-BHL">
@@ -499,7 +493,7 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="BottomLogos" translatesAutoresizingMaskIntoConstraints="NO" id="GVV-gJ-ZJd">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="ic_verified" translatesAutoresizingMaskIntoConstraints="NO" id="GVV-gJ-ZJd">
                                                 <rect key="frame" x="51.5" y="389" width="311" height="40"/>
                                             </imageView>
                                         </subviews>
@@ -602,7 +596,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RGX-dg-eK3">
                                 <rect key="frame" x="20" y="377.5" width="374" height="56"/>
-                                <color key="backgroundColor" red="0.18039215689999999" green="0.62352941179999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="azure"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="0D9-vh-GNp"/>
                                 </constraints>
@@ -653,7 +647,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="i6h-zR-G8v" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" backIndicatorImage="BackImage" backIndicatorTransitionMaskImage="BackImage" id="XSI-9n-4bF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" backIndicatorImage="ic_back" backIndicatorTransitionMaskImage="ic_back" id="XSI-9n-4bF">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -674,16 +668,20 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="PhF-Kq-76C"/>
+        <segue reference="K9T-hx-DGK"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="BackImage" width="16" height="16"/>
-        <image name="BottomLogos" width="311" height="40"/>
-        <image name="Security" width="11" height="15"/>
         <image name="Success" width="34" height="34"/>
+        <image name="button_blue" width="7.5" height="56"/>
         <image name="ic_avatar_placeholder" width="96" height="96"/>
         <image name="ic_avatar_placeholder_big" width="144" height="144"/>
+        <image name="ic_back" width="16" height="16"/>
         <image name="ic_ruble" width="40" height="40"/>
+        <image name="ic_security" width="11" height="15"/>
+        <image name="ic_verified" width="311" height="40"/>
+        <namedColor name="azure">
+            <color red="0.0" green="0.59215686274509804" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="bgColor">
             <color red="0.96078431372549022" green="0.97647058823529409" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

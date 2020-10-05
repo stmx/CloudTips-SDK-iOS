@@ -8,29 +8,33 @@
 
 import UIKit
 import Cloudpayments_SDK_iOS
+import WebKit
 
-class CardViewController: BaseViewController {
+class CardViewController: BaseViewController, AuthDelegate {
     @IBOutlet private weak var cardNumberTextField: UnderlineTextField!
     @IBOutlet private weak var cardExpDateTextField: UnderlineTextField!
     @IBOutlet private weak var cardCvcTextField: UnderlineTextField!
     @IBOutlet weak var payButton: Button!
     
+    private var threeDsView: UIView?
+    
     var amount = "0"
     var comment = ""
     var layoutId: String!
+    
+    private let threeDsProcessor = ThreeDsProcessor()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let cryptogram = Card.makeCardCryptogramPacket(with: "4242 4242 4242 4242", expDate: "12/23", cvv: "122", merchantPublicID: "")
-        print(cryptogram)
-        
+        self.hideKeyboardWhenTappedAround()
+        self.validate()
         self.prepareUI()
     }
     
     private func prepareUI(){
         self.payButton.onAction = {
-            self.performSegue(withIdentifier: .cardToResultSegue, sender: self)
+            self.pay()
         }
         
         let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.mainText]
@@ -132,6 +136,110 @@ class CardViewController: BaseViewController {
     }
     
     private func pay() {
+        self.getPublicId(with: self.layoutId) { (publicId, error) in
+            if let publicId = publicId, let cryptogram = Card.makeCardCryptogramPacket(with: self.cardNumberTextField.text!, expDate: self.cardExpDateTextField.text!, cvv: self.cardCvcTextField.text!, merchantPublicID: publicId) {
+                let paymentData = PaymentData.init(layoutId: self.layoutId, cryptogram: cryptogram, comment: self.comment, amount: self.amount)
+                self.auth(with: paymentData) { (response, error) in
+                    if response?.status == .need3ds, let acsUrl = response?.acsUrl, let md = response?.md, let paReq = response?.paReq {
+                        self.showThreeDs(with: acsUrl, md: md, paReq: paReq)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func showThreeDs(with acsUrl: String, md: String, paReq: String) {
+        let threeDsData = ThreeDsData.init(transactionId: md, paReq: paReq, acsUrl: acsUrl)
+        self.threeDsProcessor.make3DSPayment(with: threeDsData, delegate: self)
+    }
+}
+
+extension CardViewController: ThreeDsDelegate {
+    func willPresentWebView(_ webView: WKWebView) {
+        if let view = self.navigationController?.view {
+            let threeDsContainerView = UIView.init(frame: view.bounds)
+            threeDsContainerView.translatesAutoresizingMaskIntoConstraints = false
+            threeDsContainerView.backgroundColor = .white
+            view.addSubview(threeDsContainerView)
+            threeDsContainerView.bindFrameToSuperviewBounds()
+            
+            let headerView = UIView.init(frame: CGRect.init(origin: .zero, size: CGSize.init(width: threeDsContainerView.frame.width, height: 56)))
+            headerView.translatesAutoresizingMaskIntoConstraints = false
+            headerView.backgroundColor = .veryLightBlue
+            
+            headerView.layer.shadowColor = UIColor.black.withAlphaComponent(0.14).cgColor
+            headerView.layer.shadowRadius = 4.0
+            headerView.layer.shadowOffset = CGSize.init(width: 0, height: -2)
+            headerView.layer.shadowOpacity = 0.5
+            headerView.layer.shadowPath = UIBezierPath(rect: headerView.bounds).cgPath
+            headerView.layer.masksToBounds = false
+            
+            threeDsContainerView.addSubview(headerView)
+            NSLayoutConstraint.activate([
+                headerView.topAnchor.constraint(equalTo: threeDsContainerView.topAnchor),
+                headerView.leadingAnchor.constraint(equalTo: threeDsContainerView.leadingAnchor),
+                headerView.trailingAnchor.constraint(equalTo: threeDsContainerView.trailingAnchor),
+                headerView.heightAnchor.constraint(equalToConstant: 56)
+            ])
+            
+            let closeButton = UIButton.init(frame: CGRect.init(origin: .zero, size: CGSize.init(width: 56, height: 56)))
+            closeButton.translatesAutoresizingMaskIntoConstraints = false
+            closeButton.setImage(UIImage.named("ic_close"), for: .normal)
+            closeButton.addTarget(self, action: #selector(onCloseThreeDs(_:)), for: .touchUpInside)
+            headerView.addSubview(closeButton)
+            NSLayoutConstraint.activate([
+                closeButton.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
+                closeButton.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
+                closeButton.heightAnchor.constraint(equalToConstant: 56),
+                closeButton.widthAnchor.constraint(equalToConstant: 56)
+            ])
+            
+            webView.frame = threeDsContainerView.bounds
+            webView.translatesAutoresizingMaskIntoConstraints = false
+            threeDsContainerView.addSubview(webView)
+            NSLayoutConstraint.activate([
+                webView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+                webView.leadingAnchor.constraint(equalTo: threeDsContainerView.leadingAnchor),
+                webView.trailingAnchor.constraint(equalTo: threeDsContainerView.trailingAnchor),
+                webView.bottomAnchor.constraint(equalTo: threeDsContainerView.bottomAnchor)
+            ])
+            
+            threeDsContainerView.bringSubviewToFront(webView)
+            
+            threeDsContainerView.alpha = 0
+            UIView.animate(withDuration: 0.3) {
+                threeDsContainerView.alpha = 1
+            }
+            
+            self.threeDsView = threeDsContainerView
+        }
+    }
+    
+    func onAuthotizationCompleted(with md: String, paRes: String) {
+        self.hideThreeDs()
         
+        self.post3ds(md: md, paRes: paRes) { (response, error) in
+            if response?.status == .failure {
+                
+            }
+        }
+    }
+    
+    func onAuthorizationFailed(with html: String) {
+        self.hideThreeDs()
+    }
+    
+    @objc private func onCloseThreeDs(_ sender: UIButton) {
+        self.hideThreeDs()
+    }
+    
+    private func hideThreeDs(){
+        UIView.animate(withDuration: 0.3) {
+            self.threeDsView?.alpha = 0
+        } completion: { (status) in
+            self.threeDsView?.removeFromSuperview()
+            self.threeDsView = nil
+        }
+
     }
 }

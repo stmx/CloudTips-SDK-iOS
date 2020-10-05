@@ -22,6 +22,10 @@ extension UIColor {
         return color(named: "azure")
     }
     
+    public class var veryLightBlue: UIColor {
+        return color(named: "veryLightBlue")
+    }
+    
     private class func color(named colorName: String) -> UIColor! {
         return UIColor.init(named: colorName, in: Bundle.mainSdk, compatibleWith: .none)
     }

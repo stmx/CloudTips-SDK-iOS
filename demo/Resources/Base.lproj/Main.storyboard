@@ -81,7 +81,7 @@
                                     <constraint firstAttribute="width" constant="250" id="USv-Ge-FsP"/>
                                 </constraints>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MainLogo" translatesAutoresizingMaskIntoConstraints="NO" id="ejc-ai-LaF">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_main_logo" translatesAutoresizingMaskIntoConstraints="NO" id="ejc-ai-LaF">
                                 <rect key="frame" x="138.5" y="194" width="137" height="32"/>
                             </imageView>
                         </subviews>
@@ -105,7 +105,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="MainLogo" width="137" height="32"/>
+        <image name="ic_main_logo" width="137" height="32"/>
         <namedColor name="inputGrayBorder">
             <color red="0.7369999885559082" green="0.76499998569488525" blue="0.80000001192092896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
