@@ -6,28 +6,20 @@
   "homepage": "https://cloudpayments.ru/",
   "license": "{ :type => 'Apache 2.0' }",
   "authors": {
-    "iskhakov.s": "s.iskhakov@cloudpayments.ru"
+    "a.ignatov": "a.ignatov@cloudpayments.ru"
   },
   "platforms": {
     "ios": "11.0"
   },
   "source": {
-    "git": "https://github.com/iskhakovsa/cp-test.git",
+    "git": "https://github.com/cloudpayments/SDK-iOS/SDK-iOS.git",
     "tag": "2.0.0"
   },
   "source_files": "sdk/sdk/**/*.swift",
   "resource_bundles": {
     "Cloudpayments-SDK-iOS": [
-      "Resources/**/*.{json,png,jpeg,jpg,storyboard,xib,xcassets}"
+      "Resources/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
     ]
   },
-  "requires_arc": true,
-  "dependencies": {
-    "Alamofire": [
-      "= 5.0.0-rc.2"
-    ],
-    "AlamofireObjectMapper": [
-
-    ]
-  }
+  "requires_arc": true
 }

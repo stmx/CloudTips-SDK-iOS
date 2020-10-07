@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6AD13DF8661ECF5E248DC00E /* Pods_Cloudtips_SDK_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E62FA59AAAD468220E3A0DF /* Pods_Cloudtips_SDK_iOS.framework */; };
 		8309851425236460009A3C32 /* Cloudtips_SDK_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309851225236460009A3C32 /* Cloudtips_SDK_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8309854D2523678C009A3C32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 830985472523678C009A3C32 /* Assets.xcassets */; };
 		83098552252367AA009A3C32 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83098551252367AA009A3C32 /* UIView+Extensions.swift */; };
@@ -35,11 +36,12 @@
 		83B4FAF7252B1911008ED235 /* AuthDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B4FAF6252B1911008ED235 /* AuthDelegate.swift */; };
 		83D5A31525276D9C00DF0562 /* PaymentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D5A31425276D9C00DF0562 /* PaymentData.swift */; };
 		83D5A31825276EE800DF0562 /* PaymentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D5A31725276EE800DF0562 /* PaymentResponse.swift */; };
-		A446F74769EA8B144EEA4936 /* Pods_Cloudtips_SDK_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 930673BD888DD9B859569EE8 /* Pods_Cloudtips_SDK_iOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		38759001659F78360EA1967A /* Pods-Cloudtips-SDK-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloudtips-SDK-iOS.release.xcconfig"; path = "Target Support Files/Pods-Cloudtips-SDK-iOS/Pods-Cloudtips-SDK-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		0FCB402F690D5999F1D2D7B7 /* Pods-Cloudtips-SDK-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloudtips-SDK-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Cloudtips-SDK-iOS/Pods-Cloudtips-SDK-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		25340C2A4AEA387696DF6A08 /* Pods-Cloudtips-SDK-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloudtips-SDK-iOS.release.xcconfig"; path = "Target Support Files/Pods-Cloudtips-SDK-iOS/Pods-Cloudtips-SDK-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		6E62FA59AAAD468220E3A0DF /* Pods_Cloudtips_SDK_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cloudtips_SDK_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8309850F25236460009A3C32 /* Cloudtips_SDK_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cloudtips_SDK_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8309851225236460009A3C32 /* Cloudtips_SDK_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cloudtips_SDK_iOS.h; sourceTree = "<group>"; };
 		830985472523678C009A3C32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -70,8 +72,6 @@
 		83B4FAF6252B1911008ED235 /* AuthDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDelegate.swift; sourceTree = "<group>"; };
 		83D5A31425276D9C00DF0562 /* PaymentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentData.swift; sourceTree = "<group>"; };
 		83D5A31725276EE800DF0562 /* PaymentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentResponse.swift; sourceTree = "<group>"; };
-		930673BD888DD9B859569EE8 /* Pods_Cloudtips_SDK_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cloudtips_SDK_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E15ABC0E3C92BBF38F5403C6 /* Pods-Cloudtips-SDK-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloudtips-SDK-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Cloudtips-SDK-iOS/Pods-Cloudtips-SDK-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A446F74769EA8B144EEA4936 /* Pods_Cloudtips_SDK_iOS.framework in Frameworks */,
+				6AD13DF8661ECF5E248DC00E /* Pods_Cloudtips_SDK_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,8 +89,8 @@
 		200DDC7361955A205F2F09D0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E15ABC0E3C92BBF38F5403C6 /* Pods-Cloudtips-SDK-iOS.debug.xcconfig */,
-				38759001659F78360EA1967A /* Pods-Cloudtips-SDK-iOS.release.xcconfig */,
+				0FCB402F690D5999F1D2D7B7 /* Pods-Cloudtips-SDK-iOS.debug.xcconfig */,
+				25340C2A4AEA387696DF6A08 /* Pods-Cloudtips-SDK-iOS.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -102,7 +102,7 @@
 				8309854625236752009A3C32 /* Resources */,
 				8309851025236460009A3C32 /* Products */,
 				200DDC7361955A205F2F09D0 /* Pods */,
-				E996227C734AA882965D105B /* Frameworks */,
+				8508026025C263BFC3589587 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -213,10 +213,10 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
-		E996227C734AA882965D105B /* Frameworks */ = {
+		8508026025C263BFC3589587 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				930673BD888DD9B859569EE8 /* Pods_Cloudtips_SDK_iOS.framework */,
+				6E62FA59AAAD468220E3A0DF /* Pods_Cloudtips_SDK_iOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -239,7 +239,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8309851725236460009A3C32 /* Build configuration list for PBXNativeTarget "Cloudtips-SDK-iOS" */;
 			buildPhases = (
-				97B7A66DF7A367F0AB571C4E /* [CP] Check Pods Manifest.lock */,
+				F7701B1E689211A8528554AA /* [CP] Check Pods Manifest.lock */,
 				8309850A25236460009A3C32 /* Headers */,
 				8309850B25236460009A3C32 /* Sources */,
 				8309850C25236460009A3C32 /* Frameworks */,
@@ -300,7 +300,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		97B7A66DF7A367F0AB571C4E /* [CP] Check Pods Manifest.lock */ = {
+		F7701B1E689211A8528554AA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -484,7 +484,7 @@
 		};
 		8309851825236460009A3C32 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E15ABC0E3C92BBF38F5403C6 /* Pods-Cloudtips-SDK-iOS.debug.xcconfig */;
+			baseConfigurationReference = 0FCB402F690D5999F1D2D7B7 /* Pods-Cloudtips-SDK-iOS.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -513,7 +513,7 @@
 		};
 		8309851925236460009A3C32 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38759001659F78360EA1967A /* Pods-Cloudtips-SDK-iOS.release.xcconfig */;
+			baseConfigurationReference = 25340C2A4AEA387696DF6A08 /* Pods-Cloudtips-SDK-iOS.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;

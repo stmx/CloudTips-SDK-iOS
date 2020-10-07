@@ -6,6 +6,6 @@ target 'Cloudtips-SDK-iOS-Demo' do
   use_frameworks!
 
   pod 'Cloudtips-SDK-iOS', :path => "../sdk"
-  pod 'Cloudpayments-SDK-iOS', :git => "https://github.com/iskhakovsa/cp-test.git"
+  pod 'Cloudpayments-SDK-iOS', :git => "https://github.com/cloudpayments/CloudPayments-SDK-iOS-V2"
 
 end
