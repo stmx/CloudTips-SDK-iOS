@@ -1,6 +1,0 @@
-framework module Cloudtips_SDK_iOS {
-  umbrella header "Cloudtips-SDK-iOS-umbrella.h"
-
-  export *
-  module * { export * }
-}

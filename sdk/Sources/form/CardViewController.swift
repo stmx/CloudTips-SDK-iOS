@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Cloudpayments_SDK_iOS
+import Cloudpayments
 import WebKit
 
 class CardViewController: BasePaymentViewController, AuthDelegate {

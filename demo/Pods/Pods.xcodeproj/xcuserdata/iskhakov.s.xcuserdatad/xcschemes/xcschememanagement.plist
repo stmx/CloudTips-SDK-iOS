@@ -18,28 +18,28 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>Cloudpayments-SDK-iOS-Cloudpayments-SDK-iOS.xcscheme</key>
+		<key>Cloudpayments-Cloudpayments.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
-		<key>Cloudpayments-SDK-iOS.xcscheme</key>
+		<key>Cloudpayments.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
-		<key>Cloudtips-SDK-iOS-Cloudtips-SDK-iOS.xcscheme</key>
+		<key>Cloudtips-Cloudtips.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
-		<key>Cloudtips-SDK-iOS.xcscheme</key>
+		<key>Cloudtips.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

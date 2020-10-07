@@ -199,16 +199,16 @@ fi
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Cloudpayments-SDK-iOS/Cloudpayments_SDK_iOS.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Cloudtips-SDK-iOS/Cloudtips_SDK_iOS.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Cloudpayments/Cloudpayments.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Cloudtips/Cloudtips.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Cloudpayments-SDK-iOS/Cloudpayments_SDK_iOS.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Cloudtips-SDK-iOS/Cloudtips_SDK_iOS.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Cloudpayments/Cloudpayments.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Cloudtips/Cloudtips.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
 fi

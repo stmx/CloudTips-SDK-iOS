@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Cloudpayments_SDK_iOS
+import Cloudpayments
 
 class PaymentData {
     let layoutId: String

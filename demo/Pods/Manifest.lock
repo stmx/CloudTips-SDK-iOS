@@ -3,13 +3,13 @@ PODS:
   - AlamofireObjectMapper (6.2.0):
     - Alamofire (= 5.0.0-rc.2)
     - ObjectMapper (~> 3.5.1)
-  - Cloudpayments-SDK-iOS (2.0.0):
+  - Cloudpayments (1.0.0):
     - Alamofire (= 5.0.0-rc.2)
     - AlamofireObjectMapper
-  - Cloudtips-SDK-iOS (1.0.0):
+  - Cloudtips (1.0.0):
     - Alamofire (= 5.0.0-rc.2)
     - AlamofireObjectMapper
-    - Cloudpayments-SDK-iOS
+    - Cloudpayments
     - SDWebImage (~> 5.0)
   - ObjectMapper (3.5.3)
   - SDWebImage (5.9.2):
@@ -17,8 +17,8 @@ PODS:
   - SDWebImage/Core (5.9.2)
 
 DEPENDENCIES:
-  - Cloudpayments-SDK-iOS (from `https://github.com/iskhakovsa/cp-test.git`)
-  - Cloudtips-SDK-iOS (from `../sdk`)
+  - Cloudpayments (from `https://github.com/cloudpayments/CloudPayments-SDK-iOS-V2`, branch `master`)
+  - Cloudtips (from `../sdk`)
 
 SPEC REPOS:
   trunk:
@@ -28,24 +28,25 @@ SPEC REPOS:
     - SDWebImage
 
 EXTERNAL SOURCES:
-  Cloudpayments-SDK-iOS:
-    :git: https://github.com/iskhakovsa/cp-test.git
-  Cloudtips-SDK-iOS:
+  Cloudpayments:
+    :branch: master
+    :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS-V2
+  Cloudtips:
     :path: "../sdk"
 
 CHECKOUT OPTIONS:
-  Cloudpayments-SDK-iOS:
-    :commit: a7831075cbd8f74419eeaf7fb2c7d9afc6dd2aee
-    :git: https://github.com/iskhakovsa/cp-test.git
+  Cloudpayments:
+    :commit: 58403eea2b8ae026075c721e556455160d135b9e
+    :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS-V2
 
 SPEC CHECKSUMS:
   Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
   AlamofireObjectMapper: 74d1440c92c42bbcc2b5f4dc81654ac095ec669f
-  Cloudpayments-SDK-iOS: a9ae5bcc5e53531b39c5a4ebc8ca7517e421ef1a
-  Cloudtips-SDK-iOS: 995dbad4f4adbaf5a6e77292b4e059473a81f723
+  Cloudpayments: e50c1ae8ff42c9716ac3d1063ebbdad87ed1bdc5
+  Cloudtips: 3cd1d93c387143269067425b7321050dc22141bc
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
   SDWebImage: 0b42b8719ab0c5257177d5894306e8a336b21cbb
 
-PODFILE CHECKSUM: 2081caedd61807b25c4f1fc5da118e9804dcd35c
+PODFILE CHECKSUM: 82c32cd5d275b3b67e4bb73c3dc4a2531dbed12a
 
 COCOAPODS: 1.9.3

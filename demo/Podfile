@@ -5,7 +5,7 @@ target 'Cloudtips-SDK-iOS-Demo' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'Cloudtips-SDK-iOS', :path => "../sdk"
-  pod 'Cloudpayments-SDK-iOS', :git => "https://github.com/cloudpayments/CloudPayments-SDK-iOS-V2"
+  pod 'Cloudtips', :path => "../sdk"
+  pod 'Cloudpayments', :git => "https://github.com/cloudpayments/CloudPayments-SDK-iOS-V2", :branch => "master"
 
 end

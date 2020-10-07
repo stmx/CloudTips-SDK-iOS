@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Cloudtips_SDK_iOS
+import Cloudtips
 
 class ViewController: UIViewController {
     @IBOutlet private weak var textField: UnderlineTextField!
