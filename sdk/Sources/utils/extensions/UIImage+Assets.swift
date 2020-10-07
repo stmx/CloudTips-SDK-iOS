@@ -23,6 +23,6 @@ extension UIImage {
     }
     
     public class var iconFailed: UIImage {
-        return self.named("ic_failed")
+        return self.named("ic_failure")
     }
 }

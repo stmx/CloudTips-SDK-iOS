@@ -18,8 +18,8 @@ extension String {
     static let GBP_SIGN = "\u{00A3}"
     
     static let tipsToCardSegue = "TipsToCardSegue"
-    static let tipsToResultSegue = "TipsToResultSegue"
-    static let cardToResultSegue = "CardToResultSegue"
+    static let toResultSegue = "ToResultSegue"
+    static let unwindToTipsSegue = "unwindToMainSegue"
 }
 
 extension String {

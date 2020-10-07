@@ -10,7 +10,7 @@ import UIKit
 import SDWebImage
 import PassKit
 
-public class TipsViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, AuthDelegate {
+public class TipsViewController: BasePaymentViewController, UICollectionViewDelegate, UICollectionViewDataSource, AuthDelegate {
     @IBOutlet private weak var progressView: ProgressView!
     @IBOutlet private weak var contentScrollView: UIScrollView!
     @IBOutlet private weak var profileImageView: UIImageView!
@@ -40,7 +40,6 @@ public class TipsViewController: BaseViewController, UICollectionViewDelegate, U
     private var name: String?
     
     private var layout: Layout?
-    private var profile: Profile?
     
     private var amount = "0"
     
@@ -74,6 +73,17 @@ public class TipsViewController: BaseViewController, UICollectionViewDelegate, U
         } else {
             self.progressView.stopAnimation()
         }
+    }
+    
+    @IBAction func unwindToTips(_ segue: UIStoryboardSegue) {
+        self.amountTextField.text = ""
+        self.commentTextField.text = ""
+        
+        self.amountsCollectionView.indexPathsForSelectedItems?.forEach {
+            self.amountsCollectionView.deselectItem(at: $0, animated: true)
+        }
+        
+        self.amountsCollectionView.reloadData()
     }
     
     //MARK: - Private -
@@ -210,7 +220,7 @@ public class TipsViewController: BaseViewController, UICollectionViewDelegate, U
     
     private func updateUI() {
         self.nameLabel.text = self.profile?.name
-        self.purposeLabel.text = self.profile?.name
+        self.purposeLabel.text = self.profile?.purposeText
         
         if let photoUrl = self.profile?.photoUrl, let url = URL.init(string: photoUrl) {
             self.profileImageView.sd_setImage(with: url, placeholderImage: UIImage.named("ic_avatar_placeholder"), options: .avoidAutoSetImage, completed: { (image, error, cacheType, url) in
@@ -306,8 +316,10 @@ public class TipsViewController: BaseViewController, UICollectionViewDelegate, U
                     controller.layoutId = layoutId
                     controller.amount = self.amount
                     controller.comment = self.commentTextField.text ?? ""
+                    controller.profile = self.profile
                 }
             default:
+                super.prepare(for: segue, sender: sender)
                 break
             }
         }
@@ -319,21 +331,27 @@ public class TipsViewController: BaseViewController, UICollectionViewDelegate, U
 extension TipsViewController: PKPaymentAuthorizationViewControllerDelegate {
     public func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
         controller.dismiss(animated: true) {
-            
+            if let error = self.paymentError {
+                self.onPaymentFailed(with: error)
+            } else {
+                self.onPaymentSucceeded()
+            }
         }
     }
     
     public func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
         if let layoutId = self.layout?.layoutId {
             self.getPublicId(with: layoutId) { (publicId, error) in
-                if let publicId = publicId, let cryptogram = payment.convertToString() {
+                if let _ = publicId, let cryptogram = payment.convertToString() {
                     let paymentData = PaymentData.init(layoutId: layoutId, cryptogram: cryptogram, comment: self.commentTextField.text, amount: self.amount)
                     self.auth(with: paymentData) { (response, error) in
                         if response?.status == .success {
+                            self.paymentError = nil
                             completion(PKPaymentAuthorizationResult(status: PKPaymentAuthorizationStatus.success, errors: []))
                         } else {
                             let error = CloudtipsError.init(message: response?.message ?? error?.localizedDescription ?? "")
-                            completion(PKPaymentAuthorizationResult(status: PKPaymentAuthorizationStatus.failure, errors: [error]))
+                            self.paymentError = error
+                            completion(PKPaymentAuthorizationResult(status: PKPaymentAuthorizationStatus.failure, errors: []))
                         }
                     }
                 } else {

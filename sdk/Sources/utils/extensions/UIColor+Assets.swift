@@ -26,6 +26,14 @@ extension UIColor {
         return color(named: "veryLightBlue")
     }
     
+    public class var mainRed: UIColor {
+        return color(named: "red")
+    }
+    
+    public class var sectionTitleColor: UIColor {
+        return color(named: "sectionTitleColor")
+    }
+    
     private class func color(named colorName: String) -> UIColor! {
         return UIColor.init(named: colorName, in: Bundle.mainSdk, compatibleWith: .none)
     }

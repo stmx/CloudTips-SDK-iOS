@@ -10,13 +10,15 @@ import UIKit
 import Cloudpayments_SDK_iOS
 import WebKit
 
-class CardViewController: BaseViewController, AuthDelegate {
+class CardViewController: BasePaymentViewController, AuthDelegate {
     @IBOutlet private weak var cardNumberTextField: UnderlineTextField!
     @IBOutlet private weak var cardExpDateTextField: UnderlineTextField!
     @IBOutlet private weak var cardCvcTextField: UnderlineTextField!
+    @IBOutlet private weak var progressView: ProgressView!
     @IBOutlet weak var payButton: Button!
     
     private var threeDsView: UIView?
+    
     
     var amount = "0"
     var comment = ""
@@ -33,6 +35,8 @@ class CardViewController: BaseViewController, AuthDelegate {
     }
     
     private func prepareUI(){
+        self.progressView.bgColor = UIColor.white.withAlphaComponent(0.5)
+        
         self.payButton.onAction = {
             self.pay()
         }
@@ -136,14 +140,28 @@ class CardViewController: BaseViewController, AuthDelegate {
     }
     
     private func pay() {
+        self.showProgress()
         self.getPublicId(with: self.layoutId) { (publicId, error) in
             if let publicId = publicId, let cryptogram = Card.makeCardCryptogramPacket(with: self.cardNumberTextField.text!, expDate: self.cardExpDateTextField.text!, cvv: self.cardCvcTextField.text!, merchantPublicID: publicId) {
                 let paymentData = PaymentData.init(layoutId: self.layoutId, cryptogram: cryptogram, comment: self.comment, amount: self.amount)
                 self.auth(with: paymentData) { (response, error) in
-                    if response?.status == .need3ds, let acsUrl = response?.acsUrl, let md = response?.md, let paReq = response?.paReq {
-                        self.showThreeDs(with: acsUrl, md: md, paReq: paReq)
+                    self.hideProgress()
+                    if let response = response {
+                        if response.status == .need3ds, let acsUrl = response.acsUrl, let md = response.md, let paReq = response.paReq {
+                            self.showThreeDs(with: acsUrl, md: md, paReq: paReq)
+                        } else if response.status == .success {
+                            self.onPaymentSucceeded()
+                        } else if response.status == .failure {
+                            let ctError = CloudtipsError.init(message: response.message ?? "Ошибка")
+                            self.onPaymentFailed(with: ctError)
+                        }
+                    } else {
+                        let ctError = CloudtipsError.init(message: error?.localizedDescription ?? "Ошибка")
+                        self.onPaymentFailed(with: ctError)
                     }
                 }
+            } else {
+                self.hideProgress()
             }
         }
     }
@@ -151,6 +169,25 @@ class CardViewController: BaseViewController, AuthDelegate {
     private func showThreeDs(with acsUrl: String, md: String, paReq: String) {
         let threeDsData = ThreeDsData.init(transactionId: md, paReq: paReq, acsUrl: acsUrl)
         self.threeDsProcessor.make3DSPayment(with: threeDsData, delegate: self)
+    }
+    
+    private func showProgress() {
+        self.progressView.startAnimation()
+        
+        self.progressView.alpha = 0
+        self.progressView.isHidden = false
+        UIView.animate(withDuration: 0.25) {
+            self.progressView.alpha = 1
+        }
+    }
+    
+    private func hideProgress() {
+        UIView.animate(withDuration: 0.25) {
+            self.progressView.alpha = 0
+        } completion: { (status) in
+            self.progressView.isHidden = true
+            self.progressView.stopAnimation()
+        }
     }
 }
 
@@ -217,16 +254,30 @@ extension CardViewController: ThreeDsDelegate {
     
     func onAuthotizationCompleted(with md: String, paRes: String) {
         self.hideThreeDs()
+        self.showProgress()
         
         self.post3ds(md: md, paRes: paRes) { (response, error) in
-            if response?.status == .failure {
-                
+            self.hideProgress()
+            if let response = response {
+                if response.status == .success {
+                    self.onPaymentSucceeded()
+                } else {
+                    let error = CloudtipsError.init(message: response.message ?? "Ошибка")
+                    self.onPaymentFailed(with: error)
+                }
+            } else {
+                let error = CloudtipsError.init(message: error?.localizedDescription ?? "Ошибка")
+                self.onPaymentFailed(with: error)
             }
         }
     }
     
     func onAuthorizationFailed(with html: String) {
         self.hideThreeDs()
+        self.hideProgress()
+        
+        let error = CloudtipsError.init(message: html)
+        self.onPaymentFailed(with: error)
     }
     
     @objc private func onCloseThreeDs(_ sender: UIButton) {

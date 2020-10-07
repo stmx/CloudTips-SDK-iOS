@@ -13,6 +13,8 @@ struct Profile: Mappable {
     private(set) var name: String?
     private(set) var photoUrl: String?
     private(set) var receiverType: Int?
+    private(set) var purposeText: String?
+    private(set) var successPageText: String?
     
 //    "receiverText": {
 //      "ru": [
@@ -36,5 +38,10 @@ struct Profile: Mappable {
         name <- map["name"]
         photoUrl <- map["photoUrl"]
         receiverType <- map["receiverType"]
+        
+        if let textArray = (map.JSON["receiverText"] as? [String: Any])?["ru"] as? [[String: Any]], let first = textArray.first {
+            purposeText = first["payPage"] as? String
+            successPageText = first["successPage"] as? String
+        }
     }
 }

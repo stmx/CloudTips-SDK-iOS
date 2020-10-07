@@ -9,6 +9,11 @@
 import Foundation
 
 class ProgressView: UIView {
+    var bgColor: UIColor = .clear {
+        didSet {
+            self.backgroundColor = bgColor
+        }
+    }
     private var progressIcon: UIImageView!
     
     override init(frame: CGRect) {
