@@ -49,7 +49,7 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdU-s4-18f">
                                                                 <rect key="frame" x="0.0" y="0.0" width="261" height="20.5"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                                                <color key="textColor" name="sectionTitleColor"/>
+                                                                <color key="textColor" name="section_title_color"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Purpose of tip accumulation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAG-1o-g0k">
@@ -83,7 +83,7 @@
                                                                     <constraint firstAttribute="height" constant="24" id="ePp-HB-sor"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                <color key="textColor" name="sectionTitleColor"/>
+                                                                <color key="textColor" name="section_title_color"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Сумма" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kSc-sc-bDp" customClass="UnderlineTextField" customModule="Cloudtips_SDK_iOS" customModuleProvider="target">
@@ -207,7 +207,7 @@
                                                                     <constraint firstAttribute="height" constant="24" id="Yw5-J6-zcq"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                <color key="textColor" name="sectionTitleColor"/>
+                                                                <color key="textColor" name="section_title_color"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Напишите Ваш комментарий" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mxy-HT-HZH" customClass="UnderlineTextField" customModule="Cloudtips_SDK_iOS" customModuleProvider="target">
@@ -383,12 +383,12 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iB1-Ly-YPG">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="471"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="459"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Номер карты" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7W-CB-fhY">
                                                 <rect key="frame" x="20" y="27" width="374" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <color key="textColor" name="sectionTitleColor"/>
+                                                <color key="textColor" name="section_title_color"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bXw-Ry-oFM" customClass="UnderlineTextField" customModule="Cloudtips_SDK_iOS" customModuleProvider="target">
@@ -415,13 +415,13 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Срок действия" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sd3-2q-e3Z">
                                                 <rect key="frame" x="20" y="138.5" width="171" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <color key="textColor" name="sectionTitleColor"/>
+                                                <color key="textColor" name="section_title_color"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Код" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YyU-up-kKn">
                                                 <rect key="frame" x="223" y="138.5" width="171" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <color key="textColor" name="sectionTitleColor"/>
+                                                <color key="textColor" name="section_title_color"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ММ/ГГ" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vnC-42-Ezw" customClass="UnderlineTextField" customModule="Cloudtips_SDK_iOS" customModuleProvider="target">
@@ -467,7 +467,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VMM-px-nZy" customClass="Button" customModule="Cloudtips_SDK_iOS" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="266" width="374" height="56"/>
+                                                <rect key="frame" x="20" y="266" width="374" height="44"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <state key="normal" title="Оплатить" backgroundImage="button_blue">
@@ -480,7 +480,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="HAz-Ci-jSI">
-                                                <rect key="frame" x="125.5" y="346" width="163" height="15"/>
+                                                <rect key="frame" x="125.5" y="334" width="163" height="15"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="ic_security" translatesAutoresizingMaskIntoConstraints="NO" id="Sjl-ha-ty3">
                                                         <rect key="frame" x="0.0" y="0.0" width="11" height="15"/>
@@ -494,7 +494,7 @@
                                                 </subviews>
                                             </stackView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="ic_verified" translatesAutoresizingMaskIntoConstraints="NO" id="GVV-gJ-ZJd">
-                                                <rect key="frame" x="51.5" y="389" width="311" height="40"/>
+                                                <rect key="frame" x="51.5" y="377" width="311" height="40"/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.96078431369999995" green="0.97647058819999999" blue="0.98823529409999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -594,7 +594,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7S-3P-scU">
                                 <rect key="frame" x="16" y="292" width="382" height="21.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                <color key="textColor" red="0.15294117647058825" green="0.15294117647058825" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" name="section_title_color"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="HNV-Ts-tN7">
@@ -612,7 +612,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLW-Xg-7o0">
                                         <rect key="frame" x="168" y="50" width="46.5" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <color key="textColor" red="0.1529411765" green="0.1529411765" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" name="mainText"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -691,10 +691,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="PhF-Kq-76C"/>
+        <segue reference="K9T-hx-DGK"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="button_blue" width="7.5" height="56"/>
+        <image name="button_blue" width="18.5" height="44"/>
         <image name="ic_avatar_placeholder" width="96" height="96"/>
         <image name="ic_avatar_placeholder_big" width="144" height="144"/>
         <image name="ic_back" width="16" height="16"/>
@@ -714,7 +714,7 @@
         <namedColor name="red">
             <color red="0.89803921568627454" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="sectionTitleColor">
+        <namedColor name="section_title_color">
             <color red="0.15294117647058825" green="0.15294117647058825" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="veryLightBlue">
