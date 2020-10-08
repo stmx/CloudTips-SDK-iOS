@@ -14,7 +14,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (= 5.0.0-rc.2)
   - AlamofireObjectMapper
-  - Cloudpayments (from `https://github.com/cloudpayments/CloudPayments-SDK-iOS-V2`, branch `master`)
+  - Cloudpayments (from `https://github.com/cloudpayments/CloudPayments-SDK-iOS`, branch `master`)
   - SDWebImage (~> 5.0)
 
 SPEC REPOS:
@@ -27,12 +27,12 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Cloudpayments:
     :branch: master
-    :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS-V2
+    :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS
 
 CHECKOUT OPTIONS:
   Cloudpayments:
     :commit: 58403eea2b8ae026075c721e556455160d135b9e
-    :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS-V2
+    :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS
 
 SPEC CHECKSUMS:
   Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
@@ -41,6 +41,6 @@ SPEC CHECKSUMS:
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
   SDWebImage: 0b42b8719ab0c5257177d5894306e8a336b21cbb
 
-PODFILE CHECKSUM: 963bd8034b090daf69956423449abbed91ed671f
+PODFILE CHECKSUM: 6c4ff51df3bf095e509610ccb68462f47f2bc4e1
 
 COCOAPODS: 1.9.3

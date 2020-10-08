@@ -31,7 +31,7 @@ extension UIColor {
     }
     
     public class var sectionTitleColor: UIColor {
-        return color(named: "sectionTitleColor")
+        return color(named: "section_title_color")
     }
     
     private class func color(named colorName: String) -> UIColor! {
