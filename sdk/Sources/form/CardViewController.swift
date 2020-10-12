@@ -10,7 +10,7 @@ import UIKit
 import Cloudpayments
 import WebKit
 
-class CardViewController: BasePaymentViewController, AuthDelegate {
+class CardViewController: BasePaymentViewController, PaymentDelegate {
     @IBOutlet private weak var cardNumberTextField: UnderlineTextField!
     @IBOutlet private weak var cardExpDateTextField: UnderlineTextField!
     @IBOutlet private weak var cardCvcTextField: UnderlineTextField!
@@ -18,11 +18,6 @@ class CardViewController: BasePaymentViewController, AuthDelegate {
     @IBOutlet weak var payButton: Button!
     
     private var threeDsView: UIView?
-    
-    
-    var amount = "0"
-    var comment = ""
-    var layoutId: String!
     
     private let threeDsProcessor = ThreeDsProcessor()
 
@@ -140,28 +135,29 @@ class CardViewController: BasePaymentViewController, AuthDelegate {
     }
     
     private func pay() {
-        self.showProgress()
-        self.getPublicId(with: self.layoutId) { (publicId, error) in
-            if let publicId = publicId, let cryptogram = Card.makeCardCryptogramPacket(with: self.cardNumberTextField.text!, expDate: self.cardExpDateTextField.text!, cvv: self.cardCvcTextField.text!, merchantPublicID: publicId) {
-                let paymentData = PaymentData.init(layoutId: self.layoutId, cryptogram: cryptogram, comment: self.comment, amount: self.amount)
-                self.auth(with: paymentData) { (response, error) in
-                    self.hideProgress()
-                    if let response = response {
-                        if response.status == .need3ds, let acsUrl = response.acsUrl, let md = response.md, let paReq = response.paReq {
-                            self.showThreeDs(with: acsUrl, md: md, paReq: paReq)
-                        } else if response.status == .success {
-                            self.onPaymentSucceeded()
-                        } else if response.status == .failure {
-                            let ctError = CloudtipsError.init(message: response.message ?? "Ошибка")
+        if let paymentData = self.paymentData {
+            self.showProgress()
+            self.getPublicId(with: paymentData.layoutId) { (publicId, error) in
+                if let publicId = publicId, let cryptogram = Card.makeCardCryptogramPacket(with: self.cardNumberTextField.text!, expDate: self.cardExpDateTextField.text!, cvv: self.cardCvcTextField.text!, merchantPublicID: publicId) {
+                    self.auth(with: paymentData, cryptogram: cryptogram) { (response, error) in
+                        self.hideProgress()
+                        if let response = response {
+                            if response.status == .need3ds, let acsUrl = response.acsUrl, let md = response.md, let paReq = response.paReq {
+                                self.showThreeDs(with: acsUrl, md: md, paReq: paReq)
+                            } else if response.status == .success {
+                                self.onPaymentSucceeded()
+                            } else if response.status == .failure {
+                                let ctError = CloudtipsError.init(message: response.message ?? "Ошибка")
+                                self.onPaymentFailed(with: ctError)
+                            }
+                        } else {
+                            let ctError = CloudtipsError.init(message: error?.localizedDescription ?? "Ошибка")
                             self.onPaymentFailed(with: ctError)
                         }
-                    } else {
-                        let ctError = CloudtipsError.init(message: error?.localizedDescription ?? "Ошибка")
-                        self.onPaymentFailed(with: ctError)
                     }
+                } else {
+                    self.hideProgress()
                 }
-            } else {
-                self.hideProgress()
             }
         }
     }

@@ -25,7 +25,6 @@
 		830985E625247E58009A3C32 /* UIColor+Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830985E125247E57009A3C32 /* UIColor+Assets.swift */; };
 		830985E725247E58009A3C32 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830985E225247E57009A3C32 /* String+Extensions.swift */; };
 		830985E825247E58009A3C32 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830985E325247E57009A3C32 /* UIView+Constraints.swift */; };
-		830985EC25247F23009A3C32 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830985EB25247F23009A3C32 /* ProgressView.swift */; };
 		8319C80A252619AC003B3EED /* DefaultAmountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8319C809252619AC003B3EED /* DefaultAmountCell.swift */; };
 		831BBFE525248F5400E6BACB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831BBFE425248F5400E6BACB /* BaseViewController.swift */; };
 		831BC01E2524C09900E6BACB /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831BC01D2524C09900E6BACB /* Profile.swift */; };
@@ -33,8 +32,10 @@
 		831BC0262524C32600E6BACB /* UnderlineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831BC0242524C32600E6BACB /* UnderlineTextField.swift */; };
 		83507DB62526109800637BB6 /* NumberFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83507DB52526109800637BB6 /* NumberFormatter+Extensions.swift */; };
 		8364CD0B252E02F400E47F3B /* BasePaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8364CD0A252E02F400E47F3B /* BasePaymentViewController.swift */; };
-		83B4FAF7252B1911008ED235 /* AuthDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B4FAF6252B1911008ED235 /* AuthDelegate.swift */; };
-		83D5A31525276D9C00DF0562 /* PaymentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D5A31425276D9C00DF0562 /* PaymentData.swift */; };
+		83AF1CA12530406300A0424B /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AF1CA02530406300A0424B /* ProgressView.swift */; };
+		83AF1CA52530408E00A0424B /* PaymentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AF1CA42530408E00A0424B /* PaymentData.swift */; };
+		83AF1CA8253040A300A0424B /* TipsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AF1CA7253040A300A0424B /* TipsConfiguration.swift */; };
+		83B4FAF7252B1911008ED235 /* PaymentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B4FAF6252B1911008ED235 /* PaymentDelegate.swift */; };
 		83D5A31825276EE800DF0562 /* PaymentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D5A31725276EE800DF0562 /* PaymentResponse.swift */; };
 		CBF7F9250184805EE32994E3 /* Pods_Cloudtips_SDK_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B47ECA4C9B0BC51AB0D539BF /* Pods_Cloudtips_SDK_iOS.framework */; };
 /* End PBXBuildFile section */
@@ -61,7 +62,6 @@
 		830985E125247E57009A3C32 /* UIColor+Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Assets.swift"; sourceTree = "<group>"; };
 		830985E225247E57009A3C32 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		830985E325247E57009A3C32 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
-		830985EB25247F23009A3C32 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		8319C809252619AC003B3EED /* DefaultAmountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultAmountCell.swift; sourceTree = "<group>"; };
 		831BBFE425248F5400E6BACB /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		831BC01D2524C09900E6BACB /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -69,8 +69,10 @@
 		831BC0242524C32600E6BACB /* UnderlineTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlineTextField.swift; sourceTree = "<group>"; };
 		83507DB52526109800637BB6 /* NumberFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		8364CD0A252E02F400E47F3B /* BasePaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePaymentViewController.swift; sourceTree = "<group>"; };
-		83B4FAF6252B1911008ED235 /* AuthDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDelegate.swift; sourceTree = "<group>"; };
-		83D5A31425276D9C00DF0562 /* PaymentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentData.swift; sourceTree = "<group>"; };
+		83AF1CA02530406300A0424B /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		83AF1CA42530408E00A0424B /* PaymentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentData.swift; sourceTree = "<group>"; };
+		83AF1CA7253040A300A0424B /* TipsConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsConfiguration.swift; sourceTree = "<group>"; };
+		83B4FAF6252B1911008ED235 /* PaymentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDelegate.swift; sourceTree = "<group>"; };
 		83D5A31725276EE800DF0562 /* PaymentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentResponse.swift; sourceTree = "<group>"; };
 		9937D1A55DD607D3642D28E0 /* Pods-Cloudtips-SDK-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloudtips-SDK-iOS.release.xcconfig"; path = "Target Support Files/Pods-Cloudtips-SDK-iOS/Pods-Cloudtips-SDK-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		B47ECA4C9B0BC51AB0D539BF /* Pods_Cloudtips_SDK_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cloudtips_SDK_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +140,7 @@
 		8309854525236722009A3C32 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				83AF1CA02530406300A0424B /* ProgressView.swift */,
 				831BC0222524C31E00E6BACB /* UIKit */,
 				8309859525236F9A009A3C32 /* extensions */,
 			);
@@ -157,7 +160,7 @@
 		83098554252367BA009A3C32 /* form */ = {
 			isa = PBXGroup;
 			children = (
-				830985EA25247F11009A3C32 /* support */,
+				83AF1CA32530407300A0424B /* configuration */,
 				831BBFE425248F5400E6BACB /* BaseViewController.swift */,
 				8364CD0A252E02F400E47F3B /* BasePaymentViewController.swift */,
 				83098555252367C0009A3C32 /* TipsViewController.swift */,
@@ -175,7 +178,6 @@
 				8309859725236FC2009A3C32 /* CloudtipsError.swift */,
 				8309859825236FC2009A3C32 /* HTTP.swift */,
 				8309859925236FC2009A3C32 /* Models */,
-				83B4FAF6252B1911008ED235 /* AuthDelegate.swift */,
 			);
 			path = api;
 			sourceTree = "<group>";
@@ -201,18 +203,9 @@
 				8309859A25236FC2009A3C32 /* Layout.swift */,
 				831BC01D2524C09900E6BACB /* Profile.swift */,
 				830985B42523731E009A3C32 /* PublicIdResponse.swift */,
-				83D5A31425276D9C00DF0562 /* PaymentData.swift */,
 				83D5A31725276EE800DF0562 /* PaymentResponse.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		830985EA25247F11009A3C32 /* support */ = {
-			isa = PBXGroup;
-			children = (
-				830985EB25247F23009A3C32 /* ProgressView.swift */,
-			);
-			path = support;
 			sourceTree = "<group>";
 		};
 		831BC0222524C31E00E6BACB /* UIKit */ = {
@@ -222,6 +215,16 @@
 				831BC0242524C32600E6BACB /* UnderlineTextField.swift */,
 			);
 			path = UIKit;
+			sourceTree = "<group>";
+		};
+		83AF1CA32530407300A0424B /* configuration */ = {
+			isa = PBXGroup;
+			children = (
+				83AF1CA7253040A300A0424B /* TipsConfiguration.swift */,
+				83AF1CA42530408E00A0424B /* PaymentData.swift */,
+				83B4FAF6252B1911008ED235 /* PaymentDelegate.swift */,
+			);
+			path = configuration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -334,7 +337,7 @@
 			files = (
 				8364CD0B252E02F400E47F3B /* BasePaymentViewController.swift in Sources */,
 				830985A125236FC2009A3C32 /* CloudtipsApi.swift in Sources */,
-				83D5A31525276D9C00DF0562 /* PaymentData.swift in Sources */,
+				83AF1CA52530408E00A0424B /* PaymentData.swift in Sources */,
 				830985BB252377B4009A3C32 /* Bundle+Extensions.swift in Sources */,
 				83507DB62526109800637BB6 /* NumberFormatter+Extensions.swift in Sources */,
 				830985A425236FC2009A3C32 /* Layout.swift in Sources */,
@@ -349,12 +352,13 @@
 				83D5A31825276EE800DF0562 /* PaymentResponse.swift in Sources */,
 				830985E425247E58009A3C32 /* UIImage+Assets.swift in Sources */,
 				830985E725247E58009A3C32 /* String+Extensions.swift in Sources */,
+				83AF1CA12530406300A0424B /* ProgressView.swift in Sources */,
 				83098558252367C0009A3C32 /* TipsViewController.swift in Sources */,
-				83B4FAF7252B1911008ED235 /* AuthDelegate.swift in Sources */,
+				83AF1CA8253040A300A0424B /* TipsConfiguration.swift in Sources */,
+				83B4FAF7252B1911008ED235 /* PaymentDelegate.swift in Sources */,
 				830985E625247E58009A3C32 /* UIColor+Assets.swift in Sources */,
 				83098552252367AA009A3C32 /* UIView+Extensions.swift in Sources */,
 				830985E825247E58009A3C32 /* UIView+Constraints.swift in Sources */,
-				830985EC25247F23009A3C32 /* ProgressView.swift in Sources */,
 				8309855A252367C0009A3C32 /* CompletionViewController.swift in Sources */,
 				83098559252367C0009A3C32 /* CardViewController.swift in Sources */,
 				8319C80A252619AC003B3EED /* DefaultAmountCell.swift in Sources */,

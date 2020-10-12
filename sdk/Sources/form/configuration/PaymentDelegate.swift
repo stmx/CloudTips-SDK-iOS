@@ -8,21 +8,21 @@
 
 import Foundation
 
-protocol AuthDelegate {
+protocol PaymentDelegate {
     func getPublicId(with layoutId: String, completion: @escaping (_ publicId: String?, _ error: Error?) -> ())
-    func auth(with paymentData: PaymentData, completion: @escaping (_ response: PaymentResponse?, _ error: Error?) -> ())
+    func auth(with paymentData: PaymentData, cryptogram: String, completion: @escaping (_ response: PaymentResponse?, _ error: Error?) -> ())
     func post3ds(md: String, paRes: String, completion: @escaping (_ response: PaymentResponse?, _ error: Error?) -> ())
 }
 
-extension AuthDelegate where Self: UIViewController {
+extension PaymentDelegate where Self: UIViewController {
     func getPublicId(with layoutId: String, completion: @escaping (_ publicId: String?, _ error: Error?) -> ()) {
         CloudtipsApi().getPublicId(with: layoutId) { (response, error) in
             completion(response?.publicId, error)
         }
     }
     
-    func auth(with paymentData: PaymentData, completion: @escaping (_ response: PaymentResponse?, _ error: Error?) -> ()) {
-        CloudtipsApi().auth(with: paymentData) { (response, error) in
+    func auth(with paymentData: PaymentData, cryptogram: String, completion: @escaping (_ response: PaymentResponse?, _ error: Error?) -> ()) {
+        CloudtipsApi().auth(with: paymentData, cryptogram: cryptogram) { (response, error) in
             completion(response, error)
         }
     }

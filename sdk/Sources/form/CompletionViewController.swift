@@ -8,16 +8,13 @@
 
 import UIKit
 
-class CompletionViewController: BaseViewController {
+class CompletionViewController: BasePaymentViewController {
     @IBOutlet private weak var profileImageView: UIImageView!
     @IBOutlet private weak var statusIcon: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var errorTitleLabel: UILabel!
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var repeatButton: Button!
-    
-    var profile: Profile?
-    var error: CloudtipsError?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +33,7 @@ class CompletionViewController: BaseViewController {
     }
     
     private func updateUI() {
-        self.nameLabel.text = self.profile?.name
-        
-        if let photoUrl = self.profile?.photoUrl, let url = URL.init(string: photoUrl) {
+        if let photoUrl = self.configuration.profile?.photoUrl, let url = URL.init(string: photoUrl) {
             self.profileImageView.sd_setImage(with: url, placeholderImage: UIImage.named("ic_avatar_placeholder"), options: .avoidAutoSetImage, completed: { (image, error, cacheType, url) in
                 if cacheType == .none && image != nil {
                     UIView.animate(withDuration: 0.2, animations: {
@@ -56,7 +51,11 @@ class CompletionViewController: BaseViewController {
             })
         }
         
-        if let error = self.error {
+        let name = self.configuration.profile?.name ?? ""
+        self.nameLabel.isHidden = name.isEmpty
+        self.nameLabel.text = name
+        
+        if let error = self.paymentError {
             self.statusIcon.image = .iconFailed
             
             self.errorTitleLabel.isHidden = false
@@ -65,10 +64,18 @@ class CompletionViewController: BaseViewController {
             
             self.repeatButton.setTitle("Попробовать ещё раз", for: .normal)
         } else {
+            var successPageText = self.configuration.profile?.successPageText ?? ""
+            
+            if name.isEmpty {
+                successPageText = self.configuration.profile?.purposeText ?? "Спасибо за платеж с CloudTips!"
+            } else {
+                successPageText = self.configuration.profile?.purposeText ?? "радуется чаевым!"
+            }
+            
             self.statusIcon.image = .iconSuccess
             
             self.errorTitleLabel.isHidden = true
-            self.messageLabel.text = self.profile?.successPageText ?? "Радуется вашим чаевым!"
+            self.messageLabel.text = successPageText
             self.messageLabel.textColor = .sectionTitleColor
             
             self.repeatButton.setTitle("Отправить ещё", for: .normal)

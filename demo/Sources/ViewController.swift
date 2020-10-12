@@ -22,7 +22,7 @@ class ViewController: UIViewController {
             
             self.validate()
         }
-        
+        self.textField.text = "79176114775".formattedPhoneNumber()
         self.validate()
     }
     
@@ -36,7 +36,9 @@ class ViewController: UIViewController {
 
     @IBAction func onContinue(_ sender: UIButton) {
         if let text = self.textField.text?.phoneNumber() {
-            TipsViewController.present(with: "+" + text, name: "Тестовый пользователь Demo", from: self)
+            let configuration = TipsConfiguration.init(phoneNumber: "+" + text, userName: "Cloudtips demo user")
+            configuration.setApplePayMerchantId("merchant.ru.cloudpayments")
+            TipsViewController.present(with: configuration, from: self)
         }
     }
 }

@@ -11,14 +11,12 @@ import Cloudpayments
 
 class PaymentData {
     let layoutId: String
-    let cryptogram: String
+    let amount: NSNumber
     let comment: String?
-    let amount: String
     let currency: Currency
     
-    init(layoutId: String, cryptogram: String, comment: String?, amount: String, currency: Currency = .ruble) {
+    init(layoutId: String, amount: NSNumber, comment: String?, currency: Currency = .ruble) {
         self.layoutId = layoutId
-        self.cryptogram = cryptogram
         self.comment = comment
         self.amount = amount
         self.currency = currency

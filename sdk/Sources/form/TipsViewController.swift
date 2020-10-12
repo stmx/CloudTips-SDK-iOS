@@ -10,7 +10,7 @@ import UIKit
 import SDWebImage
 import PassKit
 
-public class TipsViewController: BasePaymentViewController, UICollectionViewDelegate, UICollectionViewDataSource, AuthDelegate {
+public class TipsViewController: BasePaymentViewController, UICollectionViewDelegate, UICollectionViewDataSource, PaymentDelegate {
     @IBOutlet private weak var progressView: ProgressView!
     @IBOutlet private weak var contentScrollView: UIScrollView!
     @IBOutlet private weak var profileImageView: UIImageView!
@@ -35,22 +35,16 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     }
     
     private let defaultAmounts = [100, 200, 300, 500, 1000, 2000, 3000, 5000]
+    private var amount = NSNumber.init(value: 0)
     
-    private var phoneNumber = ""
-    private var name: String?
-    
-    private var layout: Layout?
-    
-    private var amount = "0"
+    private var applePaySucceeded = false
     
     //MARK: - Present -
     
-    public class func present(with phoneNumber: String, name: String?, from: UIViewController) {
+    public class func present(with configuration: TipsConfiguration, from: UIViewController) {
         let navController = UIStoryboard.init(name: "Main", bundle: Bundle.mainSdk).instantiateInitialViewController() as! UINavigationController
         let controller = navController.topViewController as! TipsViewController
-        controller.phoneNumber = phoneNumber
-        controller.name = name
-        
+        controller.configuration = configuration
         from.present(navController, animated: true, completion: nil)
     }
     
@@ -89,7 +83,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     //MARK: - Private -
     
     private func initializeApplePay() {
-        if PKPaymentAuthorizationViewController.canMakePayments() {
+        if !self.configuration.applePayMerchantId.isEmpty && PKPaymentAuthorizationViewController.canMakePayments() {
             let button: PKPaymentButton
             if PKPaymentAuthorizationController.canMakePayments(usingNetworks: self.supportedPaymentNetworks) {
                 button = PKPaymentButton.init(paymentButtonType: .plain, paymentButtonStyle: .black)
@@ -113,7 +107,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         self.contentScrollView.isHidden = true
         self.progressView.isHidden = false
         
-        self.api.getLayout(by: self.phoneNumber) { [weak self] (layouts, error) in
+        self.api.getLayout(by: self.configuration.phoneNumber) { [weak self] (layouts, error) in
             guard let `self` = self else {
                 return
             }
@@ -124,7 +118,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     
     private func checkLayouts(layouts: [Layout]?, error: Error?, createIfEmpty: Bool) {
         if let layout = layouts?.first {
-            self.layout = layout
+            self.configuration.layout = layout
             
             if let layoutId = layout.layoutId {
                 self.getProfile(by: layoutId) { [weak self] in
@@ -140,7 +134,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
                 }
             }
         } else if createIfEmpty && layouts?.isEmpty == true {
-            self.api.offlineRegister(with: self.phoneNumber, name: self.name) { [weak self] (layouts, error) in
+            self.api.offlineRegister(with: self.configuration.phoneNumber, name: self.configuration.userName) { [weak self] (layouts, error) in
                 guard let `self` = self else {
                     return
                 }
@@ -160,7 +154,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
                 return
             }
             
-            self.profile = profile
+            self.configuration.profile = profile
             completion()
         }
     }
@@ -176,7 +170,42 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
             return false
         }
         self.amountTextField.shouldChangeCharactersInRange = { range, text in
-            let should = CharacterSet.decimalDigits.isSuperset(of: CharacterSet.init(charactersIn: text))
+            let possibleCharacters = CharacterSet.decimalDigits.union(CharacterSet.init(charactersIn: ",."))
+            var should = possibleCharacters.isSuperset(of: CharacterSet.init(charactersIn: text))
+            
+            let amountText = self.amountTextField.text ?? ""
+            
+            if (text.elementsEqual(",") || text.elementsEqual(".")) {
+                should = !amountText.contains(",") && !amountText.contains(".")
+            } else {
+                let string = (self.amountTextField.text ?? "") as NSString
+                let newText = string.replacingCharacters(in: range, with: text)
+                
+                let separator: String?
+                if newText.contains(",") {
+                    separator = ","
+                } else if newText.contains(".") {
+                    separator = "."
+                } else {
+                    separator = nil
+                }
+
+                if should {
+                    if let separator = separator {
+                        let comps = newText.split(separator: separator.first!)
+                        if comps.count <= 2 {
+                            should = (comps.first?.count ?? 0) < 6
+                            
+                            if should && comps.count == 2 {
+                                should = comps[1].count < 3
+                            }
+                        }
+                    } else {
+                        should = newText.count < 6
+                    }
+                }
+            }
+        
             return should
         }
         self.commentTextField.shouldReturn = {
@@ -219,43 +248,54 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     }
     
     private func updateUI() {
-        self.nameLabel.text = self.profile?.name
-        self.purposeLabel.text = self.profile?.purposeText
-        
-        if let photoUrl = self.profile?.photoUrl, let url = URL.init(string: photoUrl) {
-            self.profileImageView.sd_setImage(with: url, placeholderImage: UIImage.named("ic_avatar_placeholder"), options: .avoidAutoSetImage, completed: { (image, error, cacheType, url) in
-                if cacheType == .none && image != nil {
-                    UIView.animate(withDuration: 0.2, animations: {
-                        self.profileImageView.alpha = 0
-                    }, completion: { (status) in
-                        self.profileImageView.image = image
+        if let profile = self.configuration.profile {
+            let name = profile.name ?? ""
+            if name.isEmpty {
+                self.nameLabel.isHidden = true
+                self.purposeLabel.text = profile.purposeText ?? "Надеюсь, вам понравилось"
+            } else {
+                self.nameLabel.isHidden = false
+                self.nameLabel.text = name
+                self.purposeLabel.text = profile.purposeText ?? "получит ваши чаевые"
+            }
+            
+            if let photoUrl = profile.photoUrl, let url = URL.init(string: photoUrl) {
+                self.profileImageView.sd_setImage(with: url, placeholderImage: UIImage.named("ic_avatar_placeholder"), options: .avoidAutoSetImage, completed: { (image, error, cacheType, url) in
+                    if cacheType == .none && image != nil {
                         UIView.animate(withDuration: 0.2, animations: {
-                            self.profileImageView.alpha = 1
+                            self.profileImageView.alpha = 0
+                        }, completion: { (status) in
+                            self.profileImageView.image = image
+                            UIView.animate(withDuration: 0.2, animations: {
+                                self.profileImageView.alpha = 1
+                            })
                         })
-                    })
-                } else {
-                    self.profileImageView.image = image ?? UIImage.named("ic_avatar_placeholder")
-                    self.profileImageView.alpha = 1
-                }
-            })
+                    } else {
+                        self.profileImageView.image = image ?? UIImage.named("ic_avatar_placeholder")
+                        self.profileImageView.alpha = 1
+                    }
+                })
+            }
         }
+        
     }
     
     //MARK: - Actions -
     
     @objc private func onApplePay(_ sender: UIButton) {
-        self.amount = "0"
+        self.amount = NSNumber(value: 0)
+        self.applePaySucceeded = false
         
-        if let amountString = self.amountTextField.text, let amount = Double(amountString) ?? 0.0 {
-            self.amount = amountString
+        if let amountString = self.amountTextField.text, let amount = NumberFormatter.currencyNumber(from: amountString), self.validateAmount(amount) {
+            self.amount = amount
             
             let request = PKPaymentRequest()
-            request.merchantIdentifier = "merchant.ru.cloudpayments"
+            request.merchantIdentifier = self.configuration.applePayMerchantId
             request.supportedNetworks = self.supportedPaymentNetworks
             request.merchantCapabilities = PKMerchantCapability.capability3DS
             request.countryCode = "RU"
             request.currencyCode = "RUB"
-            request.paymentSummaryItems = [PKPaymentSummaryItem(label: "К оплате", amount: NSDecimalNumber.init(value: amount))]
+            request.paymentSummaryItems = [PKPaymentSummaryItem(label: "К оплате", amount: NSDecimalNumber.init(value: self.amount.doubleValue))]
             if let applePayController = PKPaymentAuthorizationViewController(paymentRequest:
                     request) {
                 applePayController.delegate = self
@@ -270,12 +310,34 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     }
     
     private func onPay() {
-        self.amount = "0"
+        self.amount = NSNumber(value: 0)
         
-        if let amountString = self.amountTextField.text, let amount = Double(amountString) ?? 0.0 {
-            self.amount = amountString
+        if let amountString = self.amountTextField.text, let amount = NumberFormatter.currencyNumber(from: amountString), self.validateAmount(amount) {
+            self.amount = amount
             self.performSegue(withIdentifier: .tipsToCardSegue, sender: self)
         }
+    }
+    
+    private func validateAmount(_ amount: NSNumber) -> Bool {
+        var isValid = true
+        
+        let minAmount = NSNumber(value: 49)
+        let maxAmount = NSNumber(value: 10000)
+        
+        if amount.compare(minAmount) == .orderedAscending {
+            isValid = false
+        }
+        
+        if amount.compare(maxAmount) == .orderedDescending {
+            isValid = false
+        }
+        
+        if !isValid {
+            let controller = UIAlertController.init(title: "Внимание", message: "Введите сумму от 49 до 10 000 р.", preferredStyle: .alert)
+            controller.addAction(UIAlertAction.init(title: "Хорошо", style: .cancel, handler:nil))
+            self.present(controller, animated: true, completion: nil)
+        }
+        return isValid
     }
     
     //MARK: - UICollectionViewDataSource -
@@ -312,11 +374,10 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         if let identifier = segue.identifier {
             switch identifier {
             case .tipsToCardSegue:
-                if let controller = segue.destination as? CardViewController, let layoutId = self.layout?.layoutId {
-                    controller.layoutId = layoutId
-                    controller.amount = self.amount
-                    controller.comment = self.commentTextField.text ?? ""
-                    controller.profile = self.profile
+                if let controller = segue.destination as? CardViewController, let layoutId = self.configuration.layout?.layoutId {
+                    let paymentData = PaymentData.init(layoutId: layoutId, amount: self.amount, comment: self.commentTextField.text)
+                    controller.paymentData = paymentData
+                    controller.configuration = self.configuration
                 }
             default:
                 super.prepare(for: segue, sender: sender)
@@ -333,28 +394,24 @@ extension TipsViewController: PKPaymentAuthorizationViewControllerDelegate {
         controller.dismiss(animated: true) {
             if let error = self.paymentError {
                 self.onPaymentFailed(with: error)
-            } else {
+            } else if self.applePaySucceeded {
+                self.applePaySucceeded = false
                 self.onPaymentSucceeded()
             }
         }
     }
     
     public func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
-        if let layoutId = self.layout?.layoutId {
-            self.getPublicId(with: layoutId) { (publicId, error) in
-                if let _ = publicId, let cryptogram = payment.convertToString() {
-                    let paymentData = PaymentData.init(layoutId: layoutId, cryptogram: cryptogram, comment: self.commentTextField.text, amount: self.amount)
-                    self.auth(with: paymentData) { (response, error) in
-                        if response?.status == .success {
-                            self.paymentError = nil
-                            completion(PKPaymentAuthorizationResult(status: PKPaymentAuthorizationStatus.success, errors: []))
-                        } else {
-                            let error = CloudtipsError.init(message: response?.message ?? error?.localizedDescription ?? "")
-                            self.paymentError = error
-                            completion(PKPaymentAuthorizationResult(status: PKPaymentAuthorizationStatus.failure, errors: []))
-                        }
-                    }
+        if let layoutId = self.configuration.layout?.layoutId, let cryptogram = payment.convertToString() {
+            let paymentData = PaymentData.init(layoutId: layoutId, amount: self.amount, comment: self.commentTextField.text)
+            self.auth(with: paymentData, cryptogram: cryptogram) { (response, error) in
+                if response?.status == .success {
+                    self.paymentError = nil
+                    self.applePaySucceeded = true
+                    completion(PKPaymentAuthorizationResult(status: PKPaymentAuthorizationStatus.success, errors: []))
                 } else {
+                    let error = CloudtipsError.init(message: response?.message ?? error?.localizedDescription ?? "")
+                    self.paymentError = error
                     completion(PKPaymentAuthorizationResult(status: PKPaymentAuthorizationStatus.failure, errors: []))
                 }
             }

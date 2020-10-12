@@ -8,7 +8,8 @@
 import Foundation
 
 public class BasePaymentViewController: BaseViewController {
-    var profile: Profile?
+    internal var configuration: TipsConfiguration!
+    internal var paymentData: PaymentData?
     internal var paymentError: CloudtipsError?
     
     internal func onPaymentSucceeded() {
@@ -28,8 +29,8 @@ public class BasePaymentViewController: BaseViewController {
             switch identifier {
             case .toResultSegue:
                 if let controller = segue.destination as? CompletionViewController {
-                    controller.error = self.paymentError
-                    controller.profile = self.profile
+                    controller.paymentError = self.paymentError
+                    controller.configuration = self.configuration
                 }
             default:
                 super.prepare(for: segue, sender: sender)
