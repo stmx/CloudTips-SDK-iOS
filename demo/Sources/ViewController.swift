@@ -24,6 +24,14 @@ class ViewController: UIViewController {
         }
         self.textField.text = "79176114775".formattedPhoneNumber()
         self.validate()
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func hideKeyboard() {
+        self.view.endEditing(true)
     }
     
     private func validate(){

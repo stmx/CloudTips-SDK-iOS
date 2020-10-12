@@ -14,7 +14,7 @@
         <!--Tips View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="TipsViewController" customModule="Cloudtips" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="currentContext" id="BYZ-38-t0r" customClass="TipsViewController" customModule="Cloudtips" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -27,8 +27,8 @@
                                     <constraint firstAttribute="height" constant="200" id="yFz-yZ-Idh"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ua9-J8-OwY">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="ua9-J8-OwY">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PEX-XB-C3t">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="697"/>
@@ -46,13 +46,13 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="tni-Hh-gjk">
                                                         <rect key="frame" x="141" y="26" width="253" height="44"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdU-s4-18f">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdU-s4-18f">
                                                                 <rect key="frame" x="0.0" y="0.0" width="253" height="20.5"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                                                 <color key="textColor" name="section_title_color"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Purpose of tip accumulation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAG-1o-g0k">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Purpose of tip accumulation" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAG-1o-g0k">
                                                                 <rect key="frame" x="0.0" y="24.5" width="253" height="19.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                 <color key="textColor" name="mainText"/>
@@ -167,11 +167,11 @@
                                                             <size key="estimatedItemSize" width="90" height="42"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                            <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         </collectionViewFlowLayout>
                                                         <cells>
                                                             <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DefaultAmountCell" id="82U-gv-pJy" customClass="DefaultAmountCell" customModule="Cloudtips" customModuleProvider="target">
-                                                                <rect key="frame" x="8" y="9" width="90" height="42"/>
+                                                                <rect key="frame" x="0.0" y="9" width="90" height="42"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <collectionViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="0Cf-8c-fbf">
                                                                     <rect key="frame" x="0.0" y="0.0" width="90" height="42"/>
@@ -369,10 +369,10 @@
                                             <constraint firstItem="Qz3-R9-jKe" firstAttribute="leading" secondItem="PEX-XB-C3t" secondAttribute="leading" id="3UP-mG-nUB"/>
                                             <constraint firstItem="Qz3-R9-jKe" firstAttribute="top" secondItem="PEX-XB-C3t" secondAttribute="top" constant="30" id="98x-W0-qT7"/>
                                             <constraint firstAttribute="trailing" secondItem="Qz3-R9-jKe" secondAttribute="trailing" id="Jp7-Qw-Mxi"/>
-                                            <constraint firstAttribute="bottom" secondItem="IzN-af-xSn" secondAttribute="bottom" id="Zns-qo-5Xk"/>
                                             <constraint firstItem="IzN-af-xSn" firstAttribute="leading" secondItem="PEX-XB-C3t" secondAttribute="leading" id="b8c-CJ-X2i"/>
                                             <constraint firstItem="IzN-af-xSn" firstAttribute="top" secondItem="Qz3-R9-jKe" secondAttribute="bottom" constant="30" id="qqI-tC-dfB"/>
                                             <constraint firstAttribute="trailing" secondItem="IzN-af-xSn" secondAttribute="trailing" id="wEq-WF-I6j"/>
+                                            <constraint firstAttribute="bottom" secondItem="IzN-af-xSn" secondAttribute="bottom" id="yAZ-AP-V4p"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -391,7 +391,7 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="ua9-J8-OwY" secondAttribute="bottom" id="8WG-1p-2X3"/>
                             <constraint firstItem="W5X-9D-Smu" firstAttribute="centerX" secondItem="rPC-GU-5In" secondAttribute="centerX" id="S37-4b-xzj"/>
-                            <constraint firstItem="ua9-J8-OwY" firstAttribute="top" secondItem="rPC-GU-5In" secondAttribute="top" id="VLT-KN-t3Q"/>
+                            <constraint firstItem="ua9-J8-OwY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="VLT-KN-t3Q"/>
                             <constraint firstItem="ua9-J8-OwY" firstAttribute="trailing" secondItem="rPC-GU-5In" secondAttribute="trailing" id="ZuU-eh-DAL"/>
                             <constraint firstItem="ua9-J8-OwY" firstAttribute="leading" secondItem="rPC-GU-5In" secondAttribute="leading" id="sHI-xo-tfm"/>
                             <constraint firstItem="W5X-9D-Smu" firstAttribute="centerY" secondItem="rPC-GU-5In" secondAttribute="centerY" id="uFD-oU-bA8"/>
@@ -403,6 +403,7 @@
                         <outlet property="amountsCollectionView" destination="Y08-nY-Weh" id="mL5-1l-fm7"/>
                         <outlet property="applePayButtonContainer" destination="OSc-2a-7oU" id="XKV-c9-EUN"/>
                         <outlet property="commentTextField" destination="Mxy-HT-HZH" id="uTb-qJ-m74"/>
+                        <outlet property="containerBottomConstraint" destination="8WG-1p-2X3" id="lms-cT-VFn"/>
                         <outlet property="contentScrollView" destination="ua9-J8-OwY" id="NPI-80-UTc"/>
                         <outlet property="eulaButton" destination="gkC-Ur-UUk" id="quT-Bh-ALX"/>
                         <outlet property="nameLabel" destination="vdU-s4-18f" id="5qb-6X-ner"/>
@@ -830,7 +831,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="K9T-hx-DGK"/>
+        <segue reference="PhF-Kq-76C"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="button_blue" width="18.5" height="44"/>

@@ -180,6 +180,9 @@ public class TextField: UITextField, UITextFieldDelegate {
         self.clipsToBounds = false
         self.delegateIfNeeded()
         
+        self.backgroundColor = passiveBgColor
+        self.borderColor = passiveBorderColor
+        
         self.underlineView = UIView.init(frame: CGRect.init(x: 0, y: self.frame.height, width: self.frame.width, height: 1))
         if let underlineView = self.underlineView {
             self.addSubview(underlineView)

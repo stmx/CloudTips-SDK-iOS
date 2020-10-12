@@ -23,6 +23,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     @IBOutlet private weak var payButton: Button!
     @IBOutlet private weak var eulaButton: Button!
     @IBOutlet private weak var toolbar: UIToolbar!
+    @IBOutlet private var containerBottomConstraint: NSLayoutConstraint!
     
     private var supportedPaymentNetworks: [PKPaymentNetwork] {
         get {
@@ -54,7 +55,6 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.hideKeyboardWhenTappedAround()
         self.prepareUI()
         
         self.updateLayout()
@@ -225,7 +225,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
             self.amountsCollectionView.reloadData()
         }
         
-//        self.amountsCollectionView.contentInset = UIEdgeInsets.init(top: 0, left: 20, bottom: 0, right: 20)
+        self.amountsCollectionView.contentInset = UIEdgeInsets.init(top: 0, left: 20, bottom: 0, right: 20)
         
         let attributes1: [NSAttributedString.Key : Any] =
             [.foregroundColor : UIColor.mainText,
@@ -398,6 +398,28 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
                 break
             }
         }
+    }
+    
+    //MARK: - Keyboard -
+    
+    @objc internal override func onKeyboardWillShow(_ notification: Notification) {
+        super.onKeyboardWillShow(notification)
+        
+        self.containerBottomConstraint.constant = self.keyboardFrame.height
+        
+        self.view.setNeedsLayout()
+        self.view.layoutIfNeeded()
+    }
+    
+    @objc internal override func onKeyboardWillHide(_ notification: Notification) {
+        super.onKeyboardWillHide(notification)
+
+        self.containerBottomConstraint.constant = 0
+        
+        self.view.setNeedsLayout()
+        self.view.layoutIfNeeded()
+        
+        print("hide")
     }
 }
 

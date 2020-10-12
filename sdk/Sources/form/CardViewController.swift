@@ -28,7 +28,6 @@ class CardViewController: BasePaymentViewController, PaymentDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.hideKeyboardWhenTappedAround()
         self.validate()
         self.prepareUI()
     }
