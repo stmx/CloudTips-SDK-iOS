@@ -22,6 +22,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     @IBOutlet private weak var applePayButtonContainer: UIView!
     @IBOutlet private weak var payButton: Button!
     @IBOutlet private weak var eulaButton: Button!
+    @IBOutlet private weak var toolbar: UIToolbar!
     
     private var supportedPaymentNetworks: [PKPaymentNetwork] {
         get {
@@ -164,6 +165,9 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         
         self.profileImageView.layer.cornerRadius = self.profileImageView.frame.height/2
         self.profileImageView.layer.masksToBounds = true
+        
+        self.amountTextField.inputAccessoryView = self.toolbar
+        self.commentTextField.inputAccessoryView = self.toolbar
         
         self.amountTextField.shouldReturn = {
             self.commentTextField.becomeFirstResponder()
@@ -338,6 +342,10 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
             self.present(controller, animated: true, completion: nil)
         }
         return isValid
+    }
+    
+    @IBAction private func onDone(_ sender: Any) {
+        self.view.endEditing(true)
     }
     
     //MARK: - UICollectionViewDataSource -

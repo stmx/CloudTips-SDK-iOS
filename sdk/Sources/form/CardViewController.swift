@@ -17,11 +17,14 @@ class CardViewController: BasePaymentViewController, PaymentDelegate {
     @IBOutlet private weak var progressView: ProgressView!
     @IBOutlet weak var payButton: Button!
     @IBOutlet weak var psIcon: UIImageView!
+    @IBOutlet weak var toolbar: UIToolbar!
     
     private var threeDsView: UIView?
     
     private let threeDsProcessor = ThreeDsProcessor()
 
+    //MARK: - Lifecycle -
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,6 +39,10 @@ class CardViewController: BasePaymentViewController, PaymentDelegate {
         self.payButton.onAction = {
             self.pay()
         }
+        
+        self.cardNumberTextField.inputAccessoryView = self.toolbar
+        self.cardExpDateTextField.inputAccessoryView = self.toolbar
+        self.cardCvcTextField.inputAccessoryView = self.toolbar
         
         let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.mainText]
         self.cardNumberTextField.attributedPlaceholder = NSAttributedString.init(string: "Номер карты", attributes: attributes)
@@ -146,6 +153,8 @@ class CardViewController: BasePaymentViewController, PaymentDelegate {
         }
     }
     
+    //MARK: - Actions -
+    
     private func pay() {
         if let paymentData = self.paymentData {
             self.showProgress()
@@ -179,6 +188,12 @@ class CardViewController: BasePaymentViewController, PaymentDelegate {
         self.threeDsProcessor.make3DSPayment(with: threeDsData, delegate: self)
     }
     
+    @IBAction private func onDone(_ sender: Any) {
+        self.view.endEditing(true)
+    }
+    
+    //MARK: - Progress -
+    
     private func showProgress() {
         self.progressView.startAnimation()
         
@@ -198,6 +213,8 @@ class CardViewController: BasePaymentViewController, PaymentDelegate {
         }
     }
 }
+
+//MARK: - ThreeDsDelegate -
 
 extension CardViewController: ThreeDsDelegate {
     func willPresentWebView(_ webView: WKWebView) {
