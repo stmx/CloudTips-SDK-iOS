@@ -477,6 +477,13 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qc7-JI-4pS">
+                                                <rect key="frame" x="354" y="74.5" width="24" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="24" id="EF8-3s-W8g"/>
+                                                    <constraint firstAttribute="height" constant="24" id="yKL-b2-ZNU"/>
+                                                </constraints>
+                                            </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Срок действия" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sd3-2q-e3Z">
                                                 <rect key="frame" x="20" y="138.5" width="171" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -603,7 +610,9 @@
                                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="W7W-CB-fhY" secondAttribute="trailing" constant="20" id="0Gr-lo-Bza"/>
                                             <constraint firstItem="VMM-px-nZy" firstAttribute="top" secondItem="vnC-42-Ezw" secondAttribute="bottom" constant="40" id="4My-fb-5zt"/>
                                             <constraint firstItem="W7W-CB-fhY" firstAttribute="leading" secondItem="iB1-Ly-YPG" secondAttribute="leading" constant="20" id="5rR-YB-YLD"/>
+                                            <constraint firstItem="Qc7-JI-4pS" firstAttribute="trailing" secondItem="bXw-Ry-oFM" secondAttribute="trailing" constant="-16" id="9BT-r8-EzE"/>
                                             <constraint firstItem="YyU-up-kKn" firstAttribute="leading" secondItem="Sd3-2q-e3Z" secondAttribute="trailing" constant="32" id="Egf-W1-gZT"/>
+                                            <constraint firstItem="Qc7-JI-4pS" firstAttribute="centerY" secondItem="bXw-Ry-oFM" secondAttribute="centerY" id="M6g-XA-AWA"/>
                                             <constraint firstItem="bXw-Ry-oFM" firstAttribute="top" secondItem="W7W-CB-fhY" secondAttribute="bottom" constant="12" id="MkZ-8w-5UD"/>
                                             <constraint firstItem="Sd3-2q-e3Z" firstAttribute="top" secondItem="bXw-Ry-oFM" secondAttribute="bottom" constant="24" id="NLN-Md-MzA"/>
                                             <constraint firstItem="UR8-Qs-yJO" firstAttribute="top" secondItem="YyU-up-kKn" secondAttribute="bottom" constant="12" id="PgC-wh-kAK"/>
@@ -663,6 +672,7 @@
                         <outlet property="cardNumberTextField" destination="bXw-Ry-oFM" id="AhB-52-HN0"/>
                         <outlet property="payButton" destination="VMM-px-nZy" id="s8Q-4q-DoW"/>
                         <outlet property="progressView" destination="fDm-iS-wbr" id="gm4-Sd-WeK"/>
+                        <outlet property="psIcon" destination="Qc7-JI-4pS" id="zBS-1o-8QF"/>
                         <segue destination="bRu-YF-96i" kind="show" identifier="ToResultSegue" id="K9T-hx-DGK"/>
                     </connections>
                 </viewController>
@@ -792,7 +802,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="PhF-Kq-76C"/>
+        <segue reference="K9T-hx-DGK"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="button_blue" width="18.5" height="44"/>

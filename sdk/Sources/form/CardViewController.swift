@@ -16,6 +16,7 @@ class CardViewController: BasePaymentViewController, PaymentDelegate {
     @IBOutlet private weak var cardCvcTextField: TextField!
     @IBOutlet private weak var progressView: ProgressView!
     @IBOutlet weak var payButton: Button!
+    @IBOutlet weak var psIcon: UIImageView!
     
     private var threeDsView: UIView?
     
@@ -118,20 +119,31 @@ class CardViewController: BasePaymentViewController, PaymentDelegate {
     }
     
     private func updatePaymentSystemIcon(cardNumber: String?){
-//        if let number = cardNumber {
-//            let cardType = Card.cardType(from: number)
-//            if cardType != .unknown {
-//                self.cardTypeIcon.image = cardType.getIcon()
-//                self.cardTypeIcon.isHidden = false
-//                self.scanButton.isHidden = true
-//            } else {
-//                self.cardTypeIcon.isHidden = true
-//                self.scanButton.isHidden = self.paymentData.scanner == nil
-//            }
-//        } else {
-//            self.cardTypeIcon.isHidden = true
-//            self.scanButton.isHidden = self.paymentData.scanner == nil
-//        }
+        if let number = cardNumber {
+            let cardType = Card.cardType(from: number)
+            let icon: UIImage?
+            switch cardType {
+            case .visa:
+                icon = UIImage.named("ic_visa")
+            case .americanExpress:
+                icon = UIImage.named("ic_amex")
+            case .jcb:
+                icon = UIImage.named("ic_jcb")
+            case .maestro:
+                icon = UIImage.named("ic_maestro")
+            case .masterCard:
+                icon = UIImage.named("ic_master")
+            case .mir:
+                icon = UIImage.named("ic_mir")
+            case .troy:
+                icon = UIImage.named("ic_troy")
+            default:
+                icon = nil
+            }
+            self.psIcon.image = icon
+        } else {
+            self.psIcon.image = nil
+        }
     }
     
     private func pay() {
