@@ -16,9 +16,9 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     @IBOutlet private weak var profileImageView: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var purposeLabel: UILabel!
-    @IBOutlet private weak var amountTextField: UnderlineTextField!
+    @IBOutlet private weak var amountTextField: TextField!
     @IBOutlet private weak var amountsCollectionView: UICollectionView!
-    @IBOutlet private weak var commentTextField: UnderlineTextField!
+    @IBOutlet private weak var commentTextField: TextField!
     @IBOutlet private weak var applePayButtonContainer: UIView!
     @IBOutlet private weak var payButton: Button!
     @IBOutlet private weak var eulaButton: Button!

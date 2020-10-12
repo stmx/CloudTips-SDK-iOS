@@ -9,7 +9,7 @@ import UIKit
 import Cloudtips
 
 class ViewController: UIViewController {
-    @IBOutlet private weak var textField: UnderlineTextField!
+    @IBOutlet private weak var textField: TextField!
     @IBOutlet private weak var continueButton: Button!
 
     override func viewDidLoad() {

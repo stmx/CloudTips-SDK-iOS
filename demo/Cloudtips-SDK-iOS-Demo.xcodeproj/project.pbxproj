@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E7C5D683D9D0F4652C06FF6 /* Pods_Cloudtips_SDK_iOS_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 870216673554CB5E29767755 /* Pods_Cloudtips_SDK_iOS_Demo.framework */; };
 		83098528252364A2009A3C32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83098527252364A2009A3C32 /* AppDelegate.swift */; };
 		8309852C252364A2009A3C32 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8309852B252364A2009A3C32 /* ViewController.swift */; };
 		8309852F252364A2009A3C32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8309852D252364A2009A3C32 /* Main.storyboard */; };
 		83098531252364A3009A3C32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83098530252364A3009A3C32 /* Assets.xcassets */; };
 		83098534252364A3009A3C32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83098532252364A3009A3C32 /* LaunchScreen.storyboard */; };
+		D02D1FDCD3476510F2B31DC8 /* Pods_Cloudtips_SDK_iOS_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A399455EEA5D9D95EBFC5392 /* Pods_Cloudtips_SDK_iOS_Demo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		16BF0847FE14001C2C0412A2 /* Pods-Cloudtips-SDK-iOS-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloudtips-SDK-iOS-Demo.debug.xcconfig"; path = "Target Support Files/Pods-Cloudtips-SDK-iOS-Demo/Pods-Cloudtips-SDK-iOS-Demo.debug.xcconfig"; sourceTree = "<group>"; };
+		744CCE72987C7FA345E3D72F /* Pods-Cloudtips-SDK-iOS-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloudtips-SDK-iOS-Demo.debug.xcconfig"; path = "Target Support Files/Pods-Cloudtips-SDK-iOS-Demo/Pods-Cloudtips-SDK-iOS-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		83098524252364A2009A3C32 /* Cloudtips-SDK-iOS-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cloudtips-SDK-iOS-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83098527252364A2009A3C32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8309852B252364A2009A3C32 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -25,8 +25,8 @@
 		83098533252364A3009A3C32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83098535252364A3009A3C32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		835BBAB52525CA7400036021 /* Cloudtips-SDK-iOS-Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Cloudtips-SDK-iOS-Demo.entitlements"; sourceTree = "<group>"; };
-		870216673554CB5E29767755 /* Pods_Cloudtips_SDK_iOS_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cloudtips_SDK_iOS_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA54372D036F8C4ECE1456FB /* Pods-Cloudtips-SDK-iOS-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloudtips-SDK-iOS-Demo.release.xcconfig"; path = "Target Support Files/Pods-Cloudtips-SDK-iOS-Demo/Pods-Cloudtips-SDK-iOS-Demo.release.xcconfig"; sourceTree = "<group>"; };
+		A399455EEA5D9D95EBFC5392 /* Pods_Cloudtips_SDK_iOS_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cloudtips_SDK_iOS_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECC9089D7842DE4CF91EE8A8 /* Pods-Cloudtips-SDK-iOS-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloudtips-SDK-iOS-Demo.release.xcconfig"; path = "Target Support Files/Pods-Cloudtips-SDK-iOS-Demo/Pods-Cloudtips-SDK-iOS-Demo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,18 +34,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E7C5D683D9D0F4652C06FF6 /* Pods_Cloudtips_SDK_iOS_Demo.framework in Frameworks */,
+				D02D1FDCD3476510F2B31DC8 /* Pods_Cloudtips_SDK_iOS_Demo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		69F69D7B9E5412AA48063B0B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A399455EEA5D9D95EBFC5392 /* Pods_Cloudtips_SDK_iOS_Demo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6ACC048CEF533CBA7A58DCD5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				16BF0847FE14001C2C0412A2 /* Pods-Cloudtips-SDK-iOS-Demo.debug.xcconfig */,
-				EA54372D036F8C4ECE1456FB /* Pods-Cloudtips-SDK-iOS-Demo.release.xcconfig */,
+				744CCE72987C7FA345E3D72F /* Pods-Cloudtips-SDK-iOS-Demo.debug.xcconfig */,
+				ECC9089D7842DE4CF91EE8A8 /* Pods-Cloudtips-SDK-iOS-Demo.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -58,7 +66,7 @@
 				8309857D252369ED009A3C32 /* Resources */,
 				83098525252364A2009A3C32 /* Products */,
 				6ACC048CEF533CBA7A58DCD5 /* Pods */,
-				EE2FE697F7C572BF041778F8 /* Frameworks */,
+				69F69D7B9E5412AA48063B0B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,14 +98,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		EE2FE697F7C572BF041778F8 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				870216673554CB5E29767755 /* Pods_Cloudtips_SDK_iOS_Demo.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -105,11 +105,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 83098538252364A3009A3C32 /* Build configuration list for PBXNativeTarget "Cloudtips-SDK-iOS-Demo" */;
 			buildPhases = (
-				5262FC0FEB2DF3E851821C1C /* [CP] Check Pods Manifest.lock */,
+				A54E742A2D6BB1FD22341093 /* [CP] Check Pods Manifest.lock */,
 				83098520252364A2009A3C32 /* Sources */,
 				83098521252364A2009A3C32 /* Frameworks */,
 				83098522252364A2009A3C32 /* Resources */,
-				B082DBAE3A5AC6B07ECAB6DF /* [CP] Embed Pods Frameworks */,
+				35FEE5211FE4DD003FE934F2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -166,7 +166,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5262FC0FEB2DF3E851821C1C /* [CP] Check Pods Manifest.lock */ = {
+		35FEE5211FE4DD003FE934F2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Cloudtips-SDK-iOS-Demo/Pods-Cloudtips-SDK-iOS-Demo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Cloudtips-SDK-iOS-Demo/Pods-Cloudtips-SDK-iOS-Demo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Cloudtips-SDK-iOS-Demo/Pods-Cloudtips-SDK-iOS-Demo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A54E742A2D6BB1FD22341093 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -186,23 +203,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B082DBAE3A5AC6B07ECAB6DF /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Cloudtips-SDK-iOS-Demo/Pods-Cloudtips-SDK-iOS-Demo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Cloudtips-SDK-iOS-Demo/Pods-Cloudtips-SDK-iOS-Demo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Cloudtips-SDK-iOS-Demo/Pods-Cloudtips-SDK-iOS-Demo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -357,7 +357,7 @@
 		};
 		83098539252364A3009A3C32 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 16BF0847FE14001C2C0412A2 /* Pods-Cloudtips-SDK-iOS-Demo.debug.xcconfig */;
+			baseConfigurationReference = 744CCE72987C7FA345E3D72F /* Pods-Cloudtips-SDK-iOS-Demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -380,7 +380,7 @@
 		};
 		8309853A252364A3009A3C32 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EA54372D036F8C4ECE1456FB /* Pods-Cloudtips-SDK-iOS-Demo.release.xcconfig */;
+			baseConfigurationReference = ECC9089D7842DE4CF91EE8A8 /* Pods-Cloudtips-SDK-iOS-Demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

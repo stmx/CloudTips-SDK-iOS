@@ -9,11 +9,17 @@
 import Foundation
 import UIKit
 
-public class UnderlineTextField: UITextField, UITextFieldDelegate {
+public class TextField: UITextField, UITextFieldDelegate {
     private var underlineView : UIView?
     
-    @IBInspectable var activeColor: UIColor = UIColor.clear
-    @IBInspectable var passiveColor: UIColor = UIColor.clear
+    @IBInspectable var activeUnderlineColor: UIColor = UIColor.clear
+    @IBInspectable var passiveUnderlineColor: UIColor = UIColor.clear
+
+    @IBInspectable var activeBgColor: UIColor = UIColor.clear
+    @IBInspectable var passiveBgColor: UIColor = UIColor.clear
+
+    @IBInspectable var activeBorderColor: UIColor = UIColor.clear
+    @IBInspectable var passiveBorderColor: UIColor = UIColor.clear
 
     
     public var shouldBeginEditing : (() -> Bool)? {
@@ -139,7 +145,10 @@ public class UnderlineTextField: UITextField, UITextFieldDelegate {
     }
     
     public func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.underlineView?.backgroundColor = activeColor
+        self.underlineView?.backgroundColor = activeUnderlineColor
+        self.backgroundColor = activeBgColor
+        self.borderColor = activeBorderColor
+        
         didBeginEditing?()
     }
     
@@ -148,7 +157,9 @@ public class UnderlineTextField: UITextField, UITextFieldDelegate {
     }
     
     public func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-        self.underlineView?.backgroundColor = passiveColor
+        self.underlineView?.backgroundColor = passiveUnderlineColor
+        self.backgroundColor = passiveBgColor
+        self.borderColor = passiveBorderColor
         
         didEndEditing?()
     }
@@ -173,7 +184,7 @@ public class UnderlineTextField: UITextField, UITextFieldDelegate {
         if let underlineView = self.underlineView {
             self.addSubview(underlineView)
             underlineView.translatesAutoresizingMaskIntoConstraints = false
-            underlineView.backgroundColor = self.passiveColor
+            underlineView.backgroundColor = self.passiveUnderlineColor
             
             NSLayoutConstraint.activate([
                 underlineView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),

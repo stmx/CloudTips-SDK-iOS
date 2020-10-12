@@ -11,9 +11,9 @@ import Cloudpayments
 import WebKit
 
 class CardViewController: BasePaymentViewController, PaymentDelegate {
-    @IBOutlet private weak var cardNumberTextField: UnderlineTextField!
-    @IBOutlet private weak var cardExpDateTextField: UnderlineTextField!
-    @IBOutlet private weak var cardCvcTextField: UnderlineTextField!
+    @IBOutlet private weak var cardNumberTextField: TextField!
+    @IBOutlet private weak var cardExpDateTextField: TextField!
+    @IBOutlet private weak var cardCvcTextField: TextField!
     @IBOutlet private weak var progressView: ProgressView!
     @IBOutlet weak var payButton: Button!
     
