@@ -71,7 +71,7 @@
                                                     <constraint firstItem="jhI-wp-gSd" firstAttribute="top" secondItem="Qz3-R9-jKe" secondAttribute="top" id="u8x-NE-3FV"/>
                                                 </constraints>
                                             </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="IzN-af-xSn">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="IzN-af-xSn">
                                                 <rect key="frame" x="0.0" y="156" width="414" height="541"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ln5-Vj-63L">
@@ -156,22 +156,22 @@
                                                             <constraint firstAttribute="trailing" secondItem="vHQ-Oy-OXJ" secondAttribute="trailing" constant="20" id="gM9-4R-XtM"/>
                                                         </constraints>
                                                     </view>
-                                                    <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Y08-nY-Weh">
+                                                    <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Y08-nY-Weh">
                                                         <rect key="frame" x="0.0" y="121" width="414" height="60"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="c14-bg-KEy"/>
                                                         </constraints>
-                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="6" minimumInteritemSpacing="0.0" id="7GO-la-ETW">
+                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="6" minimumInteritemSpacing="6" id="7GO-la-ETW">
                                                             <size key="itemSize" width="90" height="42"/>
                                                             <size key="estimatedItemSize" width="90" height="42"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                            <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                                                         </collectionViewFlowLayout>
                                                         <cells>
                                                             <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DefaultAmountCell" id="82U-gv-pJy" customClass="DefaultAmountCell" customModule="Cloudtips_SDK_iOS" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="9" width="90" height="42"/>
+                                                                <rect key="frame" x="8" y="9" width="90" height="42"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <collectionViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="0Cf-8c-fbf">
                                                                     <rect key="frame" x="0.0" y="0.0" width="90" height="42"/>
@@ -802,7 +802,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="K9T-hx-DGK"/>
+        <segue reference="PhF-Kq-76C"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="button_blue" width="18.5" height="44"/>

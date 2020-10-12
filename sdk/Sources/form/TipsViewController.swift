@@ -10,7 +10,7 @@ import UIKit
 import SDWebImage
 import PassKit
 
-public class TipsViewController: BasePaymentViewController, UICollectionViewDelegate, UICollectionViewDataSource, PaymentDelegate {
+public class TipsViewController: BasePaymentViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PaymentDelegate {
     @IBOutlet private weak var progressView: ProgressView!
     @IBOutlet private weak var contentScrollView: UIScrollView!
     @IBOutlet private weak var profileImageView: UIImageView!
@@ -221,7 +221,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
             self.amountsCollectionView.reloadData()
         }
         
-        self.amountsCollectionView.contentInset = UIEdgeInsets.init(top: 0, left: 20, bottom: 0, right: 20)
+//        self.amountsCollectionView.contentInset = UIEdgeInsets.init(top: 0, left: 20, bottom: 0, right: 20)
         
         let attributes1: [NSAttributedString.Key : Any] =
             [.foregroundColor : UIColor.mainText,
@@ -366,6 +366,12 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         if let cell = collectionView.cellForItem(at: indexPath) as? DefaultAmountCell {
             cell.setSelected(false)
         }
+    }
+    
+    //MARK: - UICollectionViewDelegateFlowLayout -
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 6.0
     }
     
     //MARK: - Prepare for segue -
