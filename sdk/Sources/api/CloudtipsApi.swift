@@ -42,10 +42,10 @@ public class CloudtipsApi {
         makeObjectRequest(request, completion: completion)
     }
     
-    func auth(with paymentData: PaymentData, completion: HTTPRequestCompletion<PaymentResponse>?) {
+    func auth(with paymentData: PaymentData, cryptogram: String, completion: HTTPRequestCompletion<PaymentResponse>?) {
         let params: [String: Any] =
             ["cardholderName": "Cloudtips SDK",
-             "cardCryptogramPacket": paymentData.cryptogram,
+             "cardCryptogramPacket": cryptogram,
              "amount": paymentData.amount,
              "currency": paymentData.currency.rawValue,
              "comment": paymentData.comment ?? "",

@@ -16,4 +16,16 @@ extension NumberFormatter {
         formatter.maximumFractionDigits = withDigits
         return formatter.string(from: number) ?? "0"
     }
+    
+    public class func currencyNumber(from string: String, withDigits: Int = 2) -> NSNumber? {
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = withDigits
+        if string.contains(",") {
+            formatter.decimalSeparator = ","
+        } else if string.contains(".") {
+            formatter.decimalSeparator = "."
+        }
+        return formatter.number(from: string)
+    }
 }

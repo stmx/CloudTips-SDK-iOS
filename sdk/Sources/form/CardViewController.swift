@@ -10,26 +10,24 @@ import UIKit
 import Cloudpayments
 import WebKit
 
-class CardViewController: BasePaymentViewController, AuthDelegate {
-    @IBOutlet private weak var cardNumberTextField: UnderlineTextField!
-    @IBOutlet private weak var cardExpDateTextField: UnderlineTextField!
-    @IBOutlet private weak var cardCvcTextField: UnderlineTextField!
+class CardViewController: BasePaymentViewController, PaymentDelegate {
+    @IBOutlet private weak var cardNumberTextField: TextField!
+    @IBOutlet private weak var cardExpDateTextField: TextField!
+    @IBOutlet private weak var cardCvcTextField: TextField!
     @IBOutlet private weak var progressView: ProgressView!
     @IBOutlet weak var payButton: Button!
+    @IBOutlet weak var psIcon: UIImageView!
+    @IBOutlet weak var toolbar: UIToolbar!
     
     private var threeDsView: UIView?
     
-    
-    var amount = "0"
-    var comment = ""
-    var layoutId: String!
-    
     private let threeDsProcessor = ThreeDsProcessor()
 
+    //MARK: - Lifecycle -
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.hideKeyboardWhenTappedAround()
         self.validate()
         self.prepareUI()
     }
@@ -40,6 +38,10 @@ class CardViewController: BasePaymentViewController, AuthDelegate {
         self.payButton.onAction = {
             self.pay()
         }
+        
+        self.cardNumberTextField.inputAccessoryView = self.toolbar
+        self.cardExpDateTextField.inputAccessoryView = self.toolbar
+        self.cardCvcTextField.inputAccessoryView = self.toolbar
         
         let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.mainText]
         self.cardNumberTextField.attributedPlaceholder = NSAttributedString.init(string: "Номер карты", attributes: attributes)
@@ -123,45 +125,59 @@ class CardViewController: BasePaymentViewController, AuthDelegate {
     }
     
     private func updatePaymentSystemIcon(cardNumber: String?){
-//        if let number = cardNumber {
-//            let cardType = Card.cardType(from: number)
-//            if cardType != .unknown {
-//                self.cardTypeIcon.image = cardType.getIcon()
-//                self.cardTypeIcon.isHidden = false
-//                self.scanButton.isHidden = true
-//            } else {
-//                self.cardTypeIcon.isHidden = true
-//                self.scanButton.isHidden = self.paymentData.scanner == nil
-//            }
-//        } else {
-//            self.cardTypeIcon.isHidden = true
-//            self.scanButton.isHidden = self.paymentData.scanner == nil
-//        }
+        if let number = cardNumber {
+            let cardType = Card.cardType(from: number)
+            let icon: UIImage?
+            switch cardType {
+            case .visa:
+                icon = UIImage.named("ic_visa")
+            case .americanExpress:
+                icon = UIImage.named("ic_amex")
+            case .jcb:
+                icon = UIImage.named("ic_jcb")
+            case .maestro:
+                icon = UIImage.named("ic_maestro")
+            case .masterCard:
+                icon = UIImage.named("ic_master")
+            case .mir:
+                icon = UIImage.named("ic_mir")
+            case .troy:
+                icon = UIImage.named("ic_troy")
+            default:
+                icon = nil
+            }
+            self.psIcon.image = icon
+        } else {
+            self.psIcon.image = nil
+        }
     }
     
+    //MARK: - Actions -
+    
     private func pay() {
-        self.showProgress()
-        self.getPublicId(with: self.layoutId) { (publicId, error) in
-            if let publicId = publicId, let cryptogram = Card.makeCardCryptogramPacket(with: self.cardNumberTextField.text!, expDate: self.cardExpDateTextField.text!, cvv: self.cardCvcTextField.text!, merchantPublicID: publicId) {
-                let paymentData = PaymentData.init(layoutId: self.layoutId, cryptogram: cryptogram, comment: self.comment, amount: self.amount)
-                self.auth(with: paymentData) { (response, error) in
-                    self.hideProgress()
-                    if let response = response {
-                        if response.status == .need3ds, let acsUrl = response.acsUrl, let md = response.md, let paReq = response.paReq {
-                            self.showThreeDs(with: acsUrl, md: md, paReq: paReq)
-                        } else if response.status == .success {
-                            self.onPaymentSucceeded()
-                        } else if response.status == .failure {
-                            let ctError = CloudtipsError.init(message: response.message ?? "Ошибка")
+        if let paymentData = self.paymentData {
+            self.showProgress()
+            self.getPublicId(with: paymentData.layoutId) { (publicId, error) in
+                if let publicId = publicId, let cryptogram = Card.makeCardCryptogramPacket(with: self.cardNumberTextField.text!, expDate: self.cardExpDateTextField.text!, cvv: self.cardCvcTextField.text!, merchantPublicID: publicId) {
+                    self.auth(with: paymentData, cryptogram: cryptogram) { (response, error) in
+                        self.hideProgress()
+                        if let response = response {
+                            if response.status == .need3ds, let acsUrl = response.acsUrl, let md = response.md, let paReq = response.paReq {
+                                self.showThreeDs(with: acsUrl, md: md, paReq: paReq)
+                            } else if response.status == .success {
+                                self.onPaymentSucceeded()
+                            } else if response.status == .failure {
+                                let ctError = CloudtipsError.init(message: response.message ?? "Ошибка")
+                                self.onPaymentFailed(with: ctError)
+                            }
+                        } else {
+                            let ctError = CloudtipsError.init(message: error?.localizedDescription ?? "Ошибка")
                             self.onPaymentFailed(with: ctError)
                         }
-                    } else {
-                        let ctError = CloudtipsError.init(message: error?.localizedDescription ?? "Ошибка")
-                        self.onPaymentFailed(with: ctError)
                     }
+                } else {
+                    self.hideProgress()
                 }
-            } else {
-                self.hideProgress()
             }
         }
     }
@@ -170,6 +186,12 @@ class CardViewController: BasePaymentViewController, AuthDelegate {
         let threeDsData = ThreeDsData.init(transactionId: md, paReq: paReq, acsUrl: acsUrl)
         self.threeDsProcessor.make3DSPayment(with: threeDsData, delegate: self)
     }
+    
+    @IBAction private func onDone(_ sender: Any) {
+        self.view.endEditing(true)
+    }
+    
+    //MARK: - Progress -
     
     private func showProgress() {
         self.progressView.startAnimation()
@@ -190,6 +212,8 @@ class CardViewController: BasePaymentViewController, AuthDelegate {
         }
     }
 }
+
+//MARK: - ThreeDsDelegate -
 
 extension CardViewController: ThreeDsDelegate {
     func willPresentWebView(_ webView: WKWebView) {

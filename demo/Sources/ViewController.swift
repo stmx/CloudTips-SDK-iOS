@@ -9,7 +9,7 @@ import UIKit
 import Cloudtips
 
 class ViewController: UIViewController {
-    @IBOutlet private weak var textField: UnderlineTextField!
+    @IBOutlet private weak var textField: TextField!
     @IBOutlet private weak var continueButton: Button!
 
     override func viewDidLoad() {
@@ -22,8 +22,16 @@ class ViewController: UIViewController {
             
             self.validate()
         }
-        
+        self.textField.text = "79176114775".formattedPhoneNumber()
         self.validate()
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func hideKeyboard() {
+        self.view.endEditing(true)
     }
     
     private func validate(){
@@ -36,7 +44,9 @@ class ViewController: UIViewController {
 
     @IBAction func onContinue(_ sender: UIButton) {
         if let text = self.textField.text?.phoneNumber() {
-            TipsViewController.present(with: "+" + text, name: "Тестовый пользователь Demo", from: self)
+            let configuration = TipsConfiguration.init(phoneNumber: "+" + text, userName: "Cloudtips demo user")
+            configuration.setApplePayMerchantId("merchant.ru.cloudpayments")
+            TipsViewController.present(with: configuration, from: self)
         }
     }
 }
