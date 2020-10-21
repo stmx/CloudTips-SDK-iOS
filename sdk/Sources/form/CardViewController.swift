@@ -28,7 +28,6 @@ class CardViewController: BasePaymentViewController, PaymentDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.validate()
         self.prepareUI()
     }
     
@@ -36,7 +35,13 @@ class CardViewController: BasePaymentViewController, PaymentDelegate {
         self.progressView.bgColor = UIColor.white.withAlphaComponent(0.5)
         
         self.payButton.onAction = {
-            self.pay()
+            if self.isValid() {
+                self.pay()
+            }
+        }
+        
+        if let amount = self.paymentData?.amount {
+            self.payButton.setTitle("Оплатить " + NumberFormatter.currencyString(from: amount), for: .normal)
         }
         
         self.cardNumberTextField.inputAccessoryView = self.toolbar
@@ -54,36 +59,50 @@ class CardViewController: BasePaymentViewController, PaymentDelegate {
                 
                 if cardNumber.cardNumberIsValid() {
                     self.cardExpDateTextField.becomeFirstResponder()
+                    self.cardNumberTextField.isErrorMode = false
+                } else {
+                    let cleanCardNumber = cardNumber.clearCardNumber()
+                    
+                    //MAX CARD NUMBER LENGHT
+                    self.cardNumberTextField.isErrorMode = cleanCardNumber.count == 19
                 }
                 
                 self.updatePaymentSystemIcon(cardNumber: cardNumber)
-                
-                self.validate()
             }
+        }
+        
+        self.cardNumberTextField.didEndEditing = {
+            self.validateAndErrorCardNumber()
         }
         
         self.cardExpDateTextField.didChange = {
             if let cardExp = self.cardExpDateTextField.text?.formattedCardExp() {
                 self.cardExpDateTextField.text = cardExp
                 
+                self.cardExpDateTextField.isErrorMode = false
                 if cardExp.count == 5 {
                     self.cardCvcTextField.becomeFirstResponder()
                 }
-                
-                self.validate()
             }
+        }
+        
+        self.cardExpDateTextField.didEndEditing = {
+            self.validateAndErrorCardExp()
         }
 
         self.cardCvcTextField.didChange = {
             if let text = self.cardCvcTextField.text?.formattedCardCVV() {
                 self.cardCvcTextField.text = text
                 
+                self.cardCvcTextField.isErrorMode = false
                 if text.count == 3 {
                     self.cardCvcTextField.resignFirstResponder()
                 }
-                
-                self.validate()
             }
+        }
+        
+        self.cardCvcTextField.didEndEditing = {
+            self.validateAndErrorCardCVV()
         }
         
         self.cardNumberTextField.shouldReturn = {
@@ -116,12 +135,39 @@ class CardViewController: BasePaymentViewController, PaymentDelegate {
         }
     }
     
-    private func validate() {
+    private func isValid() -> Bool {
         let cardNumberIsValid = self.cardNumberTextField.text?.formattedCardNumber().cardNumberIsValid() == true
         let cardExpIsValid = self.cardExpDateTextField.text?.formattedCardExp().count == 5
         let cardCvcIsValid = self.cardCvcTextField.text?.formattedCardCVV().count == 3
         
-        self.payButton.isEnabled = cardNumberIsValid && cardExpIsValid && cardCvcIsValid
+        self.validateAndErrorCardNumber()
+        self.validateAndErrorCardExp()
+        self.validateAndErrorCardCVV()
+        
+        return cardNumberIsValid && cardExpIsValid && cardCvcIsValid
+    }
+    
+    private func validateAndErrorCardNumber(){
+        if let cardNumber = self.cardNumberTextField.text?.formattedCardNumber() {
+            self.cardNumberTextField.isErrorMode = !cardNumber.cardNumberIsValid()
+        }
+    }
+    
+    private func validateAndErrorCardExp(){
+        if let cardExp = self.cardExpDateTextField.text?.cleanCardExp(), cardExp.count == 4 {
+            let indexTwo = cardExp.index(cardExp.startIndex, offsetBy: 2)
+            let firstTwo = String(cardExp[..<indexTwo])
+            let firstTwoNum = Int(firstTwo) ?? 0
+            
+            self.cardExpDateTextField.isErrorMode = firstTwoNum == 0 || firstTwoNum > 12
+            
+        } else {
+            self.cardExpDateTextField.isErrorMode = true
+        }
+    }
+    
+    private func validateAndErrorCardCVV(){
+        self.cardCvcTextField.isErrorMode = self.cardCvcTextField.text?.count != 3
     }
     
     private func updatePaymentSystemIcon(cardNumber: String?){
@@ -255,6 +301,14 @@ extension CardViewController: ThreeDsDelegate {
                 closeButton.widthAnchor.constraint(equalToConstant: 56)
             ])
             
+//            var scriptContent = "var meta = document.createElement('meta');"
+//            scriptContent += "meta.name='viewport';"
+//            scriptContent += "meta.content='width=device-width';"
+//            scriptContent += "document.getElementsByTagName('head')[0].appendChild(meta);"
+//
+//            webView.evaluateJavaScript(scriptContent, completionHandler: nil)
+//
+//            
             webView.frame = threeDsContainerView.bounds
             webView.translatesAutoresizingMaskIntoConstraints = false
             threeDsContainerView.addSubview(webView)

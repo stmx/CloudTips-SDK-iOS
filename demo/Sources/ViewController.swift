@@ -22,7 +22,6 @@ class ViewController: UIViewController {
             
             self.validate()
         }
-//        self.textField.text = "79176114775".formattedPhoneNumber()
         self.validate()
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))

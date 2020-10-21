@@ -36,11 +36,19 @@ extension String {
         return self.onlyNumbers().formattedString(mask: mask, ignoredSymbols: nil)
     }
     
+    func clearCardNumber() -> String {
+        return self.onlyNumbers()
+    }
+    
     func formattedCardExp() -> String {
         let mask = "XX/XX"
         return self.onlyNumbers().formattedString(mask: mask, ignoredSymbols: nil)
     }
     
+    func cleanCardExp() -> String {
+        return self.onlyNumbers()
+    }
+
     func formattedCardCVV() -> String {
         let mask = "XXX"
         return self.onlyNumbers().formattedString(mask: mask, ignoredSymbols: nil)

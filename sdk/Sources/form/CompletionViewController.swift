@@ -67,9 +67,9 @@ class CompletionViewController: BasePaymentViewController {
             var successPageText = self.configuration.profile?.successPageText ?? ""
             
             if name.isEmpty {
-                successPageText = self.configuration.profile?.purposeText ?? "Спасибо за платеж с CloudTips!"
-            } else {
-                successPageText = self.configuration.profile?.purposeText ?? "радуется чаевым!"
+                successPageText = "Спасибо за платеж с CloudTips!"
+            } else if successPageText.isEmpty {
+                successPageText = "Радуется чаевым!"
             }
             
             self.statusIcon.image = .iconSuccess

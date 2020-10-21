@@ -17,6 +17,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var purposeLabel: UILabel!
     @IBOutlet private weak var amountTextField: TextField!
+    @IBOutlet private weak var amountHelperLabel: UILabel!
     @IBOutlet private weak var amountsCollectionView: UICollectionView!
     @IBOutlet private weak var commentTextField: TextField!
     @IBOutlet private weak var applePayButtonContainer: UIView!
@@ -218,6 +219,8 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         }
         
         self.amountTextField.didChange = {
+            self.setErrorMode(false)
+            
             self.amountsCollectionView.indexPathsForSelectedItems?.forEach {
                 self.amountsCollectionView.deselectItem(at: $0, animated: true)
             }
@@ -260,7 +263,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
             } else {
                 self.nameLabel.isHidden = false
                 self.nameLabel.text = name
-                self.purposeLabel.text = profile.purposeText ?? "получит ваши чаевые"
+                self.purposeLabel.text = profile.purposeText ?? "Получит ваши чаевые"
             }
             
             if let photoUrl = profile.photoUrl, let url = URL.init(string: photoUrl) {
@@ -306,6 +309,8 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
                 applePayController.modalPresentationStyle = .formSheet
                 self.present(applePayController, animated: true, completion: nil)
             }
+        } else {
+            self.setErrorMode(true)
         }
     }
     
@@ -319,6 +324,8 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         if let amountString = self.amountTextField.text, let amount = NumberFormatter.currencyNumber(from: amountString), self.validateAmount(amount) {
             self.amount = amount
             self.performSegue(withIdentifier: .tipsToCardSegue, sender: self)
+        } else {
+            self.setErrorMode(true)
         }
     }
     
@@ -337,11 +344,14 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         }
         
         if !isValid {
-            let controller = UIAlertController.init(title: "Внимание", message: "Введите сумму от 49 до 10 000 р.", preferredStyle: .alert)
-            controller.addAction(UIAlertAction.init(title: "Хорошо", style: .cancel, handler:nil))
-            self.present(controller, animated: true, completion: nil)
+            self.setErrorMode(true)
         }
         return isValid
+    }
+    
+    private func setErrorMode(_ errorMode: Bool) {
+        self.amountTextField.isErrorMode = errorMode
+        self.amountHelperLabel.textColor = errorMode ? .mainRed : .mainText
     }
     
     @IBAction private func onDone(_ sender: Any) {
@@ -366,6 +376,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         if let cell = collectionView.cellForItem(at: indexPath) as? DefaultAmountCell {
             let amount = self.defaultAmounts[indexPath.item]
             self.amountTextField.text = String(amount)
+            self.setErrorMode(false)
             cell.setSelected(true)
         }
     }

@@ -12,6 +12,9 @@ import UIKit
 public class TextField: UITextField, UITextFieldDelegate {
     private var underlineView : UIView?
     
+    @IBInspectable var defaultTextColor: UIColor = UIColor.black
+    @IBInspectable var errorColor: UIColor = UIColor.border
+    
     @IBInspectable var activeUnderlineColor: UIColor = UIColor.clear
     @IBInspectable var passiveUnderlineColor: UIColor = UIColor.clear
 
@@ -21,6 +24,11 @@ public class TextField: UITextField, UITextFieldDelegate {
     @IBInspectable var activeBorderColor: UIColor = UIColor.clear
     @IBInspectable var passiveBorderColor: UIColor = UIColor.clear
 
+    var isErrorMode = false {
+        didSet {
+            self.updateColors()
+        }
+    }
     
     public var shouldBeginEditing : (() -> Bool)? {
         didSet {
@@ -135,6 +143,43 @@ public class TextField: UITextField, UITextFieldDelegate {
         }
     }
     
+    private func getActiveBorderColor() -> UIColor {
+        var color = self.activeBorderColor
+        if isErrorMode {
+            color = self.errorColor
+        }
+        
+        return color
+    }
+    
+    private func getPassiveBorderColor() -> UIColor {
+        var color = self.passiveBorderColor
+        if isErrorMode {
+            color = self.errorColor
+        }
+        
+        return color
+    }
+    
+    private func getTextColor() -> UIColor {
+        var color = self.defaultTextColor
+        if isErrorMode {
+            color = self.errorColor
+        }
+        
+        return color
+    }
+    
+    private func updateColors(){
+        if self.isEditing {
+            self.borderColor = getActiveBorderColor()
+        } else {
+            self.borderColor = getPassiveBorderColor()
+        }
+        
+        self.textColor = getTextColor()
+    }
+    
     @objc func textFieldDidChange(textField: UITextField) -> Void {
         didChange?()
         setNeedsDisplay()
@@ -147,7 +192,7 @@ public class TextField: UITextField, UITextFieldDelegate {
     public func textFieldDidBeginEditing(_ textField: UITextField) {
         self.underlineView?.backgroundColor = activeUnderlineColor
         self.backgroundColor = activeBgColor
-        self.borderColor = activeBorderColor
+        self.borderColor = getActiveBorderColor()
         
         didBeginEditing?()
     }
@@ -159,7 +204,7 @@ public class TextField: UITextField, UITextFieldDelegate {
     public func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
         self.underlineView?.backgroundColor = passiveUnderlineColor
         self.backgroundColor = passiveBgColor
-        self.borderColor = passiveBorderColor
+        self.borderColor = getPassiveBorderColor()
         
         didEndEditing?()
     }
@@ -181,7 +226,7 @@ public class TextField: UITextField, UITextFieldDelegate {
         self.delegateIfNeeded()
         
         self.backgroundColor = passiveBgColor
-        self.borderColor = passiveBorderColor
+        self.borderColor = getPassiveBorderColor()
         
         self.underlineView = UIView.init(frame: CGRect.init(x: 0, y: self.frame.height, width: self.frame.width, height: 1))
         if let underlineView = self.underlineView {
