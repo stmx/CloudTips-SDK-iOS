@@ -95,7 +95,13 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
                 button.addTarget(self, action: #selector(onSetupApplePay(_:)), for: .touchUpInside)
             }
             button.translatesAutoresizingMaskIntoConstraints = false
-            button.cornerRadius = 4
+            
+            if #available(iOS 12.0, *) {
+                button.cornerRadius = 4
+            } else {
+                button.layer.cornerRadius = 4
+                button.layer.masksToBounds = true
+            }
             
             self.applePayButtonContainer.isHidden = false
             self.applePayButtonContainer.addSubview(button)

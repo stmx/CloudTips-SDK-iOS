@@ -10,12 +10,13 @@ import Foundation
 import UIKit
 
 public class PaymentCardForm: PaymentForm {
-    @IBOutlet private weak var cardNumberTextField: UnderlineTextField!
-    @IBOutlet private weak var cardExpDateTextField: UnderlineTextField!
-    @IBOutlet private weak var cardCvcTextField: UnderlineTextField!
-    @IBOutlet private weak var emailTextField: UnderlineTextField!
+    @IBOutlet private weak var cardNumberTextField: TextField!
+    @IBOutlet private weak var cardExpDateTextField: TextField!
+    @IBOutlet private weak var cardCvcTextField: TextField!
+    @IBOutlet private weak var emailTextField: TextField!
     @IBOutlet private weak var receiptButton: Button!
     @IBOutlet private weak var scanButton: Button!
+    @IBOutlet private weak var closeButton: Button!
     @IBOutlet private weak var payButton: Button!
     @IBOutlet private weak var cardTypeIcon: UIImageView!
     @IBOutlet private weak var helperSafeAreaBottomView: UIView!
@@ -23,14 +24,14 @@ public class PaymentCardForm: PaymentForm {
     var onPayClicked: ((_ cryptogram: String, _ email: String?) -> ())?
     
     @discardableResult
-    public override class func present(with paymentData: PaymentData, from: UIViewController) -> PaymentForm? {
+    public override class func present(with configuration: PaymentConfiguration, from: UIViewController) -> PaymentForm? {
         let storyboard = UIStoryboard.init(name: "PaymentForm", bundle: Bundle.mainSdk)
 
         guard let controller = storyboard.instantiateViewController(withIdentifier: "PaymentForm") as? PaymentForm else {
             return nil
         }
         
-        controller.paymentData = paymentData
+        controller.configuration = configuration
 
         controller.show(inViewController: from, completion: nil)
         
@@ -43,30 +44,44 @@ public class PaymentCardForm: PaymentForm {
         self.receiptButton.onAction = {
             self.receiptButton.isSelected = !self.receiptButton.isSelected
             self.emailTextField.isHidden = !self.receiptButton.isSelected
+            
+            if !self.receiptButton.isSelected {
+                self.emailTextField.text = ""
+                self.emailTextField.isErrorMode = false
+            }
         }
         
-        self.payButton.setTitle("Оплатить \(self.paymentData.amount) \(self.paymentData.currency.currencySign())", for: .normal)
+        self.closeButton.onAction = {
+            let parent = self.presentingViewController
+            self.dismiss(animated: true) {
+                if let parent = parent {
+                    PaymentForm.present(with: self.configuration, from: parent)
+                }
+            }
+        }
+        
+        let paymentData = self.configuration.paymentData
+        
+        self.payButton.setTitle("Оплатить \(paymentData.amount) \(paymentData.currency.currencySign())", for: .normal)
         self.payButton.onAction = {
-            if let cryptogram = Card.makeCardCryptogramPacket(with: self.cardNumberTextField.text!, expDate: self.cardExpDateTextField.text!, cvv: self.cardCvcTextField.text!, merchantPublicID: self.paymentData.publicId) {
+            if self.isValid(), let cryptogram = Card.makeCardCryptogramPacket(with: self.cardNumberTextField.text!, expDate: self.cardExpDateTextField.text!, cvv: self.cardCvcTextField.text!, merchantPublicID: paymentData.publicId) {
                 self.dismiss(animated: true) {
                     self.onPayClicked?(cryptogram, self.emailTextField.text)
                 }
             }
         }
         
-        if self.paymentData.scanner == nil {
+        if self.configuration.scanner == nil {
             self.scanButton.isHidden = true
         } else {
             self.scanButton.onAction = {
-                if let controller = self.paymentData.scanner?.startScanner(completion: { number, month, year, cvv in
+                if let controller = self.configuration.scanner?.startScanner(completion: { number, month, year, cvv in
                     self.cardNumberTextField.text = number?.formattedCardNumber()
                     if let month = month, let year = year {
                         let y = year % 100
                         self.cardExpDateTextField.text = String(format: "%02d/%02d", month, y)
                     }
                     self.cardCvcTextField.text = cvv
-                    
-                    self.validate()
                     
                     self.updatePaymentSystemIcon(cardNumber: number)
                 }) {
@@ -77,7 +92,6 @@ public class PaymentCardForm: PaymentForm {
         
         self.configureTextFields()
         self.hideKeyboardWhenTappedAround()
-        self.validate()
     }
     
     private func configureTextFields(){
@@ -93,36 +107,54 @@ public class PaymentCardForm: PaymentForm {
                 
                 if cardNumber.cardNumberIsValid() {
                     self.cardExpDateTextField.becomeFirstResponder()
+                    self.cardNumberTextField.isErrorMode = false
+                } else {
+                    let cleanCardNumber = cardNumber.clearCardNumber()
+                    
+                    //MAX CARD NUMBER LENGHT
+                    self.cardNumberTextField.isErrorMode = cleanCardNumber.count == 19
                 }
                 
                 self.updatePaymentSystemIcon(cardNumber: cardNumber)
-                
-                self.validate()
             }
+        }
+        
+        self.cardNumberTextField.didEndEditing = {
+            self.validateAndErrorCardNumber()
         }
         
         self.cardExpDateTextField.didChange = {
             if let cardExp = self.cardExpDateTextField.text?.formattedCardExp() {
                 self.cardExpDateTextField.text = cardExp
                 
+                self.cardExpDateTextField.isErrorMode = false
                 if cardExp.count == 5 {
                     self.cardCvcTextField.becomeFirstResponder()
                 }
-                
-                self.validate()
             }
+        }
+        
+        self.cardExpDateTextField.didEndEditing = {
+            self.validateAndErrorCardExp()
         }
 
         self.cardCvcTextField.didChange = {
             if let text = self.cardCvcTextField.text?.formattedCardCVV() {
                 self.cardCvcTextField.text = text
                 
+                self.cardCvcTextField.isErrorMode = false
                 if text.count == 3 {
                     self.cardCvcTextField.resignFirstResponder()
                 }
-                
-                self.validate()
             }
+        }
+        
+        self.cardCvcTextField.didEndEditing = {
+            self.validateAndErrorCardCVV()
+        }
+        
+        self.emailTextField.didChange = {
+            self.emailTextField.isErrorMode = false
         }
         
         self.cardNumberTextField.shouldReturn = {
@@ -155,12 +187,45 @@ public class PaymentCardForm: PaymentForm {
         }
     }
     
-    private func validate() {
+    private func isValid() -> Bool {
         let cardNumberIsValid = self.cardNumberTextField.text?.formattedCardNumber().cardNumberIsValid() == true
         let cardExpIsValid = self.cardExpDateTextField.text?.formattedCardExp().count == 5
         let cardCvcIsValid = self.cardCvcTextField.text?.formattedCardCVV().count == 3
+        let emailIsValid = !self.receiptButton.isSelected || self.emailTextField.text?.emailIsValid() == true
         
-        self.payButton.isEnabled = cardNumberIsValid && cardExpIsValid && cardCvcIsValid
+        self.validateAndErrorCardNumber()
+        self.validateAndErrorCardExp()
+        self.validateAndErrorCardCVV()
+        self.validateAndErrorEmail()
+        
+        return cardNumberIsValid && cardExpIsValid && cardCvcIsValid && emailIsValid
+    }
+    
+    private func validateAndErrorCardNumber(){
+        if let cardNumber = self.cardNumberTextField.text?.formattedCardNumber() {
+            self.cardNumberTextField.isErrorMode = !cardNumber.cardNumberIsValid()
+        }
+    }
+    
+    private func validateAndErrorCardExp(){
+        if let cardExp = self.cardExpDateTextField.text?.cleanCardExp(), cardExp.count == 4 {
+            let indexTwo = cardExp.index(cardExp.startIndex, offsetBy: 2)
+            let firstTwo = String(cardExp[..<indexTwo])
+            let firstTwoNum = Int(firstTwo) ?? 0
+            
+            self.cardExpDateTextField.isErrorMode = firstTwoNum == 0 || firstTwoNum > 12
+            
+        } else {
+            self.cardExpDateTextField.isErrorMode = true
+        }
+    }
+    
+    private func validateAndErrorCardCVV(){
+        self.cardCvcTextField.isErrorMode = self.cardCvcTextField.text?.count != 3
+    }
+    
+    private func validateAndErrorEmail(){
+        self.emailTextField.isErrorMode = self.receiptButton.isSelected && self.emailTextField.text?.emailIsValid() != true
     }
     
     private func updatePaymentSystemIcon(cardNumber: String?){
@@ -172,11 +237,11 @@ public class PaymentCardForm: PaymentForm {
                 self.scanButton.isHidden = true
             } else {
                 self.cardTypeIcon.isHidden = true
-                self.scanButton.isHidden = self.paymentData.scanner == nil
+                self.scanButton.isHidden = self.configuration.scanner == nil
             }
         } else {
             self.cardTypeIcon.isHidden = true
-            self.scanButton.isHidden = self.paymentData.scanner == nil
+            self.scanButton.isHidden = self.configuration.scanner == nil
         }
     }
     

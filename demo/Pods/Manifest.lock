@@ -12,9 +12,9 @@ PODS:
     - Cloudpayments
     - SDWebImage (~> 5.0)
   - ObjectMapper (3.5.3)
-  - SDWebImage (5.9.2):
-    - SDWebImage/Core (= 5.9.2)
-  - SDWebImage/Core (5.9.2)
+  - SDWebImage (5.9.3):
+    - SDWebImage/Core (= 5.9.3)
+  - SDWebImage/Core (5.9.3)
 
 DEPENDENCIES:
   - Cloudpayments (from `https://github.com/cloudpayments/CloudPayments-SDK-iOS`, branch `master`)
@@ -36,17 +36,17 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Cloudpayments:
-    :commit: 58403eea2b8ae026075c721e556455160d135b9e
+    :commit: c068ea1e5092f6de3c5fd3bb7161c0f5ca0062be
     :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS
 
 SPEC CHECKSUMS:
   Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
   AlamofireObjectMapper: 74d1440c92c42bbcc2b5f4dc81654ac095ec669f
-  Cloudpayments: e50c1ae8ff42c9716ac3d1063ebbdad87ed1bdc5
-  Cloudtips: 3cd1d93c387143269067425b7321050dc22141bc
+  Cloudpayments: 2aa73748b677141c3b5452a658128c8f3a6dc44c
+  Cloudtips: a5f6baa8c6796f2eea98828163dde4a19b758264
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
-  SDWebImage: 0b42b8719ab0c5257177d5894306e8a336b21cbb
+  SDWebImage: a31ee8e90a97303529e03fb0c333eae0eacb88e9
 
-PODFILE CHECKSUM: 33e1b3a0f7f8b5daeeff628a7b9835ea89809df5
+PODFILE CHECKSUM: 38fae1fb5dc958f03f0d4176c73722d98101d999
 
 COCOAPODS: 1.9.3

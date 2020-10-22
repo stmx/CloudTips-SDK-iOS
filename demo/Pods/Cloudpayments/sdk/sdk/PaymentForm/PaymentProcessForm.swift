@@ -59,14 +59,14 @@ public class PaymentProcessForm: PaymentForm {
     private var email: String?
     
     @discardableResult
-    public class func present(with paymentData: PaymentData, cryptogram: String?, email: String?, state: State = .inProgress, from: UIViewController) -> PaymentForm? {
+    public class func present(with configuration: PaymentConfiguration, cryptogram: String?, email: String?, state: State = .inProgress, from: UIViewController) -> PaymentForm? {
         let storyboard = UIStoryboard.init(name: "PaymentForm", bundle: Bundle.mainSdk)
 
         guard let controller = storyboard.instantiateViewController(withIdentifier: "PaymentProcessForm") as? PaymentProcessForm else {
             return nil
         }
         
-        controller.paymentData = paymentData
+        controller.configuration = configuration
         controller.cryptogram = cryptogram
         controller.email = email
         controller.state = state
@@ -79,14 +79,16 @@ public class PaymentProcessForm: PaymentForm {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.updateUI(with: self.state)
+        self.updateUI(with: self.state, errorMessage: nil)
         
         if let cryptogram = self.cryptogram {
-            self.charge(cardCryptogramPacket: cryptogram, email: self.email) { status, errorMessage in
+            self.charge(cardCryptogramPacket: cryptogram, email: self.email) { status, canceled, errorMessage in
                 if status {
-                    self.updateUI(with: .succeeded)
+                    self.updateUI(with: .succeeded, errorMessage: nil)
+                } else if !canceled {
+                    self.updateUI(with: .failed, errorMessage: errorMessage)
                 } else {
-                    self.updateUI(with: .failed)
+                    self.dismiss(animated: true, completion: nil)
                 }
             }
         }
@@ -104,25 +106,27 @@ public class PaymentProcessForm: PaymentForm {
         self.stopAnimation()
     }
     
-    private func updateUI(with state: State){
+    private func updateUI(with state: State, errorMessage: String?){
         self.state = state
         self.stopAnimation()
         
         self.progressIcon.image = self.state.getImage()
-        self.messageLabel.text = self.state.getMessage()
+        self.messageLabel.text = errorMessage ?? self.state.getMessage()
         self.actionButton.isHidden = self.state == .inProgress
         self.actionButton.setTitle(self.state.getActionButtonTitle(), for: .normal)
         
         if self.state == .succeeded {
             self.actionButton.onAction = {
-                self.dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true) {
+                    self.configuration.paymentDelegate.paymentFinished()
+                }
             }
         } else if self.state == .failed {
             self.actionButton.onAction = {
                 let parent = self.presentingViewController
                 self.dismiss(animated: true) {
                     if let parent = parent {
-                        PaymentForm.present(with: self.paymentData, from: parent)
+                        PaymentForm.present(with: self.configuration, from: parent)
                     }
                 }
             }
