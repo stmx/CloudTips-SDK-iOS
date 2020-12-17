@@ -19,12 +19,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W5X-9D-Smu" customClass="ProgressView" customModule="Cloudtips" customModuleProvider="target">
-                                <rect key="frame" x="107" y="375" width="200" height="200"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="768-aC-FyO">
+                                <rect key="frame" x="0.0" y="88" width="1" height="1"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="W43-wl-kOL"/>
-                                    <constraint firstAttribute="height" constant="200" id="yFz-yZ-Idh"/>
+                                    <constraint firstAttribute="width" constant="1" id="h5G-O4-IVR"/>
+                                    <constraint firstAttribute="height" constant="1" id="sAa-kS-tgl"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="ua9-J8-OwY">
@@ -391,16 +391,38 @@
                                     <constraint firstAttribute="trailing" secondItem="PEX-XB-C3t" secondAttribute="trailing" id="dy9-Wc-Egj"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u6I-6c-dPs">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W5X-9D-Smu" customClass="ProgressView" customModule="Cloudtips" customModuleProvider="target">
+                                        <rect key="frame" x="107" y="348" width="200" height="200"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="W43-wl-kOL"/>
+                                            <constraint firstAttribute="height" constant="200" id="yFz-yZ-Idh"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="W5X-9D-Smu" firstAttribute="centerY" secondItem="u6I-6c-dPs" secondAttribute="centerY" id="U8y-ma-hIM"/>
+                                    <constraint firstItem="W5X-9D-Smu" firstAttribute="centerX" secondItem="u6I-6c-dPs" secondAttribute="centerX" id="zwR-pR-NsR"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rPC-GU-5In"/>
                         <color key="backgroundColor" red="0.96078431372549022" green="0.97647058823529409" blue="0.9882352941176471" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="ua9-J8-OwY" secondAttribute="bottom" id="8WG-1p-2X3"/>
-                            <constraint firstItem="W5X-9D-Smu" firstAttribute="centerX" secondItem="rPC-GU-5In" secondAttribute="centerX" id="S37-4b-xzj"/>
+                            <constraint firstAttribute="bottom" secondItem="u6I-6c-dPs" secondAttribute="bottom" id="E22-fF-lmQ"/>
+                            <constraint firstItem="768-aC-FyO" firstAttribute="top" secondItem="rPC-GU-5In" secondAttribute="top" id="REL-xQ-I0t"/>
+                            <constraint firstItem="u6I-6c-dPs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="U51-Dg-hIl"/>
                             <constraint firstItem="ua9-J8-OwY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="VLT-KN-t3Q"/>
                             <constraint firstItem="ua9-J8-OwY" firstAttribute="trailing" secondItem="rPC-GU-5In" secondAttribute="trailing" id="ZuU-eh-DAL"/>
+                            <constraint firstAttribute="trailing" secondItem="u6I-6c-dPs" secondAttribute="trailing" id="apr-5A-6WN"/>
+                            <constraint firstItem="768-aC-FyO" firstAttribute="leading" secondItem="rPC-GU-5In" secondAttribute="leading" id="cKt-tG-7ky"/>
+                            <constraint firstItem="u6I-6c-dPs" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="kia-R7-MHT"/>
                             <constraint firstItem="ua9-J8-OwY" firstAttribute="leading" secondItem="rPC-GU-5In" secondAttribute="leading" id="sHI-xo-tfm"/>
-                            <constraint firstItem="W5X-9D-Smu" firstAttribute="centerY" secondItem="rPC-GU-5In" secondAttribute="centerY" id="uFD-oU-bA8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="tob-8X-BgA"/>
@@ -409,6 +431,7 @@
                         <outlet property="amountTextField" destination="kSc-sc-bDp" id="6aF-kS-aoz"/>
                         <outlet property="amountsCollectionView" destination="Y08-nY-Weh" id="mL5-1l-fm7"/>
                         <outlet property="applePayButtonContainer" destination="OSc-2a-7oU" id="XKV-c9-EUN"/>
+                        <outlet property="captchaWebViewContainer" destination="768-aC-FyO" id="eoa-B3-XGd"/>
                         <outlet property="commentTextField" destination="Mxy-HT-HZH" id="uTb-qJ-m74"/>
                         <outlet property="containerBottomConstraint" destination="8WG-1p-2X3" id="lms-cT-VFn"/>
                         <outlet property="contentScrollView" destination="ua9-J8-OwY" id="NPI-80-UTc"/>
@@ -416,6 +439,7 @@
                         <outlet property="nameLabel" destination="vdU-s4-18f" id="5qb-6X-ner"/>
                         <outlet property="payButton" destination="Ljc-FA-NQj" id="igI-6V-YLP"/>
                         <outlet property="profileImageView" destination="jhI-wp-gSd" id="bLh-sU-N7o"/>
+                        <outlet property="progressContainerView" destination="u6I-6c-dPs" id="n4Q-c8-oYA"/>
                         <outlet property="progressView" destination="W5X-9D-Smu" id="EYk-Gh-n5u"/>
                         <outlet property="purposeLabel" destination="uAG-1o-g0k" id="bjq-Dk-B1L"/>
                         <outlet property="toolbar" destination="NL5-Ly-8e0" id="rVp-F6-aJa"/>
@@ -448,6 +472,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="idf-oG-qgU">
+                                <rect key="frame" x="0.0" y="1" width="1" height="1"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="1" id="LDf-rD-Tmm"/>
+                                    <constraint firstAttribute="height" constant="1" id="QPj-a0-gPz"/>
+                                </constraints>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nFC-Bn-nob">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
@@ -687,31 +719,49 @@
                                     <constraint firstAttribute="bottom" secondItem="iB1-Ly-YPG" secondAttribute="bottom" id="m7d-2B-TuV"/>
                                 </constraints>
                             </scrollView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fDm-iS-wbr" customClass="ProgressView" customModule="Cloudtips" customModuleProvider="target">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h1w-tD-6My">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KrP-vI-RXQ" customClass="ProgressView" customModule="Cloudtips" customModuleProvider="target">
+                                        <rect key="frame" x="107" y="348" width="200" height="200"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="P7y-DP-krm"/>
+                                            <constraint firstAttribute="width" constant="200" id="gRO-jX-qPd"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="KrP-vI-RXQ" firstAttribute="centerX" secondItem="h1w-tD-6My" secondAttribute="centerX" id="BY6-8F-q4j"/>
+                                    <constraint firstItem="KrP-vI-RXQ" firstAttribute="centerY" secondItem="h1w-tD-6My" secondAttribute="centerY" id="fs5-u8-DU7"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hbK-cb-T5v"/>
                         <color key="backgroundColor" red="0.96078431372549022" green="0.97647058823529409" blue="0.9882352941176471" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="nFC-Bn-nob" firstAttribute="leading" secondItem="hbK-cb-T5v" secondAttribute="leading" id="7bZ-Un-N00"/>
-                            <constraint firstAttribute="trailing" secondItem="fDm-iS-wbr" secondAttribute="trailing" id="G8M-hd-q7D"/>
+                            <constraint firstAttribute="trailing" secondItem="h1w-tD-6My" secondAttribute="trailing" id="Azv-pp-I9B"/>
+                            <constraint firstItem="idf-oG-qgU" firstAttribute="leading" secondItem="aFs-8G-fS5" secondAttribute="leading" id="Rbk-pT-ebH"/>
                             <constraint firstItem="hbK-cb-T5v" firstAttribute="bottom" secondItem="nFC-Bn-nob" secondAttribute="bottom" id="SDq-Um-rGM"/>
-                            <constraint firstItem="fDm-iS-wbr" firstAttribute="leading" secondItem="aFs-8G-fS5" secondAttribute="leading" id="Wn6-Cn-BU8"/>
                             <constraint firstItem="hbK-cb-T5v" firstAttribute="trailing" secondItem="nFC-Bn-nob" secondAttribute="trailing" id="Z0a-J2-bbH"/>
+                            <constraint firstItem="h1w-tD-6My" firstAttribute="top" secondItem="aFs-8G-fS5" secondAttribute="top" id="i50-R5-p20"/>
+                            <constraint firstItem="h1w-tD-6My" firstAttribute="leading" secondItem="aFs-8G-fS5" secondAttribute="leading" id="ixC-jW-kc1"/>
+                            <constraint firstAttribute="bottom" secondItem="h1w-tD-6My" secondAttribute="bottom" id="luk-KR-tWb"/>
+                            <constraint firstItem="idf-oG-qgU" firstAttribute="top" secondItem="aFs-8G-fS5" secondAttribute="top" constant="1" id="n3s-Lf-RC8"/>
                             <constraint firstItem="nFC-Bn-nob" firstAttribute="top" secondItem="hbK-cb-T5v" secondAttribute="top" id="naJ-CU-j6v"/>
-                            <constraint firstItem="fDm-iS-wbr" firstAttribute="top" secondItem="aFs-8G-fS5" secondAttribute="top" id="sAv-Zi-nFA"/>
-                            <constraint firstAttribute="bottom" secondItem="fDm-iS-wbr" secondAttribute="bottom" id="sxM-zz-K1a"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Kkq-pM-5SK"/>
                     <connections>
+                        <outlet property="captchaWebViewContainer" destination="idf-oG-qgU" id="9VF-v8-C82"/>
                         <outlet property="cardCvcTextField" destination="UR8-Qs-yJO" id="2Q7-fb-jh9"/>
                         <outlet property="cardExpDateTextField" destination="vnC-42-Ezw" id="ucz-sz-Vzf"/>
                         <outlet property="cardNumberTextField" destination="bXw-Ry-oFM" id="AhB-52-HN0"/>
                         <outlet property="payButton" destination="VMM-px-nZy" id="s8Q-4q-DoW"/>
-                        <outlet property="progressView" destination="fDm-iS-wbr" id="gm4-Sd-WeK"/>
+                        <outlet property="progressContainerView" destination="h1w-tD-6My" id="pZg-3k-ycP"/>
+                        <outlet property="progressView" destination="KrP-vI-RXQ" id="X1e-oo-5qp"/>
                         <outlet property="psIcon" destination="Qc7-JI-4pS" id="zBS-1o-8QF"/>
                         <outlet property="toolbar" destination="k8A-kp-1Vy" id="7o7-a7-15g"/>
                         <segue destination="bRu-YF-96i" kind="show" identifier="ToResultSegue" id="K9T-hx-DGK"/>

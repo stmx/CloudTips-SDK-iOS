@@ -10,10 +10,11 @@ import UIKit
 import Cloudpayments
 import WebKit
 
-class CardViewController: BasePaymentViewController, PaymentDelegate {
+class CardViewController: BasePaymentViewController {
     @IBOutlet private weak var cardNumberTextField: TextField!
     @IBOutlet private weak var cardExpDateTextField: TextField!
     @IBOutlet private weak var cardCvcTextField: TextField!
+    @IBOutlet private weak var progressContainerView: UIView!
     @IBOutlet private weak var progressView: ProgressView!
     @IBOutlet weak var payButton: Button!
     @IBOutlet weak var psIcon: UIImageView!
@@ -32,11 +33,16 @@ class CardViewController: BasePaymentViewController, PaymentDelegate {
     }
     
     private func prepareUI(){
-        self.progressView.bgColor = UIColor.white.withAlphaComponent(0.5)
-        
         self.payButton.onAction = {
             if self.isValid() {
-                self.pay()
+                self.showProgress()
+                self.askForV3Captcha(with: self.configuration.layout?.layoutId ?? "", amount: self.paymentData?.amount.stringValue ?? "0") { (token, shouldAskForV2) in
+                    if let token = token {
+                        self.pay(token: token)
+                    } else if shouldAskForV2 {
+                        self.hideProgress()
+                    }
+                }
             }
         }
         
@@ -200,12 +206,11 @@ class CardViewController: BasePaymentViewController, PaymentDelegate {
     
     //MARK: - Actions -
     
-    private func pay() {
+    private func pay(token: String) {
         if let paymentData = self.paymentData {
-            self.showProgress()
             self.getPublicId(with: paymentData.layoutId) { (publicId, error) in
                 if let publicId = publicId, let cryptogram = Card.makeCardCryptogramPacket(with: self.cardNumberTextField.text!, expDate: self.cardExpDateTextField.text!, cvv: self.cardCvcTextField.text!, merchantPublicID: publicId) {
-                    self.auth(with: paymentData, cryptogram: cryptogram) { (response, error) in
+                    self.auth(with: paymentData, cryptogram: cryptogram, captchaToken: token) { (response, error) in
                         self.hideProgress()
                         if let response = response {
                             if response.status == .need3ds, let acsUrl = response.acsUrl, let md = response.md, let paReq = response.paReq {
@@ -239,22 +244,24 @@ class CardViewController: BasePaymentViewController, PaymentDelegate {
     
     //MARK: - Progress -
     
-    private func showProgress() {
+    private func showProgress(){
         self.progressView.startAnimation()
         
-        self.progressView.alpha = 0
-        self.progressView.isHidden = false
+        self.progressContainerView.alpha = 0
+        self.progressContainerView.isHidden = false
         UIView.animate(withDuration: 0.25) {
-            self.progressView.alpha = 1
+            self.progressContainerView.alpha = 1
         }
     }
     
     private func hideProgress() {
         UIView.animate(withDuration: 0.25) {
-            self.progressView.alpha = 0
+            self.progressContainerView.alpha = 0
         } completion: { (status) in
-            self.progressView.isHidden = true
-            self.progressView.stopAnimation()
+            if status {
+                self.progressContainerView.isHidden = true
+                self.progressView.stopAnimation()
+            }
         }
     }
 }
@@ -300,15 +307,7 @@ extension CardViewController: ThreeDsDelegate {
                 closeButton.heightAnchor.constraint(equalToConstant: 56),
                 closeButton.widthAnchor.constraint(equalToConstant: 56)
             ])
-            
-//            var scriptContent = "var meta = document.createElement('meta');"
-//            scriptContent += "meta.name='viewport';"
-//            scriptContent += "meta.content='width=device-width';"
-//            scriptContent += "document.getElementsByTagName('head')[0].appendChild(meta);"
-//
-//            webView.evaluateJavaScript(scriptContent, completionHandler: nil)
-//
-//            
+
             webView.frame = threeDsContainerView.bounds
             webView.translatesAutoresizingMaskIntoConstraints = false
             threeDsContainerView.addSubview(webView)
@@ -330,7 +329,7 @@ extension CardViewController: ThreeDsDelegate {
         }
     }
     
-    func onAuthotizationCompleted(with md: String, paRes: String) {
+    func onAuthorizationCompleted(with md: String, paRes: String) {
         self.hideThreeDs()
         self.showProgress()
         

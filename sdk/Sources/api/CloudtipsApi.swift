@@ -42,14 +42,15 @@ public class CloudtipsApi {
         makeObjectRequest(request, completion: completion)
     }
     
-    func auth(with paymentData: PaymentData, cryptogram: String, completion: HTTPRequestCompletion<PaymentResponse>?) {
+    func auth(with paymentData: PaymentData, cryptogram: String, captchaToken: String, completion: HTTPRequestCompletion<PaymentResponse>?) {
         let params: [String: Any] =
             ["cardholderName": "Cloudtips SDK",
              "cardCryptogramPacket": cryptogram,
              "amount": paymentData.amount,
              "currency": paymentData.currency.rawValue,
              "comment": paymentData.comment ?? "",
-             "layoutId": paymentData.layoutId]
+             "layoutId": paymentData.layoutId,
+             "captchaVerificationToken": captchaToken]
         
         let request = HTTPRequest(resource: .authPayment, method: .post, parameters: params)
         makeObjectRequest(request, completion: completion)
@@ -59,6 +60,15 @@ public class CloudtipsApi {
         let parameters = ["md": md,
                           "paRes": paRes]
         let request = HTTPRequest(resource: .post3ds, method: .post, parameters: parameters)
+        makeObjectRequest(request, completion: completion)
+    }
+    
+    func verifyCaptcha(version: Int, token: String, amount: String, layoutId: String, completion: HTTPRequestCompletion<CaptchaVerifyResponse>?) {
+        let parameters = ["version": version,
+                          "token": token,
+                          "amount": amount,
+                          "layoutId": layoutId] as [String : Any]
+        let request = HTTPRequest(resource: .captchaVerify, method: .post, parameters: parameters)
         makeObjectRequest(request, completion: completion)
     }
 }

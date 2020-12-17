@@ -39,8 +39,8 @@ struct HTTPRequest {
 }
 
 enum HTTPResource: URLConvertible {
-    
-    private static let baseURLString = "https://lk.cloudtips.ru/api/"
+    static let baseURLString = "https://pay.cloudtips.ru/"
+    static let baseApiURLString = "https://lk.cloudtips.ru/api/"
     
     case getLayout(String)
     case offlineRegister
@@ -48,10 +48,11 @@ enum HTTPResource: URLConvertible {
     case getPublicId
     case authPayment
     case post3ds
+    case captchaVerify
     
     func asURL() throws -> URL {
-        guard let baseURL = URL(string: HTTPResource.baseURLString) else {
-            throw AFError.invalidURL(url: HTTPResource.baseURLString)
+        guard let baseURL = URL(string: HTTPResource.baseApiURLString) else {
+            throw AFError.invalidURL(url: HTTPResource.baseApiURLString)
         }
         
         switch self {
@@ -67,6 +68,8 @@ enum HTTPResource: URLConvertible {
             return baseURL.appendingPathComponent("payment/auth")
         case .post3ds:
             return baseURL.appendingPathComponent("payment/post3ds")
+        case .captchaVerify:
+            return baseURL.appendingPathComponent("captcha/verify")
         }
     }
 }

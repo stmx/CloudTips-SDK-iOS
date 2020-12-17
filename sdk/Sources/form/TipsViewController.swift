@@ -9,8 +9,10 @@
 import UIKit
 import SDWebImage
 import PassKit
+import WebKit
 
-public class TipsViewController: BasePaymentViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PaymentDelegate {
+public class TipsViewController: BasePaymentViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    @IBOutlet private weak var progressContainerView: UIView!
     @IBOutlet private weak var progressView: ProgressView!
     @IBOutlet private weak var contentScrollView: UIScrollView!
     @IBOutlet private weak var profileImageView: UIImageView!
@@ -39,8 +41,12 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     
     private let defaultAmounts = [100, 200, 300, 500, 1000, 2000, 3000, 5000]
     private var amount = NSNumber.init(value: 0)
+    private var captchaToken: String?
+
     
     private var applePaySucceeded = false
+    
+    
     
     //MARK: - Present -
     
@@ -55,7 +61,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.prepareUI()
         
         self.updateLayout()
@@ -64,7 +70,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if !self.progressView.isHidden {
+        if !self.progressContainerView.isHidden {
             self.progressView.startAnimation()
         } else {
             self.progressView.stopAnimation()
@@ -113,7 +119,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     
     private func updateLayout() {
         self.contentScrollView.isHidden = true
-        self.progressView.isHidden = false
+        self.progressContainerView.isHidden = false
         
         self.api.getLayout(by: self.configuration.phoneNumber) { [weak self] (layouts, error) in
             guard let `self` = self else {
@@ -135,7 +141,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
                     }
                     
                     self.contentScrollView.isHidden = false
-                    self.progressView.isHidden = true
+                    self.progressContainerView.isHidden = true
                     self.progressView.stopAnimation()
                     
                     self.updateUI()
@@ -290,7 +296,16 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
                 })
             }
         }
-        
+    }
+    
+    private func showProgress(){
+        self.progressContainerView.isHidden = false
+        self.progressView.startAnimation()
+    }
+    
+    private func hideProgress(){
+        self.progressContainerView.isHidden = true
+        self.progressView.stopAnimation()
     }
     
     //MARK: - Actions -
@@ -302,18 +317,27 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         if let amountString = self.amountTextField.text, let amount = NumberFormatter.currencyNumber(from: amountString), self.validateAmount(amount) {
             self.amount = amount
             
-            let request = PKPaymentRequest()
-            request.merchantIdentifier = self.configuration.applePayMerchantId
-            request.supportedNetworks = self.supportedPaymentNetworks
-            request.merchantCapabilities = PKMerchantCapability.capability3DS
-            request.countryCode = "RU"
-            request.currencyCode = "RUB"
-            request.paymentSummaryItems = [PKPaymentSummaryItem(label: "К оплате", amount: NSDecimalNumber.init(value: self.amount.doubleValue))]
-            if let applePayController = PKPaymentAuthorizationViewController(paymentRequest:
-                    request) {
-                applePayController.delegate = self
-                applePayController.modalPresentationStyle = .formSheet
-                self.present(applePayController, animated: true, completion: nil)
+            self.showProgress()
+            self.askForV3Captcha(with: self.configuration.layout?.layoutId ?? "", amount: self.amount.stringValue) { (token, shoudAskForV2) in
+                self.hideProgress()
+                
+                self.captchaToken = token
+                
+                if self.captchaToken != nil {
+                    let request = PKPaymentRequest()
+                    request.merchantIdentifier = self.configuration.applePayMerchantId
+                    request.supportedNetworks = self.supportedPaymentNetworks
+                    request.merchantCapabilities = PKMerchantCapability.capability3DS
+                    request.countryCode = "RU"
+                    request.currencyCode = "RUB"
+                    request.paymentSummaryItems = [PKPaymentSummaryItem(label: "К оплате", amount: NSDecimalNumber.init(value: self.amount.doubleValue))]
+                    if let applePayController = PKPaymentAuthorizationViewController(paymentRequest:
+                            request) {
+                        applePayController.delegate = self
+                        applePayController.modalPresentationStyle = .formSheet
+                        self.present(applePayController, animated: true, completion: nil)
+                    }
+                }
             }
         } else {
             self.setErrorMode(true)
@@ -409,6 +433,8 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
                     let paymentData = PaymentData.init(layoutId: layoutId, amount: self.amount, comment: self.commentTextField.text)
                     controller.paymentData = paymentData
                     controller.configuration = self.configuration
+                    
+                    self.captchaToken = nil
                 }
             default:
                 super.prepare(for: segue, sender: sender)
@@ -457,7 +483,7 @@ extension TipsViewController: PKPaymentAuthorizationViewControllerDelegate {
     public func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
         if let layoutId = self.configuration.layout?.layoutId, let cryptogram = payment.convertToString() {
             let paymentData = PaymentData.init(layoutId: layoutId, amount: self.amount, comment: self.commentTextField.text)
-            self.auth(with: paymentData, cryptogram: cryptogram) { (response, error) in
+            self.auth(with: paymentData, cryptogram: cryptogram, captchaToken: self.captchaToken ?? "") { (response, error) in
                 if response?.status == .success {
                     self.paymentError = nil
                     self.applePaySucceeded = true
@@ -468,6 +494,8 @@ extension TipsViewController: PKPaymentAuthorizationViewControllerDelegate {
                     completion(PKPaymentAuthorizationResult(status: PKPaymentAuthorizationStatus.failure, errors: []))
                 }
             }
+            
+            self.captchaToken = nil
         } else {
             completion(PKPaymentAuthorizationResult(status: PKPaymentAuthorizationStatus.failure, errors: []))
         }
