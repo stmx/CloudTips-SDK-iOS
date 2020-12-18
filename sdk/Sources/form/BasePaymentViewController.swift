@@ -7,6 +7,7 @@
 
 import Foundation
 import WebKit
+import ReCaptcha
 
 public class BasePaymentViewController: BaseViewController, PaymentDelegate {
     internal var configuration: TipsConfiguration!
@@ -16,6 +17,18 @@ public class BasePaymentViewController: BaseViewController, PaymentDelegate {
     @IBOutlet weak var captchaWebViewContainer: UIView?
     var captchaWebView: WKWebView?
     var recaptchaViewModel: RecaptchaViewModel = RecaptchaViewModel()
+    
+    private let recaptchaV2 = try? ReCaptcha(
+        apiKey: "6LcXy9YZAAAAAOkgXGwEPNKKsYqAHcT6DYhCSkg4",
+        baseURL: URL(string: HTTPResource.baseURLString)!
+    )
+    
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        recaptchaV2?.configureWebView({ (webview) in
+            webview.frame = self.view.bounds
+        })
+    }
     
     internal func onPaymentSucceeded() {
         self.paymentError = nil
@@ -27,38 +40,60 @@ public class BasePaymentViewController: BaseViewController, PaymentDelegate {
         self.performSegue(withIdentifier: .toResultSegue, sender: self)
     }
     
-    func askForV3Captcha(with layoutId: String, amount: String, completion: ((_ token: String?, _ shoudAskForV2: Bool) -> ())?){
+    func askForV3Captcha(with layoutId: String, amount: String, completion: ((_ token: String?) -> ())?){
         let preferences = WKPreferences()
         preferences.javaScriptEnabled = true
-        
+
         let configuration = WKWebViewConfiguration()
         configuration.preferences = preferences
-        
+
         self.recaptchaViewModel = RecaptchaViewModel()
-        self.recaptchaViewModel.onCaptchaVerified = { token in
+        self.recaptchaViewModel.onCaptchaVerified = {[unowned self] token in
             if let token = token {
-                self.verifyCaptcha(version: 3, token: token, amount: amount, layoutId: layoutId) { (response, error) in
-                    if response?.status?.lowercased() == "passed" {
-                        completion?(response!.token, false)
-                    } else if response?.status?.lowercased() == "shouldverifyv2" {
-                        completion?(nil, true)
-                    }
+                self.validateCaptchaToken(version: 3, token: token, amount: amount, layoutId: layoutId) { (token) in
+                    completion?(token)
                 }
             } else {
-                completion?(nil, false)
+                completion?(nil)
             }
         }
         self.recaptchaViewModel.start()
-        
+
         let contentController = WKUserContentController()
         contentController.add(self.recaptchaViewModel, name: self.recaptchaViewModel.handlerName)
-        
+
         configuration.userContentController = contentController
-        
+
         self.captchaWebView = WKWebView.init(frame: self.captchaWebViewContainer?.bounds ?? .zero, configuration: configuration)
         self.captchaWebViewContainer?.addSubview(self.captchaWebView!)
         self.captchaWebViewContainer?.bindFrameToSuperviewBounds()
         self.captchaWebView!.loadHTMLString(self.recaptchaViewModel.html, baseURL: URL.init(string: HTTPResource.baseURLString))
+    }
+    
+    private func askForV2Captcha(with layoutId: String, amount: String, completion: ((_ token: String?) -> ())?){
+        recaptchaV2?.validate(on: self.view) { [unowned self] (result: ReCaptchaResult) in
+            if let token = try? result.dematerialize() {
+                self.validateCaptchaToken(version: 2, token: token, amount: amount, layoutId: layoutId) { (token) in
+                    completion?(token)
+                }
+            } else {
+                completion?(nil)
+            }
+        }
+    }
+    
+    private func validateCaptchaToken(version: Int, token: String, amount: String, layoutId: String, completion: ((_ token: String?) -> ())?) {
+        self.verifyCaptcha(version: version, token: token, amount: amount, layoutId: layoutId) { (response, error) in
+            if response?.status?.lowercased() == "passed" {
+                completion?(response!.token)
+            } else if response?.status?.lowercased() == "shouldverifyv2" {
+                self.askForV2Captcha(with: layoutId, amount: amount) { (token) in
+                    completion?(token)
+                }
+            } else {
+                completion?(nil)
+            }
+        }
     }
     
     //MARK: - Prepare for segue -

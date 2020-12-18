@@ -36,10 +36,10 @@ class CardViewController: BasePaymentViewController {
         self.payButton.onAction = {
             if self.isValid() {
                 self.showProgress()
-                self.askForV3Captcha(with: self.configuration.layout?.layoutId ?? "", amount: self.paymentData?.amount.stringValue ?? "0") { (token, shouldAskForV2) in
+                self.askForV3Captcha(with: self.configuration.layout?.layoutId ?? "", amount: self.paymentData?.amount.stringValue ?? "0") { (token) in
                     if let token = token {
                         self.pay(token: token)
-                    } else if shouldAskForV2 {
+                    } else {
                         self.hideProgress()
                     }
                 }

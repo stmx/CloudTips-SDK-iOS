@@ -318,7 +318,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
             self.amount = amount
             
             self.showProgress()
-            self.askForV3Captcha(with: self.configuration.layout?.layoutId ?? "", amount: self.amount.stringValue) { (token, shoudAskForV2) in
+            self.askForV3Captcha(with: self.configuration.layout?.layoutId ?? "", amount: self.amount.stringValue) { (token) in
                 self.hideProgress()
                 
                 self.captchaToken = token
