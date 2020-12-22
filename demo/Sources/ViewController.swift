@@ -15,7 +15,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.textField.text = "79176114775".formattedPhoneNumber()
         self.textField.didChange = {
             if let text = self.textField.text {
                 self.textField.text = text.formattedPhoneNumber()
