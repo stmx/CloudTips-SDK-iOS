@@ -10,7 +10,7 @@ import UIKit
 import Cloudpayments
 import WebKit
 
-class CardViewController: BasePaymentViewController {
+class CardViewController: BasePaymentViewController, WKNavigationDelegate {
     @IBOutlet private weak var cardNumberTextField: TextField!
     @IBOutlet private weak var cardExpDateTextField: TextField!
     @IBOutlet private weak var cardCvcTextField: TextField!
@@ -19,6 +19,7 @@ class CardViewController: BasePaymentViewController {
     @IBOutlet weak var payButton: Button!
     @IBOutlet weak var psIcon: UIImageView!
     @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet private weak var googleWebView: WKWebView!
     
     private var threeDsView: UIView?
     
@@ -30,6 +31,13 @@ class CardViewController: BasePaymentViewController {
         super.viewDidLoad()
         
         self.prepareUI()
+        
+        self.googleWebView.isOpaque = false
+        self.googleWebView.backgroundColor = UIColor.clear
+        self.googleWebView.scrollView.isScrollEnabled = false
+        self.googleWebView.scrollView.backgroundColor = UIColor.clear
+        self.googleWebView.loadHTMLString(RecaptchaViewModel.googleLicenseHtmlString, baseURL: nil)
+        self.googleWebView.navigationDelegate = self
     }
     
     private func prepareUI(){
@@ -262,6 +270,19 @@ class CardViewController: BasePaymentViewController {
                 self.progressContainerView.isHidden = true
                 self.progressView.stopAnimation()
             }
+        }
+    }
+    
+    //MARK: - WKNavigationDelegate -
+    
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.navigationType == .linkActivated {
+            if let url = navigationAction.request.url, UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+            decisionHandler(.cancel)
+        } else {
+            decisionHandler(.allow)
         }
     }
 }

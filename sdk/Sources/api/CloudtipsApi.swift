@@ -71,6 +71,11 @@ public class CloudtipsApi {
         let request = HTTPRequest(resource: .captchaVerify, method: .post, parameters: parameters)
         makeObjectRequest(request, completion: completion)
     }
+    
+    func getPaymentPages(by layoutId: String, completion: HTTPRequestCompletion<PaymentPagesResponse>?) {
+        let request = HTTPRequest(resource: .getPaymentPages(layoutId))
+        makeObjectRequest(request, completion: completion)
+    }
 }
 
 

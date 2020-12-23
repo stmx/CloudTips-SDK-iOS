@@ -49,6 +49,7 @@ enum HTTPResource: URLConvertible {
     case authPayment
     case post3ds
     case captchaVerify
+    case getPaymentPages(String)
     
     func asURL() throws -> URL {
         guard let baseURL = URL(string: HTTPResource.baseApiURLString) else {
@@ -70,6 +71,8 @@ enum HTTPResource: URLConvertible {
             return baseURL.appendingPathComponent("payment/post3ds")
         case .captchaVerify:
             return baseURL.appendingPathComponent("captcha/verify")
+        case .getPaymentPages(let layoutId):
+            return baseURL.appendingPathComponent("paymentPages/\(layoutId)")
         }
     }
 }

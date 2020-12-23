@@ -11,7 +11,7 @@ import SDWebImage
 import PassKit
 import WebKit
 
-public class TipsViewController: BasePaymentViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+public class TipsViewController: BasePaymentViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, WKNavigationDelegate {
     @IBOutlet private weak var progressContainerView: UIView!
     @IBOutlet private weak var progressView: ProgressView!
     @IBOutlet private weak var contentScrollView: UIScrollView!
@@ -26,6 +26,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     @IBOutlet private weak var payButton: Button!
     @IBOutlet private weak var eulaButton: Button!
     @IBOutlet private weak var toolbar: UIToolbar!
+    @IBOutlet private weak var googleWebView: WKWebView!
     @IBOutlet private var containerBottomConstraint: NSLayoutConstraint!
     
     private var supportedPaymentNetworks: [PKPaymentNetwork] {
@@ -45,7 +46,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
 
     
     private var applePaySucceeded = false
-    
+    private var amountSettings: AmountSettings?
     
     
     //MARK: - Present -
@@ -65,6 +66,13 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         self.prepareUI()
         
         self.updateLayout()
+        
+        self.googleWebView.isOpaque = false
+        self.googleWebView.backgroundColor = UIColor.clear
+        self.googleWebView.scrollView.isScrollEnabled = false
+        self.googleWebView.scrollView.backgroundColor = UIColor.clear
+        self.googleWebView.loadHTMLString(RecaptchaViewModel.googleLicenseHtmlString, baseURL: nil)
+        self.googleWebView.navigationDelegate = self
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -135,16 +143,32 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
             self.configuration.layout = layout
             
             if let layoutId = layout.layoutId {
-                self.getProfile(by: layoutId) { [weak self] in
+                DispatchQueue.global().async { [weak self] in
                     guard let `self` = self else {
                         return
                     }
                     
-                    self.contentScrollView.isHidden = false
-                    self.progressContainerView.isHidden = true
-                    self.progressView.stopAnimation()
+                    let updateGroup = DispatchGroup()
                     
-                    self.updateUI()
+                    updateGroup.enter()
+                    self.getProfile(by: layoutId) {
+                        updateGroup.leave()
+                    }
+                    
+                    updateGroup.enter()
+                    self.getPaymentPages(by: layoutId) {
+                        updateGroup.leave()
+                    }
+                    
+                    updateGroup.wait()
+                    
+                    DispatchQueue.main.async {
+                        self.contentScrollView.isHidden = false
+                        self.progressContainerView.isHidden = true
+                        self.progressView.stopAnimation()
+                        
+                        self.updateUI()
+                    }
                 }
             }
         } else if createIfEmpty && layouts?.isEmpty == true {
@@ -169,6 +193,17 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
             }
             
             self.configuration.profile = profile
+            completion()
+        }
+    }
+    
+    private func getPaymentPages(by layoutId: String, completion: @escaping () -> ()) {
+        api.getPaymentPages(by: layoutId) { [weak self] (response, error) in
+            guard let `self` = self else {
+                return
+            }
+            
+            self.amountSettings = response?.amount
             completion()
         }
     }
@@ -296,6 +331,22 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
                 })
             }
         }
+        
+        let minAmount = self.getMinAmount()
+        let maxAmount = self.getMaxAmount()
+        let minAmountString = NumberFormatter.currencyString(from: NSNumber.init(value: minAmount), withDigits: 0)
+        let maxAmountString = NumberFormatter.currencyString(from: NSNumber.init(value: maxAmount), withDigits: 0)
+        
+        let minMaxString = "Введите сумму от \(minAmountString) до \(maxAmountString)"
+        self.amountHelperLabel.text = minMaxString
+    }
+    
+    private func getMinAmount() -> Double {
+        return self.amountSettings?.getMinAmount() ?? 49
+    }
+    
+    private func getMaxAmount() -> Double {
+        return self.amountSettings?.getMaxAmount() ?? 10000
     }
     
     private func showProgress(){
@@ -362,8 +413,8 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     private func validateAmount(_ amount: NSNumber) -> Bool {
         var isValid = true
         
-        let minAmount = NSNumber(value: 49)
-        let maxAmount = NSNumber(value: 10000)
+        let minAmount = NSNumber(value: self.getMinAmount())
+        let maxAmount = NSNumber(value: self.getMaxAmount())
         
         if amount.compare(minAmount) == .orderedAscending {
             isValid = false
@@ -463,6 +514,19 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         self.view.layoutIfNeeded()
         
         print("hide")
+    }
+    
+    //MARK: - WKNavigationDelegate -
+    
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.navigationType == .linkActivated {
+            if let url = navigationAction.request.url, UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+            decisionHandler(.cancel)
+        } else {
+            decisionHandler(.allow)
+        }
     }
 }
 

@@ -10,6 +10,10 @@ import Foundation
 import WebKit
 
 final class RecaptchaViewModel: NSObject {
+    static let googleLicenseHtmlString = """
+<header><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'></header>
+<p style="text-align: center;"><span style="color: #393962; opacity: 70%;">This site is protected by reCAPTCHA and the <a href="https://policies.google.com/privacy" style="color: #393962;">Google Privacy Policy</a> and <a href="https://policies.google.com/terms" style="color: #393962;">Terms of Service</a> apply.</span></p><body style='margin:0;padding:0;'><style type=\"text/css\">body{font-family: -apple-system; font-size:12;}</style>
+"""
     var onCaptchaVerified: ((_ token: String?) -> ())?
     
     let handlerName = "recaptcha"
