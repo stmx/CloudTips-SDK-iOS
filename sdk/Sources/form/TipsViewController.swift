@@ -172,7 +172,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
                 }
             }
         } else if createIfEmpty && layouts?.isEmpty == true {
-            self.api.offlineRegister(with: self.configuration.phoneNumber, name: self.configuration.userName) { [weak self] (layouts, error) in
+            self.api.offlineRegister(with: self.configuration.phoneNumber, name: self.configuration.userName, agentCode: self.configuration.agentCode) { [weak self] (layouts, error) in
                 guard let `self` = self else {
                     return
                 }

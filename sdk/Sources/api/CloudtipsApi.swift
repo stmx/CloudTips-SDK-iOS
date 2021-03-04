@@ -32,8 +32,8 @@ public class CloudtipsApi {
         makeObjectRequest(request, completion: completion)
     }
     
-    func offlineRegister(with phoneNumber: String, name: String?, completion: HTTPRequestCompletion<[Layout]>?) {
-        let request = HTTPRequest(resource: .offlineRegister, method: .post, parameters: ["phoneNumber" : phoneNumber, "name" : name ?? ""])
+    func offlineRegister(with phoneNumber: String, name: String?, agentCode: String?, completion: HTTPRequestCompletion<[Layout]>?) {
+        let request = HTTPRequest(resource: .offlineRegister, method: .post, parameters: ["phoneNumber" : phoneNumber, "name" : name ?? "", "agentCode" : agentCode ?? ""])
         makeArrayRequest(request, completion: completion)
     }
     

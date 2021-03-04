@@ -22,8 +22,9 @@ pod 'Cloudpayments', :git => "https://github.com/cloudpayments/CloudPayments-SDK
 
 1. Создайте объект TipsConfiguration, передайте в него номер телефона в формате +7********** и имя пользователя (если пользователя с таким номером телефона нет в системе Cloudtips, то будет зарегистрирован новый пользователь с этим именем)
 
+Если вы являетесь партнером CloudTips, передайте в конфигурацию id партнера
 ```
-let configuration = TipsConfiguration.init(phoneNumber: "+79001234567", userName: "Walter WWhite")
+let configuration = TipsConfiguration.init(phoneNumber: "+79001234567", userName: "Walter WWhite", partner: "partner_id")
 ```
 
 2. Для возможности оплаты с Apple Pay передайте в конфигурацию ваш Apple Pay merchant id.
