@@ -6,7 +6,7 @@ PODS:
   - Cloudpayments (1.0.3):
     - Alamofire
     - ObjectMapper
-  - Cloudtips (1.0.2):
+  - Cloudtips (1.0.4):
     - Alamofire (= 5.0.0-rc.2)
     - AlamofireObjectMapper
     - Cloudpayments
@@ -48,11 +48,11 @@ SPEC CHECKSUMS:
   Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
   AlamofireObjectMapper: 74d1440c92c42bbcc2b5f4dc81654ac095ec669f
   Cloudpayments: 7f89b9459fec092a7f90450f67a50461e8815379
-  Cloudtips: e68e5ee43666a447a44587e3367dec7578430c14
+  Cloudtips: 6984c0d0de79876f398775283f08a316fc0f2e36
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
   ReCaptcha: 40ae1dc390fd5837267674b9a6ae0978abb5eeeb
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
 
 PODFILE CHECKSUM: 38fae1fb5dc958f03f0d4176c73722d98101d999
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.1
