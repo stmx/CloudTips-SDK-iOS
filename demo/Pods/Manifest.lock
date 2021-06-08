@@ -3,22 +3,22 @@ PODS:
   - AlamofireObjectMapper (6.2.0):
     - Alamofire (= 5.0.0-rc.2)
     - ObjectMapper (~> 3.5.1)
-  - Cloudpayments (1.0.3):
+  - Cloudpayments (1.0.4):
     - Alamofire
     - ObjectMapper
-  - Cloudtips (1.0.4):
+  - Cloudtips (1.0.7):
     - Alamofire (= 5.0.0-rc.2)
     - AlamofireObjectMapper
     - Cloudpayments
     - ReCaptcha
     - SDWebImage (~> 5.0)
   - ObjectMapper (3.5.3)
-  - ReCaptcha (1.5.0):
-    - ReCaptcha/Core (= 1.5.0)
-  - ReCaptcha/Core (1.5.0)
-  - SDWebImage (5.10.0):
-    - SDWebImage/Core (= 5.10.0)
-  - SDWebImage/Core (5.10.0)
+  - ReCaptcha (1.6.0):
+    - ReCaptcha/Core (= 1.6.0)
+  - ReCaptcha/Core (1.6.0)
+  - SDWebImage (5.11.1):
+    - SDWebImage/Core (= 5.11.1)
+  - SDWebImage/Core (5.11.1)
 
 DEPENDENCIES:
   - Cloudpayments (from `https://github.com/cloudpayments/CloudPayments-SDK-iOS`, branch `master`)
@@ -41,18 +41,18 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Cloudpayments:
-    :commit: 927e8c84bb409c986c636e66bcfa55112d264c21
+    :commit: 4007fc7b798b6ee41c933c0eb9fe0bf1eaf636e1
     :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS
 
 SPEC CHECKSUMS:
   Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
   AlamofireObjectMapper: 74d1440c92c42bbcc2b5f4dc81654ac095ec669f
-  Cloudpayments: 7f89b9459fec092a7f90450f67a50461e8815379
-  Cloudtips: 6984c0d0de79876f398775283f08a316fc0f2e36
+  Cloudpayments: 1c0be171a93e2654c0a156cb4ab434e7a2e76cde
+  Cloudtips: a20079cf6d9c4dc740f38b46945fed26e2eebd2d
   ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
-  ReCaptcha: 40ae1dc390fd5837267674b9a6ae0978abb5eeeb
-  SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
+  ReCaptcha: d493ed256054a7b6a7eabcaf0b47ec9a8f42a16e
+  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
 
-PODFILE CHECKSUM: 38fae1fb5dc958f03f0d4176c73722d98101d999
+PODFILE CHECKSUM: 78380a3abec7247db96e1e8ffb25d14aebf64a34
 
 COCOAPODS: 1.10.1

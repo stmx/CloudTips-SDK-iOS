@@ -40,11 +40,13 @@ struct HTTPRequest {
 
 enum HTTPResource: URLConvertible {
     static let baseURLString = "https://pay.cloudtips.ru/"
-    static let baseApiURLString = "https://lk.cloudtips.ru/api/"
+    
+    static let baseApiProdURLString = "https://lk.cloudtips.ru/api/"
+    static let baseApiPreprodURLString = "https://lk-preprod.cloudtips.ru/api/"
+    static var baseApiURLString = baseApiProdURLString
     
     case getLayout(String)
     case offlineRegister
-    case getUser(String)
     case getPublicId
     case authPayment
     case post3ds
@@ -61,8 +63,6 @@ enum HTTPResource: URLConvertible {
             return baseURL.appendingPathComponent("layouts/list/\(phoneNumber)")
         case .offlineRegister:
             return baseURL.appendingPathComponent("auth/offlineregister")
-        case .getUser(let layoutId):
-            return baseURL.appendingPathComponent("user/public/\(layoutId)")
         case .getPublicId:
             return baseURL.appendingPathComponent("payment/publicId")
         case .authPayment:

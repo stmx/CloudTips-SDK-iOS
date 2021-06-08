@@ -13,15 +13,18 @@ public class TipsConfiguration {
     internal let userName: String?
     internal let agentCode: String?
     internal private(set) var applePayMerchantId: String = ""
+    internal private(set) var testMode: Bool = false
     
     var layout: Layout?
-    var profile: Profile?
+    var profile: Profile = Profile()
     
-    public init(phoneNumber: String, userName: String?, partner: String? = nil) {
+    public init(phoneNumber: String, userName: String?, partner: String? = nil, testMode: Bool = false) {
         self.phoneNumber = phoneNumber
         self.userName = userName
         self.agentCode = partner
+        self.testMode = testMode
     }
+
     
     public func setApplePayMerchantId(_ merchantId: String) {
         self.applePayMerchantId = merchantId

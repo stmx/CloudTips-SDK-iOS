@@ -2565,6 +2565,41 @@
 			};
 			name = Release;
 		};
+		0E54154B82AB4B0A1FC9EFD2AAABC08B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7084A83F9EC98C216F638D5E10D1041E /* ReCaptcha.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ReCaptcha/ReCaptcha-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ReCaptcha/ReCaptcha-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/ReCaptcha/ReCaptcha.modulemap";
+				PRODUCT_MODULE_NAME = ReCaptcha;
+				PRODUCT_NAME = ReCaptcha;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		2640DDA77A7677BBB0029CF86D5B4606 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2EEBE581DF902D6A78A69D4E76405741 /* Alamofire.debug.xcconfig */;
@@ -2689,6 +2724,22 @@
 			};
 			name = Release;
 		};
+		3C80E0BE1D808507D86FAB9F535AE00A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 322B0F087FB839AACA9CBA6C44C01193 /* ReCaptcha.debug.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/ReCaptcha";
+				IBSC_MODULE = ReCaptcha;
+				INFOPLIST_FILE = "Target Support Files/ReCaptcha/ResourceBundle-ReCaptcha-ReCaptcha-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = ReCaptcha;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
 		53E600690C3FD0C4DAE7C32FF544EDA2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCE7315CA37868E3E06F4DC5C530049E /* Cloudpayments.release.xcconfig */;
@@ -2741,56 +2792,6 @@
 			};
 			name = Debug;
 		};
-		66ED6A255741698E7830C3B19A3DE336 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 322B0F087FB839AACA9CBA6C44C01193 /* ReCaptcha.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/ReCaptcha/ReCaptcha-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ReCaptcha/ReCaptcha-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/ReCaptcha/ReCaptcha.modulemap";
-				PRODUCT_MODULE_NAME = ReCaptcha;
-				PRODUCT_NAME = ReCaptcha;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		70411C7E4DBCC96B9FDCAF0FCDBF6185 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7084A83F9EC98C216F638D5E10D1041E /* ReCaptcha.release.xcconfig */;
-			buildSettings = {
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/ReCaptcha";
-				IBSC_MODULE = ReCaptcha;
-				INFOPLIST_FILE = "Target Support Files/ReCaptcha/ResourceBundle-ReCaptcha-ReCaptcha-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = ReCaptcha;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
 		71FA5E5D9F23437F7B1983AEF29D5567 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 33BD2A0DDFAB6BD8656A08A54621B78E /* Cloudpayments.debug.xcconfig */;
@@ -2839,22 +2840,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		8BBAFAC86274A653C289DAB59901A759 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 322B0F087FB839AACA9CBA6C44C01193 /* ReCaptcha.debug.xcconfig */;
-			buildSettings = {
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/ReCaptcha";
-				IBSC_MODULE = ReCaptcha;
-				INFOPLIST_FILE = "Target Support Files/ReCaptcha/ResourceBundle-ReCaptcha-ReCaptcha-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = ReCaptcha;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
 		};
@@ -3107,9 +3092,25 @@
 			};
 			name = Release;
 		};
-		DB1072F302D5CFE42296773EC8224482 /* Release */ = {
+		BC48AAD684DC80427FEACC7A7FD774BB /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7084A83F9EC98C216F638D5E10D1041E /* ReCaptcha.release.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/ReCaptcha";
+				IBSC_MODULE = ReCaptcha;
+				INFOPLIST_FILE = "Target Support Files/ReCaptcha/ResourceBundle-ReCaptcha-ReCaptcha-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = ReCaptcha;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		C8B2064D2B02CCFE458277A209764E3A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 322B0F087FB839AACA9CBA6C44C01193 /* ReCaptcha.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -3122,7 +3123,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/ReCaptcha/ReCaptcha-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/ReCaptcha/ReCaptcha-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3136,11 +3137,10 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 		EB760F6E163E0CA5377843CEDB7A2E42 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -3263,8 +3263,8 @@
 		2CA80401E741835035B5EA651EEDC4F7 /* Build configuration list for PBXNativeTarget "ReCaptcha" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				66ED6A255741698E7830C3B19A3DE336 /* Debug */,
-				DB1072F302D5CFE42296773EC8224482 /* Release */,
+				C8B2064D2B02CCFE458277A209764E3A /* Debug */,
+				0E54154B82AB4B0A1FC9EFD2AAABC08B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -3317,8 +3317,8 @@
 		79507BF9DF8B88DE86A0C8E4D86E0A60 /* Build configuration list for PBXNativeTarget "ReCaptcha-ReCaptcha" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8BBAFAC86274A653C289DAB59901A759 /* Debug */,
-				70411C7E4DBCC96B9FDCAF0FCDBF6185 /* Release */,
+				3C80E0BE1D808507D86FAB9F535AE00A /* Debug */,
+				BC48AAD684DC80427FEACC7A7FD774BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

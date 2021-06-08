@@ -26,12 +26,7 @@ public class CloudtipsApi {
         let request = HTTPRequest(resource: .getLayout(phoneNumber))
         makeArrayRequest(request, completion: completion)
     }
-    
-    func getUserProfile(by layoutId: String, completion: HTTPRequestCompletion<Profile>?) {
-        let request = HTTPRequest(resource: .getUser(layoutId))
-        makeObjectRequest(request, completion: completion)
-    }
-    
+        
     func offlineRegister(with phoneNumber: String, name: String?, agentCode: String?, completion: HTTPRequestCompletion<[Layout]>?) {
         let request = HTTPRequest(resource: .offlineRegister, method: .post, parameters: ["phoneNumber" : phoneNumber, "name" : name ?? "", "agentCode" : agentCode ?? ""])
         makeArrayRequest(request, completion: completion)
