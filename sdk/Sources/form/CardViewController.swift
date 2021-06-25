@@ -45,11 +45,8 @@ class CardViewController: BasePaymentViewController, WKNavigationDelegate {
             if self.isValid() {
                 self.showProgress()
                 self.askForV3Captcha(with: self.configuration.layout?.layoutId ?? "", amount: self.paymentData?.amount.stringValue ?? "0") { (token) in
-                    if let token = token {
-                        self.pay(token: token)
-                    } else {
-                        self.hideProgress()
-                    }
+
+                    self.pay(token: token ?? "")
                 }
             }
         }
@@ -215,6 +212,7 @@ class CardViewController: BasePaymentViewController, WKNavigationDelegate {
     //MARK: - Actions -
     
     private func pay(token: String) {
+        print("PAY")
         if let paymentData = self.paymentData {
             self.getPublicId(with: paymentData.layoutId) { (publicId, error) in
                 if let publicId = publicId, let cryptogram = Card.makeCardCryptogramPacket(with: self.cardNumberTextField.text!, expDate: self.cardExpDateTextField.text!, cvv: self.cardCvcTextField.text!, merchantPublicID: publicId) {
