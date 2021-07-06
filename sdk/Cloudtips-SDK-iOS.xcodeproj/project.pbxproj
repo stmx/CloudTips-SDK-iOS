@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C5DBCB0D3994BA7661EE560 /* Pods_Cloudtips_SDK_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C951CA4E18D60A91F4C1EFCE /* Pods_Cloudtips_SDK_iOS.framework */; };
 		8309851425236460009A3C32 /* Cloudtips_SDK_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309851225236460009A3C32 /* Cloudtips_SDK_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8309854D2523678C009A3C32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 830985472523678C009A3C32 /* Assets.xcassets */; };
 		83098552252367AA009A3C32 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83098551252367AA009A3C32 /* UIView+Extensions.swift */; };
@@ -34,6 +33,14 @@
 		83263F6D259366D4006F7648 /* PaymentPagesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83263F6C259366D4006F7648 /* PaymentPagesResponse.swift */; };
 		832DB588258B98B800BF70B1 /* CaptchaVerifyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832DB587258B98B800BF70B1 /* CaptchaVerifyResponse.swift */; };
 		832DB58C258B9D8400BF70B1 /* RecaptchaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832DB58B258B9D8400BF70B1 /* RecaptchaViewModel.swift */; };
+		8341E509268EEB5B007561FF /* GetLayoutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341E508268EEB5B007561FF /* GetLayoutRequest.swift */; };
+		8341E50D268EEB85007561FF /* OfflineRegisterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341E50C268EEB85007561FF /* OfflineRegisterRequest.swift */; };
+		8341E510268EEB97007561FF /* GetPublicIdRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341E50F268EEB97007561FF /* GetPublicIdRequest.swift */; };
+		8341E513268EEBA7007561FF /* AuthPaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341E512268EEBA7007561FF /* AuthPaymentRequest.swift */; };
+		8341E516268EEBB6007561FF /* PostThreeDsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341E515268EEBB6007561FF /* PostThreeDsRequest.swift */; };
+		8341E519268EEBC7007561FF /* CapthcaVerifyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341E518268EEBC7007561FF /* CapthcaVerifyRequest.swift */; };
+		8341E51C268EEBDC007561FF /* GetPaymentPagesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341E51B268EEBDC007561FF /* GetPaymentPagesRequest.swift */; };
+		8341E51F268EEC1A007561FF /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341E51E268EEC1A007561FF /* BaseRequest.swift */; };
 		83507DB62526109800637BB6 /* NumberFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83507DB52526109800637BB6 /* NumberFormatter+Extensions.swift */; };
 		8364CD0B252E02F400E47F3B /* BasePaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8364CD0A252E02F400E47F3B /* BasePaymentViewController.swift */; };
 		83AF1CA12530406300A0424B /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AF1CA02530406300A0424B /* ProgressView.swift */; };
@@ -44,7 +51,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1C59937BE7D3B8973492AD3D /* Pods-Cloudtips-SDK-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloudtips-SDK-iOS.release.xcconfig"; path = "Target Support Files/Pods-Cloudtips-SDK-iOS/Pods-Cloudtips-SDK-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		8309850F25236460009A3C32 /* Cloudtips_SDK_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cloudtips_SDK_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8309851225236460009A3C32 /* Cloudtips_SDK_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cloudtips_SDK_iOS.h; sourceTree = "<group>"; };
 		830985472523678C009A3C32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -73,6 +79,14 @@
 		83263F6C259366D4006F7648 /* PaymentPagesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentPagesResponse.swift; sourceTree = "<group>"; };
 		832DB587258B98B800BF70B1 /* CaptchaVerifyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptchaVerifyResponse.swift; sourceTree = "<group>"; };
 		832DB58B258B9D8400BF70B1 /* RecaptchaViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecaptchaViewModel.swift; sourceTree = "<group>"; };
+		8341E508268EEB5B007561FF /* GetLayoutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLayoutRequest.swift; sourceTree = "<group>"; };
+		8341E50C268EEB85007561FF /* OfflineRegisterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineRegisterRequest.swift; sourceTree = "<group>"; };
+		8341E50F268EEB97007561FF /* GetPublicIdRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPublicIdRequest.swift; sourceTree = "<group>"; };
+		8341E512268EEBA7007561FF /* AuthPaymentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPaymentRequest.swift; sourceTree = "<group>"; };
+		8341E515268EEBB6007561FF /* PostThreeDsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostThreeDsRequest.swift; sourceTree = "<group>"; };
+		8341E518268EEBC7007561FF /* CapthcaVerifyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapthcaVerifyRequest.swift; sourceTree = "<group>"; };
+		8341E51B268EEBDC007561FF /* GetPaymentPagesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPaymentPagesRequest.swift; sourceTree = "<group>"; };
+		8341E51E268EEC1A007561FF /* BaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
 		83507DB52526109800637BB6 /* NumberFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		8364CD0A252E02F400E47F3B /* BasePaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePaymentViewController.swift; sourceTree = "<group>"; };
 		83AF1CA02530406300A0424B /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
@@ -80,8 +94,6 @@
 		83AF1CA7253040A300A0424B /* TipsConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsConfiguration.swift; sourceTree = "<group>"; };
 		83B4FAF6252B1911008ED235 /* PaymentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDelegate.swift; sourceTree = "<group>"; };
 		83D5A31725276EE800DF0562 /* PaymentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentResponse.swift; sourceTree = "<group>"; };
-		9759D40AB9370391EDE20F0C /* Pods-Cloudtips-SDK-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloudtips-SDK-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Cloudtips-SDK-iOS/Pods-Cloudtips-SDK-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		C951CA4E18D60A91F4C1EFCE /* Pods_Cloudtips_SDK_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cloudtips_SDK_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +101,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C5DBCB0D3994BA7661EE560 /* Pods_Cloudtips_SDK_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,8 +110,6 @@
 		200DDC7361955A205F2F09D0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9759D40AB9370391EDE20F0C /* Pods-Cloudtips-SDK-iOS.debug.xcconfig */,
-				1C59937BE7D3B8973492AD3D /* Pods-Cloudtips-SDK-iOS.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -112,7 +121,6 @@
 				8309854625236752009A3C32 /* Resources */,
 				8309851025236460009A3C32 /* Products */,
 				200DDC7361955A205F2F09D0 /* Pods */,
-				CCA79E588E8360738FA21F54 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -172,6 +180,7 @@
 		8309859225236F81009A3C32 /* api */ = {
 			isa = PBXGroup;
 			children = (
+				8341E507268EEB1F007561FF /* Requests */,
 				8309859625236FC2009A3C32 /* CloudtipsApi.swift */,
 				8309859725236FC2009A3C32 /* CloudtipsError.swift */,
 				8309859825236FC2009A3C32 /* HTTP.swift */,
@@ -217,6 +226,21 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
+		8341E507268EEB1F007561FF /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				8341E508268EEB5B007561FF /* GetLayoutRequest.swift */,
+				8341E50C268EEB85007561FF /* OfflineRegisterRequest.swift */,
+				8341E50F268EEB97007561FF /* GetPublicIdRequest.swift */,
+				8341E512268EEBA7007561FF /* AuthPaymentRequest.swift */,
+				8341E515268EEBB6007561FF /* PostThreeDsRequest.swift */,
+				8341E518268EEBC7007561FF /* CapthcaVerifyRequest.swift */,
+				8341E51B268EEBDC007561FF /* GetPaymentPagesRequest.swift */,
+				8341E51E268EEC1A007561FF /* BaseRequest.swift */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
 		83AF1CA32530407300A0424B /* configuration */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,14 +250,6 @@
 				83AF1CA7253040A300A0424B /* TipsConfiguration.swift */,
 			);
 			path = configuration;
-			sourceTree = "<group>";
-		};
-		CCA79E588E8360738FA21F54 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C951CA4E18D60A91F4C1EFCE /* Pods_Cloudtips_SDK_iOS.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,7 +270,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8309851725236460009A3C32 /* Build configuration list for PBXNativeTarget "Cloudtips-SDK-iOS" */;
 			buildPhases = (
-				5F3BDED5F485796BD9D882A3 /* [CP] Check Pods Manifest.lock */,
 				8309850A25236460009A3C32 /* Headers */,
 				8309850B25236460009A3C32 /* Sources */,
 				8309850C25236460009A3C32 /* Frameworks */,
@@ -275,7 +290,7 @@
 		8309850625236460009A3C32 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = Cloudtips;
 				TargetAttributes = {
 					8309850E25236460009A3C32 = {
@@ -314,31 +329,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		5F3BDED5F485796BD9D882A3 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Cloudtips-SDK-iOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		8309850B25236460009A3C32 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -351,7 +341,9 @@
 				83507DB62526109800637BB6 /* NumberFormatter+Extensions.swift in Sources */,
 				832DB58C258B9D8400BF70B1 /* RecaptchaViewModel.swift in Sources */,
 				830985A425236FC2009A3C32 /* Layout.swift in Sources */,
+				8341E51C268EEBDC007561FF /* GetPaymentPagesRequest.swift in Sources */,
 				830985A225236FC2009A3C32 /* CloudtipsError.swift in Sources */,
+				8341E50D268EEB85007561FF /* OfflineRegisterRequest.swift in Sources */,
 				830985E525247E58009A3C32 /* UIViewController+Extensions.swift in Sources */,
 				831BC0252524C32600E6BACB /* Button.swift in Sources */,
 				831BC0262524C32600E6BACB /* TextField.swift in Sources */,
@@ -362,12 +354,18 @@
 				831BBFE525248F5400E6BACB /* BaseViewController.swift in Sources */,
 				83D5A31825276EE800DF0562 /* PaymentResponse.swift in Sources */,
 				830985E425247E58009A3C32 /* UIImage+Assets.swift in Sources */,
+				8341E519268EEBC7007561FF /* CapthcaVerifyRequest.swift in Sources */,
 				830985E725247E58009A3C32 /* String+Extensions.swift in Sources */,
+				8341E51F268EEC1A007561FF /* BaseRequest.swift in Sources */,
 				83AF1CA12530406300A0424B /* ProgressView.swift in Sources */,
+				8341E516268EEBB6007561FF /* PostThreeDsRequest.swift in Sources */,
 				83098558252367C0009A3C32 /* TipsViewController.swift in Sources */,
 				83AF1CA8253040A300A0424B /* TipsConfiguration.swift in Sources */,
+				8341E510268EEB97007561FF /* GetPublicIdRequest.swift in Sources */,
 				83B4FAF7252B1911008ED235 /* PaymentDelegate.swift in Sources */,
 				830985E625247E58009A3C32 /* UIColor+Assets.swift in Sources */,
+				8341E513268EEBA7007561FF /* AuthPaymentRequest.swift in Sources */,
+				8341E509268EEB5B007561FF /* GetLayoutRequest.swift in Sources */,
 				832DB588258B98B800BF70B1 /* CaptchaVerifyResponse.swift in Sources */,
 				83098552252367AA009A3C32 /* UIView+Extensions.swift in Sources */,
 				830985E825247E58009A3C32 /* UIView+Constraints.swift in Sources */,
@@ -432,7 +430,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -490,7 +488,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -504,7 +502,6 @@
 		};
 		8309851825236460009A3C32 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9759D40AB9370391EDE20F0C /* Pods-Cloudtips-SDK-iOS.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -515,13 +512,13 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.cloudtips.Cloudtips-SDK-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -533,7 +530,6 @@
 		};
 		8309851925236460009A3C32 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1C59937BE7D3B8973492AD3D /* Pods-Cloudtips-SDK-iOS.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -544,13 +540,13 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.cloudtips.Cloudtips-SDK-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

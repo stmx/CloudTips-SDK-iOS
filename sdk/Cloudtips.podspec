@@ -9,7 +9,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "Cloudtips"
-  spec.version      = "1.0.7"
+  spec.version      = "1.1.2"
   spec.summary      = "Core library that allows you to use tips from Cloudtips in your app"
   spec.description  = "Core library that allows you to use tips from Cloudtips in your app"
 
@@ -30,8 +30,6 @@ Pod::Spec.new do |spec|
   
   spec.requires_arc = true
   
-  spec.dependency 'Alamofire', '5.0.0-rc.2'
-  spec.dependency 'AlamofireObjectMapper'
   spec.dependency 'SDWebImage', '~> 5.0'
   spec.dependency 'Cloudpayments'
   spec.dependency 'ReCaptcha'

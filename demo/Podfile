@@ -7,6 +7,8 @@ target 'Cloudtips-SDK-iOS-Demo' do
 
   pod 'Cloudtips', :path => "../sdk"
 #  pod 'Cloudtips', :git => "https://github.com/cloudpayments/CloudTips-SDK-iOS", :branch => "master"
+
   pod 'Cloudpayments', :git => "https://github.com/cloudpayments/CloudPayments-SDK-iOS", :branch => "master"
+  pod 'CloudpaymentsNetworking', :git => "https://github.com/cloudpayments/CloudPayments-SDK-iOS", :branch => "master"
 
 end

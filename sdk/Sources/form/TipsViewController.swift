@@ -63,6 +63,8 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     public override func viewDidLoad() {
         super.viewDidLoad()
         
+        HTTPResource.baseApiURLString = configuration.testMode ? HTTPResource.baseApiPreprodURLString : HTTPResource.baseApiProdURLString
+        
         self.prepareUI()
         
         self.updateLayout()
@@ -149,12 +151,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
                     }
                     
                     let updateGroup = DispatchGroup()
-                    
-                    updateGroup.enter()
-                    self.getProfile(by: layoutId) {
-                        updateGroup.leave()
-                    }
-                    
+                                        
                     updateGroup.enter()
                     self.getPaymentPages(by: layoutId) {
                         updateGroup.leave()
@@ -186,16 +183,16 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         }
     }
     
-    private func getProfile(by layoutId: String, completion: @escaping () -> ()) {
-        api.getUserProfile(by: layoutId) { [weak self] (profile, error) in
-            guard let `self` = self else {
-                return
-            }
-            
-            self.configuration.profile = profile
-            completion()
-        }
-    }
+//    private func getProfile(by layoutId: String, completion: @escaping () -> ()) {
+//        api.getUserProfile(by: layoutId) { [weak self] (profile, error) in
+//            guard let `self` = self else {
+//                return
+//            }
+//
+//            self.configuration.profile = profile
+//            completion()
+//        }
+//    }
     
     private func getPaymentPages(by layoutId: String, completion: @escaping () -> ()) {
         api.getPaymentPages(by: layoutId) { [weak self] (response, error) in
@@ -203,7 +200,12 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
                 return
             }
             
+            self.configuration.profile.name = response?.nameText
+            self.configuration.profile.photoUrl = response?.avatarUrl
+            self.configuration.profile.purposeText = response?.paymentMessage?.ru
+            self.configuration.profile.successPageText = response?.successMessage?.ru
             self.amountSettings = response?.amount
+                            
             completion()
         }
     }
@@ -302,18 +304,19 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     }
     
     private func updateUI() {
-        if let profile = self.configuration.profile {
-            let name = profile.name ?? ""
+        //if let profile = self.configuration.profile
+            let name = self.configuration.profile.name ?? ""
             if name.isEmpty {
                 self.nameLabel.isHidden = true
-                self.purposeLabel.text = profile.purposeText ?? "Надеюсь, вам понравилось"
+                self.purposeLabel.text = self.configuration.profile.purposeText ?? "Надеюсь, вам понравилось"
             } else {
                 self.nameLabel.isHidden = false
                 self.nameLabel.text = name
-                self.purposeLabel.text = profile.purposeText ?? "Получит ваши чаевые"
+                self.configuration.profile.purposeText = ""
+                self.purposeLabel.text = self.configuration.profile.purposeText ?? "Получит ваши чаевые"
             }
             
-            if let photoUrl = profile.photoUrl, let url = URL.init(string: photoUrl) {
+        if let photoUrl = self.configuration.profile.photoUrl, let url = URL.init(string: photoUrl) {
                 self.profileImageView.sd_setImage(with: url, placeholderImage: UIImage.named("ic_avatar_placeholder"), options: .avoidAutoSetImage, completed: { (image, error, cacheType, url) in
                     if cacheType == .none && image != nil {
                         UIView.animate(withDuration: 0.2, animations: {
@@ -330,7 +333,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
                     }
                 })
             }
-        }
+        
         
         let minAmount = self.getMinAmount()
         let maxAmount = self.getMaxAmount()
@@ -548,7 +551,7 @@ extension TipsViewController: PKPaymentAuthorizationViewControllerDelegate {
         if let layoutId = self.configuration.layout?.layoutId, let cryptogram = payment.convertToString() {
             let paymentData = PaymentData.init(layoutId: layoutId, amount: self.amount, comment: self.commentTextField.text)
             self.auth(with: paymentData, cryptogram: cryptogram, captchaToken: self.captchaToken ?? "") { (response, error) in
-                if response?.status == .success {
+                if response?.statusCode == .success {
                     self.paymentError = nil
                     self.applePaySucceeded = true
                     completion(PKPaymentAuthorizationResult(status: PKPaymentAuthorizationStatus.success, errors: []))

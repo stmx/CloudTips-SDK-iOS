@@ -33,7 +33,7 @@ class CompletionViewController: BasePaymentViewController {
     }
     
     private func updateUI() {
-        if let photoUrl = self.configuration.profile?.photoUrl, let url = URL.init(string: photoUrl) {
+        if let photoUrl = self.configuration.profile.photoUrl, let url = URL.init(string: photoUrl) {
             self.profileImageView.sd_setImage(with: url, placeholderImage: UIImage.named("ic_avatar_placeholder"), options: .avoidAutoSetImage, completed: { (image, error, cacheType, url) in
                 if cacheType == .none && image != nil {
                     UIView.animate(withDuration: 0.2, animations: {
@@ -51,7 +51,7 @@ class CompletionViewController: BasePaymentViewController {
             })
         }
         
-        let name = self.configuration.profile?.name ?? ""
+        let name = self.configuration.profile.name ?? ""
         self.nameLabel.isHidden = name.isEmpty
         self.nameLabel.text = name
         
@@ -64,7 +64,7 @@ class CompletionViewController: BasePaymentViewController {
             
             self.repeatButton.setTitle("Попробовать ещё раз", for: .normal)
         } else {
-            var successPageText = self.configuration.profile?.successPageText ?? ""
+            var successPageText = self.configuration.profile.successPageText ?? ""
             
             if name.isEmpty {
                 successPageText = "Спасибо за платеж с CloudTips!"

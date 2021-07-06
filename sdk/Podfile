@@ -3,10 +3,9 @@ platform :ios, '11.0'
 use_frameworks!
 
 target 'Cloudtips-SDK-iOS' do
-  pod 'Alamofire', '5.0.0-rc.2'
-  pod 'AlamofireObjectMapper'
   pod 'SDWebImage', '~> 5.0'
   pod 'Cloudpayments', :git => "https://github.com/cloudpayments/CloudPayments-SDK-iOS", :branch => "master"
+  pod 'CloudpaymentsNetworking', :git => "https://github.com/cloudpayments/CloudPayments-SDK-iOS", :branch => "master"
   pod "ReCaptcha"
   
 end

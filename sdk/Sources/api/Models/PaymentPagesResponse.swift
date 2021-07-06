@@ -6,9 +6,9 @@
 //  Copyright © 2020 Cloudtips. All rights reserved.
 //
 
-import ObjectMapper
+import Foundation
 
-public struct PaymentPagesResponse: Mappable {
+public struct PaymentPagesResponse: Codable {
     private(set) var id: String?
     private(set) var layoutId: String?
     private(set) var url: String?
@@ -16,30 +16,15 @@ public struct PaymentPagesResponse: Mappable {
     private(set) var backgroundUrl: String?
     private(set) var amount: AmountSettings?
     
-    public init?(map: Map) {
-        
-    }
+    private(set) var nameText: String?
+    private(set) var avatarUrl: String?
     
-    public mutating func mapping(map: Map) {
-        layoutId <- map["layoutId"]
-        id <- map["id"]
-        url <- map["url"]
-        title <- map["title"]
-        backgroundUrl <- map["backgroundUrl"]
-        amount <- map["amount"]
-    }
+    private(set) var paymentMessage: PaymentPageText?
+    private(set) var successMessage: PaymentPageText?
 }
 
-public struct AmountSettings: Mappable {
+public struct AmountSettings: Codable {
     private(set) var constraints: [AmountConstraint]?
-    
-    public init?(map: Map) {
-        
-    }
-    
-    public mutating func mapping(map: Map) {
-        constraints <- map["constraints"]
-    }
     
     func getMinAmount() -> Double? {
         return self.constraints?.filter { $0.type == "Minimal" }.first?.value
@@ -50,18 +35,13 @@ public struct AmountSettings: Mappable {
     }
 }
 
-public struct AmountConstraint: Mappable {
+public struct AmountConstraint: Codable {
     private(set) var type: String?
     private(set) var currency: String?
     private(set) var value: Double?
-    
-    public init?(map: Map) {
-        
-    }
-    
-    public mutating func mapping(map: Map) {
-        type <- map["type"]
-        currency <- map["currency"]
-        value <- map["value"]
-    }
+}
+
+public struct PaymentPageText: Codable {
+    private(set) var ru: String?
+    private(set) var en: String?
 }

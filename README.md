@@ -11,6 +11,7 @@ Cloudtips SDK позволяет интегрировать прием чаев�
 ```
 pod 'Cloudtips', :git => "https://github.com/cloudpayments/CloudTips-SDK-iOS", :branch => "master"
 pod 'Cloudpayments', :git => "https://github.com/cloudpayments/CloudPayments-SDK-iOS", :branch => "master"
+pod 'CloudpaymentsNetworking', :git => "https://github.com/cloudpayments/CloudPayments-SDK-iOS", :branch => "master"
 ```
 
 ### Структура проекта:
@@ -25,6 +26,10 @@ pod 'Cloudpayments', :git => "https://github.com/cloudpayments/CloudPayments-SDK
 Если вы являетесь партнером CloudTips, передайте в конфигурацию id партнера
 ```
 let configuration = TipsConfiguration.init(phoneNumber: "+79001234567", userName: "Walter WWhite", partner: "partner_id")
+
+//или
+
+let configuration = TipsConfiguration.init(phoneNumber: "+" + text, userName: "Cloudtips demo user", partner: "ctdemo", testMode: true) //Если необходимо включить режим тестирования
 ```
 
 2. Для возможности оплаты с Apple Pay передайте в конфигурацию ваш Apple Pay merchant id.

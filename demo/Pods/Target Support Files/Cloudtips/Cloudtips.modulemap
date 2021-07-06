@@ -1,6 +1,0 @@
-framework module Cloudtips {
-  umbrella header "Cloudtips-umbrella.h"
-
-  export *
-  module * { export * }
-}

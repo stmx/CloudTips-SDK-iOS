@@ -1,31 +1,22 @@
 PODS:
-  - Alamofire (5.0.0-rc.2)
-  - AlamofireObjectMapper (6.2.0):
-    - Alamofire (= 5.0.0-rc.2)
-    - ObjectMapper (~> 3.5.1)
-  - Cloudpayments (1.0.3):
-    - Alamofire
-    - ObjectMapper
-  - ObjectMapper (3.5.3)
-  - ReCaptcha (1.5.0):
-    - ReCaptcha/Core (= 1.5.0)
-  - ReCaptcha/Core (1.5.0)
-  - SDWebImage (5.10.0):
-    - SDWebImage/Core (= 5.10.0)
-  - SDWebImage/Core (5.10.0)
+  - Cloudpayments (1.1.0):
+    - CloudpaymentsNetworking
+  - CloudpaymentsNetworking (1.0.0)
+  - ReCaptcha (1.6.0):
+    - ReCaptcha/Core (= 1.6.0)
+  - ReCaptcha/Core (1.6.0)
+  - SDWebImage (5.11.1):
+    - SDWebImage/Core (= 5.11.1)
+  - SDWebImage/Core (5.11.1)
 
 DEPENDENCIES:
-  - Alamofire (= 5.0.0-rc.2)
-  - AlamofireObjectMapper
   - Cloudpayments (from `https://github.com/cloudpayments/CloudPayments-SDK-iOS`, branch `master`)
+  - CloudpaymentsNetworking (from `https://github.com/cloudpayments/CloudPayments-SDK-iOS`, branch `master`)
   - ReCaptcha
   - SDWebImage (~> 5.0)
 
 SPEC REPOS:
   trunk:
-    - Alamofire
-    - AlamofireObjectMapper
-    - ObjectMapper
     - ReCaptcha
     - SDWebImage
 
@@ -33,20 +24,24 @@ EXTERNAL SOURCES:
   Cloudpayments:
     :branch: master
     :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS
+  CloudpaymentsNetworking:
+    :branch: master
+    :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS
 
 CHECKOUT OPTIONS:
   Cloudpayments:
-    :commit: 927e8c84bb409c986c636e66bcfa55112d264c21
+    :commit: 86827fcc12a27778b52792b540fa23f397c0a3ef
+    :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS
+  CloudpaymentsNetworking:
+    :commit: 86827fcc12a27778b52792b540fa23f397c0a3ef
     :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS
 
 SPEC CHECKSUMS:
-  Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
-  AlamofireObjectMapper: 74d1440c92c42bbcc2b5f4dc81654ac095ec669f
-  Cloudpayments: 7f89b9459fec092a7f90450f67a50461e8815379
-  ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
-  ReCaptcha: 40ae1dc390fd5837267674b9a6ae0978abb5eeeb
-  SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
+  Cloudpayments: ee7ae571b7cd037df3309649f61eb91ee9b5feff
+  CloudpaymentsNetworking: 5876a99ef846704230a9fdf779762ec81859d212
+  ReCaptcha: d493ed256054a7b6a7eabcaf0b47ec9a8f42a16e
+  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
 
-PODFILE CHECKSUM: bffa387840a4d104cb28231ca4144fa3207139ee
+PODFILE CHECKSUM: 8cf8c1600d1102b38ed8349d59b005f2f7ed56df
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.1

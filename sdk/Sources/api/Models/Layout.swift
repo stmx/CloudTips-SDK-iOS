@@ -6,9 +6,7 @@
 //  Copyright © 2020 Cloudtips. All rights reserved.
 //
 
-import ObjectMapper
-
-public struct Layout: Mappable {
+public struct Layout: Codable {
     private(set) var layoutId: String?
     private(set) var defaultLayout: Bool?
     private(set) var disabled: Bool?
@@ -20,20 +18,16 @@ public struct Layout: Mappable {
     private(set) var backgroundUrl: String?
     private(set) var qrLink: String?
     
-    public init?(map: Map) {
-        
-    }
-    
-    public mutating func mapping(map: Map) {
-        layoutId <- map["layoutId"]
-        defaultLayout <- map["default"]
-        disabled <- map["disabled"]
-        title <- map["title"]
-        description <- map["description"]
-        text <- map["text"]
-        paymentLink <- map["paymentLink"]
-        backgroundId <- map["backgroundId"]
-        backgroundUrl <- map["backgroundUrl"]
-        qrLink <- map["qrLink"]
+    enum CodingKeys: String, CodingKey {
+        case layoutId
+        case defaultLayout = "default"
+        case disabled
+        case title
+        case description
+        case text
+        case paymentLink
+        case backgroundId
+        case backgroundUrl
+        case qrLink
     }
 }

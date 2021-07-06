@@ -84,6 +84,7 @@ public class BasePaymentViewController: BaseViewController, PaymentDelegate {
     
     private func validateCaptchaToken(version: Int, token: String, amount: String, layoutId: String, completion: ((_ token: String?) -> ())?) {
         self.verifyCaptcha(version: version, token: token, amount: amount, layoutId: layoutId) { (response, error) in
+            
             if response?.status?.lowercased() == "passed" {
                 completion?(response!.token)
             } else if response?.status?.lowercased() == "shouldverifyv2" {

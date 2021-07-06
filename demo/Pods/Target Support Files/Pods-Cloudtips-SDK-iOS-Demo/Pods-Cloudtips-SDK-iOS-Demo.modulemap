@@ -1,6 +1,0 @@
-framework module Pods_Cloudtips_SDK_iOS_Demo {
-  umbrella header "Pods-Cloudtips-SDK-iOS-Demo-umbrella.h"
-
-  export *
-  module * { export * }
-}

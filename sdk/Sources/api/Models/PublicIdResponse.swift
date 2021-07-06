@@ -7,17 +7,8 @@
 //
 
 import Foundation
-import ObjectMapper
 
-public struct PublicIdResponse: Mappable {
-    private(set) var publicId: String?
-    
-    public init?(map: Map) {
-        
-    }
-    
-    public mutating func mapping(map: Map) {
-        publicId <- map["publicId"]
-    }
+public struct PublicIdResponse: Codable {
+    public private(set) var publicId: String?
 }
 

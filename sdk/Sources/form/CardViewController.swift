@@ -45,11 +45,8 @@ class CardViewController: BasePaymentViewController, WKNavigationDelegate {
             if self.isValid() {
                 self.showProgress()
                 self.askForV3Captcha(with: self.configuration.layout?.layoutId ?? "", amount: self.paymentData?.amount.stringValue ?? "0") { (token) in
-                    if let token = token {
-                        self.pay(token: token)
-                    } else {
-                        self.hideProgress()
-                    }
+
+                    self.pay(token: token ?? "")
                 }
             }
         }
@@ -215,17 +212,18 @@ class CardViewController: BasePaymentViewController, WKNavigationDelegate {
     //MARK: - Actions -
     
     private func pay(token: String) {
+        print("PAY")
         if let paymentData = self.paymentData {
             self.getPublicId(with: paymentData.layoutId) { (publicId, error) in
                 if let publicId = publicId, let cryptogram = Card.makeCardCryptogramPacket(with: self.cardNumberTextField.text!, expDate: self.cardExpDateTextField.text!, cvv: self.cardCvcTextField.text!, merchantPublicID: publicId) {
                     self.auth(with: paymentData, cryptogram: cryptogram, captchaToken: token) { (response, error) in
                         self.hideProgress()
                         if let response = response {
-                            if response.status == .need3ds, let acsUrl = response.acsUrl, let md = response.md, let paReq = response.paReq {
+                            if response.statusCode == .need3ds, let acsUrl = response.acsUrl, let md = response.md, let paReq = response.paReq {
                                 self.showThreeDs(with: acsUrl, md: md, paReq: paReq)
-                            } else if response.status == .success {
+                            } else if response.statusCode == .success {
                                 self.onPaymentSucceeded()
-                            } else if response.status == .failure {
+                            } else if response.statusCode == .failure {
                                 let ctError = CloudtipsError.init(message: response.message ?? "Ошибка")
                                 self.onPaymentFailed(with: ctError)
                             }
@@ -357,7 +355,7 @@ extension CardViewController: ThreeDsDelegate {
         self.post3ds(md: md, paRes: paRes) { (response, error) in
             self.hideProgress()
             if let response = response {
-                if response.status == .success {
+                if response.statusCode == .success {
                     self.onPaymentSucceeded()
                 } else {
                     let error = CloudtipsError.init(message: response.message ?? "Ошибка")
