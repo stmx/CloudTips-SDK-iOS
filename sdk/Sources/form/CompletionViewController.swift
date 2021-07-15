@@ -15,6 +15,7 @@ class CompletionViewController: BasePaymentViewController {
     @IBOutlet private weak var errorTitleLabel: UILabel!
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var repeatButton: Button!
+    @IBOutlet private weak var closeButton: Button!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,16 @@ class CompletionViewController: BasePaymentViewController {
         
         self.repeatButton.onAction = {
             self.performSegue(withIdentifier: .unwindToTipsSegue, sender: self)
+        }
+        
+        self.closeButton.onAction = {
+            self.dismiss(animated: true)
+            
+            if (self.isTipsSuccessed) {
+                self.configuration.tipsDelegate?.delegate?.onTipsSuccessed()
+            } else {
+                self.configuration.tipsDelegate?.delegate?.onTipsCancelled()
+            }
         }
     }
     
@@ -56,6 +67,9 @@ class CompletionViewController: BasePaymentViewController {
         self.nameLabel.text = name
         
         if let error = self.paymentError {
+            
+            self.isTipsSuccessed = false
+            
             self.statusIcon.image = .iconFailed
             
             self.errorTitleLabel.isHidden = false
@@ -64,6 +78,9 @@ class CompletionViewController: BasePaymentViewController {
             
             self.repeatButton.setTitle("Попробовать ещё раз", for: .normal)
         } else {
+            
+            self.isTipsSuccessed = true
+            
             var successPageText = self.configuration.profile.successPageText ?? ""
             
             if name.isEmpty {

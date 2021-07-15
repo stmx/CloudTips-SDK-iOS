@@ -48,9 +48,14 @@
 		83AF1CA8253040A300A0424B /* TipsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AF1CA7253040A300A0424B /* TipsConfiguration.swift */; };
 		83B4FAF7252B1911008ED235 /* PaymentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B4FAF6252B1911008ED235 /* PaymentDelegate.swift */; };
 		83D5A31825276EE800DF0562 /* PaymentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D5A31725276EE800DF0562 /* PaymentResponse.swift */; };
+		B1EFFD9C269FFDEB006568CF /* TipsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EFFD9B269FFDEB006568CF /* TipsDelegate.swift */; };
+		F959D83DF6739A63001056FA /* Pods_Cloudtips_SDK_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B0294FEFA6681390A73246C /* Pods_Cloudtips_SDK_iOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2ACC8116D6970451045324EB /* Pods-Cloudtips-SDK-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloudtips-SDK-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Cloudtips-SDK-iOS/Pods-Cloudtips-SDK-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		5B0294FEFA6681390A73246C /* Pods_Cloudtips_SDK_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cloudtips_SDK_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E3A0F475B258F6E8C668252 /* Pods-Cloudtips-SDK-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloudtips-SDK-iOS.release.xcconfig"; path = "Target Support Files/Pods-Cloudtips-SDK-iOS/Pods-Cloudtips-SDK-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		8309850F25236460009A3C32 /* Cloudtips_SDK_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cloudtips_SDK_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8309851225236460009A3C32 /* Cloudtips_SDK_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cloudtips_SDK_iOS.h; sourceTree = "<group>"; };
 		830985472523678C009A3C32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -94,6 +99,7 @@
 		83AF1CA7253040A300A0424B /* TipsConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsConfiguration.swift; sourceTree = "<group>"; };
 		83B4FAF6252B1911008ED235 /* PaymentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDelegate.swift; sourceTree = "<group>"; };
 		83D5A31725276EE800DF0562 /* PaymentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentResponse.swift; sourceTree = "<group>"; };
+		B1EFFD9B269FFDEB006568CF /* TipsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F959D83DF6739A63001056FA /* Pods_Cloudtips_SDK_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,8 +117,18 @@
 		200DDC7361955A205F2F09D0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				2ACC8116D6970451045324EB /* Pods-Cloudtips-SDK-iOS.debug.xcconfig */,
+				5E3A0F475B258F6E8C668252 /* Pods-Cloudtips-SDK-iOS.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		472197B7AC3765C3B86E2AA8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5B0294FEFA6681390A73246C /* Pods_Cloudtips_SDK_iOS.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		8309850525236460009A3C32 = {
@@ -121,6 +138,7 @@
 				8309854625236752009A3C32 /* Resources */,
 				8309851025236460009A3C32 /* Products */,
 				200DDC7361955A205F2F09D0 /* Pods */,
+				472197B7AC3765C3B86E2AA8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -248,6 +266,7 @@
 				83B4FAF6252B1911008ED235 /* PaymentDelegate.swift */,
 				832DB58B258B9D8400BF70B1 /* RecaptchaViewModel.swift */,
 				83AF1CA7253040A300A0424B /* TipsConfiguration.swift */,
+				B1EFFD9B269FFDEB006568CF /* TipsDelegate.swift */,
 			);
 			path = configuration;
 			sourceTree = "<group>";
@@ -270,6 +289,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8309851725236460009A3C32 /* Build configuration list for PBXNativeTarget "Cloudtips-SDK-iOS" */;
 			buildPhases = (
+				7E69A5DCD8C4D1E5C635CF80 /* [CP] Check Pods Manifest.lock */,
 				8309850A25236460009A3C32 /* Headers */,
 				8309850B25236460009A3C32 /* Sources */,
 				8309850C25236460009A3C32 /* Frameworks */,
@@ -329,6 +349,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7E69A5DCD8C4D1E5C635CF80 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Cloudtips-SDK-iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8309850B25236460009A3C32 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -359,6 +404,7 @@
 				8341E51F268EEC1A007561FF /* BaseRequest.swift in Sources */,
 				83AF1CA12530406300A0424B /* ProgressView.swift in Sources */,
 				8341E516268EEBB6007561FF /* PostThreeDsRequest.swift in Sources */,
+				B1EFFD9C269FFDEB006568CF /* TipsDelegate.swift in Sources */,
 				83098558252367C0009A3C32 /* TipsViewController.swift in Sources */,
 				83AF1CA8253040A300A0424B /* TipsConfiguration.swift in Sources */,
 				8341E510268EEB97007561FF /* GetPublicIdRequest.swift in Sources */,
@@ -502,6 +548,7 @@
 		};
 		8309851825236460009A3C32 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2ACC8116D6970451045324EB /* Pods-Cloudtips-SDK-iOS.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -518,7 +565,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.cloudtips.Cloudtips-SDK-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -530,6 +577,7 @@
 		};
 		8309851925236460009A3C32 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E3A0F475B258F6E8C668252 /* Pods-Cloudtips-SDK-iOS.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -546,7 +594,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.cloudtips.Cloudtips-SDK-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

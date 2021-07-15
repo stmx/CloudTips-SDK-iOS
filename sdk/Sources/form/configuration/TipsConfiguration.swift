@@ -15,6 +15,8 @@ public class TipsConfiguration {
     internal private(set) var applePayMerchantId: String = ""
     internal private(set) var testMode: Bool = false
     
+    internal private(set) var tipsDelegate: TipsDelegateImpl? = nil
+    
     var layout: Layout?
     var profile: Profile = Profile()
     
@@ -25,8 +27,12 @@ public class TipsConfiguration {
         self.testMode = testMode
     }
 
-    
     public func setApplePayMerchantId(_ merchantId: String) {
         self.applePayMerchantId = merchantId
     }
+    
+    public func setTipsDelegate(_ delegate: TipsDelegate) {
+        self.tipsDelegate = TipsDelegateImpl.init(delegate: delegate)
+    }
 }
+

@@ -931,17 +931,44 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DC3-XM-GYb" userLabel="Close Button" customClass="Button" customModule="Cloudtips_SDK_iOS" customModuleProvider="target">
+                                <rect key="frame" x="20" y="523" width="374" height="56"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="pUp-62-Jpi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Закрыть">
+                                    <color key="titleColor" red="0.22352941179999999" green="0.22352941179999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" red="0.73725490199999999" green="0.76470588240000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xyW-a9-2nl"/>
                         <color key="backgroundColor" name="bgColor"/>
                         <constraints>
                             <constraint firstItem="LGK-GL-xzB" firstAttribute="bottom" secondItem="M8W-bb-Ikr" secondAttribute="bottom" constant="8" id="2pl-H3-bki"/>
+                            <constraint firstItem="xyW-a9-2nl" firstAttribute="trailing" secondItem="DC3-XM-GYb" secondAttribute="trailing" constant="20" id="4Tc-2o-nst"/>
                             <constraint firstItem="RGX-dg-eK3" firstAttribute="top" secondItem="HNV-Ts-tN7" secondAttribute="bottom" constant="56" id="6ck-Kf-q50"/>
                             <constraint firstItem="b7S-3P-scU" firstAttribute="leading" secondItem="xyW-a9-2nl" secondAttribute="leading" constant="16" id="8Hp-XI-vlU"/>
                             <constraint firstItem="RGX-dg-eK3" firstAttribute="leading" secondItem="xyW-a9-2nl" secondAttribute="leading" constant="20" id="AqY-h8-8Rb"/>
                             <constraint firstItem="b7S-3P-scU" firstAttribute="top" secondItem="LGK-GL-xzB" secondAttribute="bottom" constant="30" id="B8z-wO-Tl3"/>
                             <constraint firstItem="HNV-Ts-tN7" firstAttribute="centerX" secondItem="xyW-a9-2nl" secondAttribute="centerX" id="BEF-te-F4B"/>
                             <constraint firstItem="xyW-a9-2nl" firstAttribute="trailing" secondItem="b7S-3P-scU" secondAttribute="trailing" constant="16" id="GiX-FN-1Rh"/>
+                            <constraint firstItem="DC3-XM-GYb" firstAttribute="top" secondItem="RGX-dg-eK3" secondAttribute="bottom" constant="20" id="MXL-Vn-45H"/>
                             <constraint firstItem="LGK-GL-xzB" firstAttribute="centerX" secondItem="6VZ-mY-3Q9" secondAttribute="centerX" id="OWD-Po-Z7v"/>
                             <constraint firstItem="xyW-a9-2nl" firstAttribute="trailing" secondItem="HNV-Ts-tN7" secondAttribute="trailing" constant="16" id="PGS-PL-jfg"/>
                             <constraint firstItem="HNV-Ts-tN7" firstAttribute="top" secondItem="b7S-3P-scU" secondAttribute="bottom" constant="8" id="UxS-MU-3X7"/>
@@ -950,10 +977,12 @@
                             <constraint firstItem="xyW-a9-2nl" firstAttribute="trailing" secondItem="RGX-dg-eK3" secondAttribute="trailing" constant="20" id="m0b-Kw-mh3"/>
                             <constraint firstItem="HNV-Ts-tN7" firstAttribute="leading" secondItem="xyW-a9-2nl" secondAttribute="leading" constant="16" id="ncr-I8-Run"/>
                             <constraint firstItem="b7S-3P-scU" firstAttribute="centerX" secondItem="6VZ-mY-3Q9" secondAttribute="centerX" id="rZK-dC-Z2w"/>
+                            <constraint firstItem="DC3-XM-GYb" firstAttribute="leading" secondItem="xyW-a9-2nl" secondAttribute="leading" constant="20" id="thR-fI-tzC"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gFF-n8-kuc"/>
                     <connections>
+                        <outlet property="closeButton" destination="DC3-XM-GYb" id="rlM-gF-2Rk"/>
                         <outlet property="errorTitleLabel" destination="xeG-jl-45c" id="2eq-LR-AZo"/>
                         <outlet property="messageLabel" destination="XLW-Xg-7o0" id="Mgx-Bd-DZV"/>
                         <outlet property="nameLabel" destination="b7S-3P-scU" id="TtS-ma-vwP"/>

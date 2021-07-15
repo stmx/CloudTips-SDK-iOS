@@ -14,6 +14,8 @@ public class BasePaymentViewController: BaseViewController, PaymentDelegate {
     internal var paymentData: PaymentData?
     internal var paymentError: CloudtipsError?
     
+    var isTipsSuccessed: Bool = false
+    
     @IBOutlet weak var captchaWebViewContainer: UIView?
     var captchaWebView: WKWebView?
     var recaptchaViewModel: RecaptchaViewModel = RecaptchaViewModel()
@@ -28,6 +30,17 @@ public class BasePaymentViewController: BaseViewController, PaymentDelegate {
         recaptchaV2?.configureWebView({ (webview) in
             webview.frame = self.view.bounds
         })
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage.named("ic_close"), style: .plain, target: self, action: #selector(close))
+    }
+    
+    @objc func close() {
+        self.dismiss(animated: true)
+        if (self.isTipsSuccessed) {
+            self.configuration.tipsDelegate?.delegate?.onTipsSuccessed()
+        } else {
+            self.configuration.tipsDelegate?.delegate?.onTipsCancelled()
+        }
     }
     
     internal func onPaymentSucceeded() {
