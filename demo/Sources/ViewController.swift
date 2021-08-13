@@ -43,8 +43,8 @@ class ViewController: UIViewController {
 
     @IBAction func onContinue(_ sender: UIButton) {
         if let text = self.textField.text?.phoneNumber() {
-            //let configuration = TipsConfiguration.init(phoneNumber: "+" + text, userName: "Cloudtips demo user", partner: "ctdemo")
-            let configuration = TipsConfiguration.init(phoneNumber: "+" + text, userName: "Cloudtips demo user", partner: "ctdemo", testMode: true)
+            let configuration = TipsConfiguration.init(phoneNumber: "+" + text, userName: "Cloudtips demo user", partner: "ctdemo")
+            //let configuration = TipsConfiguration.init(phoneNumber: "+" + text, userName: "Cloudtips demo user", partner: "ctdemo", testMode: true)
             configuration.setApplePayMerchantId("merchant.ru.cloudpayments")
             configuration.setTipsDelegate(self)
             TipsViewController.present(with: configuration, from: self)

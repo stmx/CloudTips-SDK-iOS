@@ -182,18 +182,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
             }
         }
     }
-    
-//    private func getProfile(by layoutId: String, completion: @escaping () -> ()) {
-//        api.getUserProfile(by: layoutId) { [weak self] (profile, error) in
-//            guard let `self` = self else {
-//                return
-//            }
-//
-//            self.configuration.profile = profile
-//            completion()
-//        }
-//    }
-    
+        
     private func getPaymentPages(by layoutId: String, completion: @escaping () -> ()) {
         api.getPaymentPages(by: layoutId) { [weak self] (response, error) in
             guard let `self` = self else {
@@ -371,28 +360,23 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         if let amountString = self.amountTextField.text, let amount = NumberFormatter.currencyNumber(from: amountString), self.validateAmount(amount) {
             self.amount = amount
             
-            self.showProgress()
-            self.askForV3Captcha(with: self.configuration.layout?.layoutId ?? "", amount: self.amount.stringValue) { (token) in
-                self.hideProgress()
-                
-                self.captchaToken = token
-                
-                if self.captchaToken != nil {
-                    let request = PKPaymentRequest()
-                    request.merchantIdentifier = self.configuration.applePayMerchantId
-                    request.supportedNetworks = self.supportedPaymentNetworks
-                    request.merchantCapabilities = PKMerchantCapability.capability3DS
-                    request.countryCode = "RU"
-                    request.currencyCode = "RUB"
-                    request.paymentSummaryItems = [PKPaymentSummaryItem(label: "К оплате", amount: NSDecimalNumber.init(value: self.amount.doubleValue))]
-                    if let applePayController = PKPaymentAuthorizationViewController(paymentRequest:
-                            request) {
-                        applePayController.delegate = self
-                        applePayController.modalPresentationStyle = .formSheet
-                        self.present(applePayController, animated: true, completion: nil)
-                    }
+            self.captchaToken = nil
+            
+         
+                let request = PKPaymentRequest()
+                request.merchantIdentifier = self.configuration.applePayMerchantId
+                request.supportedNetworks = self.supportedPaymentNetworks
+                request.merchantCapabilities = PKMerchantCapability.capability3DS
+                request.countryCode = "RU"
+                request.currencyCode = "RUB"
+                request.paymentSummaryItems = [PKPaymentSummaryItem(label: "К оплате", amount: NSDecimalNumber.init(value: self.amount.doubleValue))]
+                if let applePayController = PKPaymentAuthorizationViewController(paymentRequest:
+                        request) {
+                    applePayController.delegate = self
+                    applePayController.modalPresentationStyle = .formSheet
+                    self.present(applePayController, animated: true, completion: nil)
                 }
-            }
+           
         } else {
             self.setErrorMode(true)
         }
