@@ -10,7 +10,7 @@ enum HTTPResource {
     static let baseURLString = "https://pay.cloudtips.ru/"
     
     static let baseApiProdURLString = "https://lk.cloudtips.ru/api/"
-    static let baseApiPreprodURLString = "https://lk-preprod.cloudtips.ru/api/"
+    static let baseApiPreprodURLString = "https://lk-sandbox.cloudtips.ru/api/"
     static var baseApiURLString = baseApiProdURLString
     
     case getLayout(String)
