@@ -362,14 +362,13 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
             
             self.captchaToken = nil
             
-         
                 let request = PKPaymentRequest()
                 request.merchantIdentifier = self.configuration.applePayMerchantId
                 request.supportedNetworks = self.supportedPaymentNetworks
                 request.merchantCapabilities = PKMerchantCapability.capability3DS
                 request.countryCode = "RU"
                 request.currencyCode = "RUB"
-                request.paymentSummaryItems = [PKPaymentSummaryItem(label: "К оплате", amount: NSDecimalNumber.init(value: self.amount.doubleValue))]
+                request.paymentSummaryItems = [PKPaymentSummaryItem(label: "CloudTips", amount: NSDecimalNumber.init(value: self.amount.doubleValue))]
                 if let applePayController = PKPaymentAuthorizationViewController(paymentRequest:
                         request) {
                     applePayController.delegate = self
