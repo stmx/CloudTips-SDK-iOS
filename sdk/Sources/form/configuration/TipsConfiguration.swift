@@ -10,6 +10,7 @@ import Foundation
 
 public class TipsConfiguration {
     internal let phoneNumber: String
+    internal let layoutId: String
     internal let userName: String?
     internal let agentCode: String?
     internal private(set) var applePayMerchantId: String = ""
@@ -25,6 +26,15 @@ public class TipsConfiguration {
         self.userName = userName
         self.agentCode = partner
         self.testMode = testMode
+        self.layoutId = ""
+    }
+
+    public init(layoutId: String) {
+        self.layoutId = layoutId
+        self.layout = Layout(layoutId: layoutId, defaultLayout: true, disabled: false, title: "", description: "", text: "", paymentLink: "", backgroundId: "", backgroundUrl: "", qrLink: "")
+        self.phoneNumber = ""
+        self.userName = ""
+        self.agentCode = ""
     }
 
     public func setApplePayMerchantId(_ merchantId: String) {
