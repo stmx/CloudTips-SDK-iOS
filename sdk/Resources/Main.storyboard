@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="i6h-zR-G8v">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="i6h-zR-G8v">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -505,7 +505,7 @@
                         <subviews>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="idf-oG-qgU">
                                 <rect key="frame" x="0.0" y="1" width="1" height="1"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="bgColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="LDf-rD-Tmm"/>
                                     <constraint firstAttribute="height" constant="1" id="QPj-a0-gPz"/>
@@ -763,7 +763,7 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.96078431369999995" green="0.97647058819999999" blue="0.98823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" name="bgColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="W7W-CB-fhY" secondAttribute="trailing" constant="20" id="0Gr-lo-Bza"/>
                                             <constraint firstItem="VMM-px-nZy" firstAttribute="top" secondItem="vnC-42-Ezw" secondAttribute="bottom" constant="40" id="4My-fb-5zt"/>
@@ -821,7 +821,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="bgColor"/>
                                 <constraints>
                                     <constraint firstItem="KrP-vI-RXQ" firstAttribute="centerX" secondItem="h1w-tD-6My" secondAttribute="centerX" id="BY6-8F-q4j"/>
                                     <constraint firstItem="KrP-vI-RXQ" firstAttribute="centerY" secondItem="h1w-tD-6My" secondAttribute="centerY" id="fs5-u8-DU7"/>
@@ -829,7 +829,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hbK-cb-T5v"/>
-                        <color key="backgroundColor" red="0.96078431372549022" green="0.97647058823529409" blue="0.9882352941176471" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" name="bgColor"/>
                         <constraints>
                             <constraint firstItem="nFC-Bn-nob" firstAttribute="leading" secondItem="hbK-cb-T5v" secondAttribute="leading" id="7bZ-Un-N00"/>
                             <constraint firstAttribute="trailing" secondItem="h1w-tD-6My" secondAttribute="trailing" id="Azv-pp-I9B"/>
@@ -1043,7 +1043,7 @@
             <color red="0.0" green="0.59215686274509804" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="bgColor">
-            <color red="0.96078431372549022" green="0.97647058823529409" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="color_red">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
