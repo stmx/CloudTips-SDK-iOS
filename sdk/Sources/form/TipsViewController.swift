@@ -122,7 +122,9 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     //MARK: - Private -
     
     private func initializeApplePay() {
-        if !self.configuration.applePayMerchantId.isEmpty && PKPaymentAuthorizationViewController.canMakePayments() {
+        let isApplePayEnabled = true
+        if !self.configuration.applePayMerchantId.isEmpty && PKPaymentAuthorizationViewController.canMakePayments() &&
+            isApplePayEnabled {
             let button: PKPaymentButton
             if PKPaymentAuthorizationController.canMakePayments(usingNetworks: self.supportedPaymentNetworks) {
                 button = PKPaymentButton.init(paymentButtonType: .plain, paymentButtonStyle: .black)
